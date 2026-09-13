@@ -219,13 +219,15 @@
       border-radius: 50px;
     }
 
-    /* ---- COUNTDOWN ---- */
+    /* ===================================================== */
+    /* ========== COUNTDOWN — DEFAULT (Mobile-first) ======== */
+    /* ===================================================== */
     .countdown-section {
       width: 100%;
       background: #e8dccc;
-      border-radius: 60px 60px 30px 30px;
-      padding: 2.2rem 1.5rem;
-      margin: 2rem 0 2.5rem;
+      border-radius: 40px 40px 20px 20px;
+      padding: 1.4rem 0.8rem;
+      margin: 1.5rem 0 1.8rem;
       box-shadow: inset 0 0 0 2px #f7f0e6, 0 8px 18px rgba(100, 70, 40, 0.15);
       border: 1px solid #cbb295;
     }
@@ -233,50 +235,58 @@
     .countdown-section h2 {
       text-align: center;
       font-weight: 400;
-      font-size: 1.8rem;
-      letter-spacing: 3px;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
       color: #4d3826;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1rem;
       text-transform: uppercase;
     }
 
-    .countdown-section h2 i { color: #9b7b5e; margin-right: 10px; }
+    .countdown-section h2 i {
+      color: #9b7b5e;
+      margin-right: 6px;
+      font-size: 0.95rem;
+    }
 
     .timer {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;          /* JANGAN turun baris */
       justify-content: center;
-      gap: 1.5rem 2rem;
-      align-items: center;
+      align-items: stretch;
+      gap: 0.4rem;
+      width: 100%;
     }
 
     .timer-block {
+      flex: 1 1 0;                /* semua blok sama lebar */
+      min-width: 0;               /* benarkan kecut */
+      max-width: 78px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 85px;
+      justify-content: center;
       background: #fcf7f0;
-      padding: 1rem 0.8rem 0.6rem;
-      border-radius: 40px 12px 40px 12px;
-      box-shadow: 0 4px 0 #b8a48c, 0 8px 12px rgba(70, 50, 30, 0.1);
+      padding: 0.55rem 0.25rem 0.4rem;
+      border-radius: 20px 6px 20px 6px;
+      box-shadow: 0 3px 0 #b8a48c, 0 5px 8px rgba(70, 50, 30, 0.1);
       border: 1px solid #dacbbc;
     }
 
     .timer-number {
-      font-size: 3rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: #3d2c1b;
-      line-height: 1.1;
+      line-height: 1;
+      letter-spacing: 1px;
       text-shadow: 1px 1px 0 #fff4e8;
-      letter-spacing: 2px;
     }
 
     .timer-label {
-      font-size: 0.9rem;
+      font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: #8f735b;
-      margin-top: 6px;
+      margin-top: 4px;
       font-weight: 400;
     }
 
@@ -493,58 +503,7 @@
     }
 
     /* ===================================================== */
-    /* ====== DETEKSI PERANTI : DESKTOP vs MOBILE ========== */
-    /* ===================================================== */
-
-    /* ---- KESAN DEFAULT (fallback = mobile-first kecil) ---- */
-    .cover-frame { padding: 2.4rem 1.4rem; border-radius: 100px 20px 100px 20px; }
-    .cover-frame h1 { font-size: 2.1rem; letter-spacing: 3px; }
-    .cover-small { font-size: 0.75rem; letter-spacing: 3px; }
-    .cover-hint { font-size: 0.7rem; letter-spacing: 2px; }
-    .enter-btn { font-size: 0.85rem; padding: 0.95rem 1.6rem; letter-spacing: 2px; }
-
-    .page { padding: 1rem 0.9rem 2.5rem; }
-    .hero { border-width: 4px; border-radius: 24px 24px 12px 12px; margin-bottom: 1.8rem; }
-    .names h1 { font-size: 2.1rem; letter-spacing: 3px; }
-    .names .tagline { font-size: 1rem; padding: 0.5rem 1.2rem; letter-spacing: 1.5px; }
-
-    .countdown-section { padding: 1.6rem 0.9rem; border-radius: 40px 40px 20px 20px; margin: 1.5rem 0 1.8rem; }
-    .countdown-section h2 { font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 1.2rem; }
-    .timer { gap: 0.6rem 0.8rem; }
-    .timer-block { min-width: 66px; padding: 0.7rem 0.5rem 0.45rem; border-radius: 28px 8px 28px 8px; }
-    .timer-number { font-size: 1.9rem; letter-spacing: 1px; }
-    .timer-label { font-size: 0.65rem; letter-spacing: 1.5px; margin-top: 4px; }
-
-    .place { padding: 1.6rem 1rem; border-radius: 60px 16px 60px 16px; margin: 1.5rem 0 2rem; }
-    .place i { font-size: 2rem; }
-    .place h3 { font-size: 1.35rem; letter-spacing: 1px; }
-    .place p { font-size: 1rem; padding: 0.4rem 1.1rem; }
-    .place .address { font-size: 0.9rem; letter-spacing: 0.5px; }
-
-    .rsvp-section { padding: 1.8rem 1rem 2rem; border-radius: 24px 24px 40px 40px; }
-    .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 1.2rem; }
-    .rsvp-form { gap: 0.9rem; }
-    .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
-      padding: 0.85rem 1rem; font-size: 0.95rem;
-    }
-    .rsvp-form button { font-size: 1rem; padding: 0.9rem 1.8rem; letter-spacing: 2px; min-width: 180px; }
-    .rsvp-note { font-size: 0.85rem; }
-
-    .schedule-section { padding: 2rem 1rem 1.8rem; border-radius: 40px 16px 40px 16px; margin-top: 2rem; }
-    .schedule-section h2 { font-size: 1.35rem; letter-spacing: 2px; }
-    .schedule-sub { font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 1.6rem; }
-    .timeline { padding-left: 1.2rem; }
-    .timeline-item { padding-left: 2.3rem; padding-bottom: 1.5rem; }
-    .timeline-icon { width: 34px; height: 34px; font-size: 0.8rem; left: -0.85rem; }
-    .timeline-content { padding: 0.9rem 1rem; border-radius: 10px 30px 10px 30px; }
-    .timeline-time { font-size: 0.7rem; letter-spacing: 1.5px; padding: 0.2rem 0.8rem; }
-    .timeline-content h4 { font-size: 1rem; }
-    .timeline-content p { font-size: 0.85rem; }
-
-    .footer-note { font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 2.5rem; }
-
-    /* ===================================================== */
-    /* ============ MOBILE VIEW (<= 640px) ================= */
+    /* ============== MOBILE (<= 640px) ===================== */
     /* ===================================================== */
     @media (max-width: 640px) {
       body { font-size: 15px; }
@@ -576,33 +535,83 @@
 
       .cover-hint { font-size: 0.68rem; letter-spacing: 2px; margin-top: 1.2rem; }
 
-      /* susun timer mobile — 2 baris */
-      .timer { gap: 0.5rem 0.6rem; }
-      .timer-block { min-width: 62px; }
-      .timer-number { font-size: 1.8rem; }
+      .page { padding: 1rem 0.9rem 2.5rem; }
+      .hero { border-width: 4px; border-radius: 24px 24px 12px 12px; margin-bottom: 1.8rem; }
+      .names h1 { font-size: 2.1rem; letter-spacing: 3px; }
+      .names .tagline { font-size: 1rem; padding: 0.5rem 1.2rem; letter-spacing: 1.5px; }
 
-      /* timeline mobile guna gaya bubble lebih lega */
-      .timeline-content {
-        padding: 1rem 1.1rem;
-        border-radius: 12px 28px 12px 28px;
+      .place { padding: 1.6rem 1rem; border-radius: 60px 16px 60px 16px; margin: 1.5rem 0 2rem; }
+      .place i { font-size: 2rem; }
+      .place h3 { font-size: 1.35rem; letter-spacing: 1px; }
+      .place p { font-size: 1rem; padding: 0.4rem 1.1rem; }
+      .place .address { font-size: 0.9rem; letter-spacing: 0.5px; }
+
+      .rsvp-section { padding: 1.8rem 1rem 2rem; border-radius: 24px 24px 40px 40px; }
+      .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 1.2rem; }
+      .rsvp-form { gap: 0.9rem; }
+      .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+        padding: 0.85rem 1rem; font-size: 0.95rem;
       }
+      .rsvp-form button { font-size: 1rem; padding: 0.9rem 1.8rem; letter-spacing: 2px; min-width: 180px; }
+      .rsvp-note { font-size: 0.85rem; }
 
-      .timeline-content h4 { font-size: 1.05rem; }
-      .timeline-content p { font-size: 0.9rem; line-height: 1.5; }
+      .schedule-section { padding: 2rem 1rem 1.8rem; border-radius: 40px 16px 40px 16px; margin-top: 2rem; }
+      .schedule-section h2 { font-size: 1.35rem; letter-spacing: 2px; }
+      .schedule-sub { font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 1.6rem; }
+      .timeline { padding-left: 1.2rem; }
+      .timeline-item { padding-left: 2.3rem; padding-bottom: 1.5rem; }
+      .timeline-icon { width: 34px; height: 34px; font-size: 0.8rem; left: -0.85rem; }
+      .timeline-content { padding: 0.9rem 1rem; border-radius: 10px 30px 10px 30px; }
+      .timeline-time { font-size: 0.7rem; letter-spacing: 1.5px; padding: 0.2rem 0.8rem; }
+      .timeline-content h4 { font-size: 1rem; }
+      .timeline-content p { font-size: 0.85rem; }
 
-      /* input lebih tinggi untuk jari */
-      .rsvp-form input,
-      .rsvp-form select,
-      .rsvp-form textarea {
-        padding: 0.95rem 1.1rem;
-        font-size: 1rem;
-      }
-
-      .rsvp-form button { width: 100%; max-width: 320px; }
+      .footer-note { font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 2.5rem; }
     }
 
     /* ===================================================== */
-    /* ============ DESKTOP VIEW (>= 1024px) =============== */
+    /* ========== TELEFON KECIL (<= 380px) ================== */
+    /* ===================================================== */
+    @media (max-width: 380px) {
+      .timer-block { padding: 0.45rem 0.15rem 0.3rem; border-radius: 16px 5px 16px 5px; }
+      .timer-number { font-size: 1.15rem; }
+      .timer-label { font-size: 0.5rem; letter-spacing: 0.5px; }
+      .timer { gap: 0.25rem; }
+    }
+
+    /* ===================================================== */
+    /* ========== TABLET (641px – 1023px) =================== */
+    /* ===================================================== */
+    @media (min-width: 641px) and (max-width: 1023px) {
+      .cover-frame { padding: 3rem 2rem; border-radius: 150px 25px 150px 25px; max-width: 580px; }
+      .cover-frame h1 { font-size: 2.8rem; letter-spacing: 5px; }
+      .enter-btn { font-size: 0.95rem; padding: 1rem 2.2rem; }
+
+      .page { padding: 1.8rem 1.5rem 3.5rem; }
+      .names h1 { font-size: 2.8rem; letter-spacing: 5px; }
+
+      .countdown-section { padding: 2rem 1.2rem; margin: 2rem 0 2.2rem; }
+      .countdown-section h2 { font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 1.5rem; }
+
+      .timer { gap: 1rem 1.2rem; flex-wrap: wrap; }
+
+      .timer-block {
+        min-width: 85px;
+        max-width: none;
+        padding: 0.9rem 0.6rem 0.5rem;
+        border-radius: 32px 10px 32px 10px;
+      }
+
+      .timer-number { font-size: 2.4rem; }
+      .timer-label { font-size: 0.8rem; letter-spacing: 2px; }
+
+      .place h3 { font-size: 1.7rem; }
+      .rsvp-section h2 { font-size: 2rem; }
+      .schedule-section h2 { font-size: 1.8rem; }
+    }
+
+    /* ===================================================== */
+    /* ========== DESKTOP (>= 1024px) ======================= */
     /* ===================================================== */
     @media (min-width: 1024px) {
       .cover-frame {
@@ -640,13 +649,31 @@
       .names h1 { font-size: 4rem; letter-spacing: 8px; }
       .names .tagline { font-size: 1.5rem; padding: 0.8rem 2.6rem; }
 
-      .countdown-section { padding: 3rem 2rem; margin: 3rem 0 3.5rem; }
-      .countdown-section h2 { font-size: 2.1rem; letter-spacing: 5px; margin-bottom: 2.2rem; }
+      .countdown-section {
+        padding: 3rem 2rem;
+        margin: 3rem 0 3.5rem;
+        border-radius: 60px 60px 30px 30px;
+      }
 
-      .timer { gap: 2rem 2.8rem; }
-      .timer-block { min-width: 110px; padding: 1.3rem 1rem 0.9rem; }
-      .timer-number { font-size: 3.6rem; }
-      .timer-label { font-size: 1rem; letter-spacing: 3px; }
+      .countdown-section h2 {
+        font-size: 2.1rem;
+        letter-spacing: 5px;
+        margin-bottom: 2.2rem;
+      }
+
+      .countdown-section h2 i { font-size: 1.8rem; margin-right: 10px; }
+
+      .timer { gap: 2rem 2.8rem; flex-wrap: wrap; }
+
+      .timer-block {
+        min-width: 110px;
+        max-width: none;
+        padding: 1.3rem 1rem 0.9rem;
+        border-radius: 40px 12px 40px 12px;
+      }
+
+      .timer-number { font-size: 3.6rem; letter-spacing: 2px; }
+      .timer-label { font-size: 1rem; letter-spacing: 3px; margin-top: 6px; }
 
       .place {
         padding: 2.8rem 2rem;
@@ -682,23 +709,6 @@
       .timeline-content p { font-size: 1.1rem; }
 
       .footer-note { font-size: 1rem; letter-spacing: 3px; }
-    }
-
-    /* ===================================================== */
-    /* ============ TABLET (641px – 1023px) ================ */
-    /* ===================================================== */
-    @media (min-width: 641px) and (max-width: 1023px) {
-      .cover-frame { padding: 3rem 2rem; border-radius: 150px 25px 150px 25px; max-width: 580px; }
-      .cover-frame h1 { font-size: 2.8rem; letter-spacing: 5px; }
-      .enter-btn { font-size: 0.95rem; padding: 1rem 2.2rem; }
-
-      .page { padding: 1.8rem 1.5rem 3.5rem; }
-      .names h1 { font-size: 2.8rem; letter-spacing: 5px; }
-      .timer-number { font-size: 2.6rem; }
-      .timer-block { min-width: 80px; }
-      .place h3 { font-size: 1.7rem; }
-      .rsvp-section h2 { font-size: 2rem; }
-      .schedule-section h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -860,18 +870,14 @@
   <script>
     /* ===== DETEKSI JENIS PERANTI ===== */
     const isMobile  = window.matchMedia('(max-width: 640px)').matches;
-    const isTablet  = window.matchMedia('(min-width: 641px) and (max-width: 1023px)').matches;
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
-    // Simpan info di body untuk debugging / styling tambahan
-    document.body.dataset.device = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop';
+    document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
 
     /* ===== MASUK KE HALAMAN UTAMA ===== */
     const coverPage = document.getElementById('coverPage');
     const mainPage  = document.getElementById('mainPage');
     const enterBtn  = document.getElementById('enterBtn');
 
-    // Kunci scroll semasa di cover
     document.body.style.overflow = 'hidden';
 
     function enterWedding() {
@@ -881,16 +887,13 @@
       window.scrollTo(0, 0);
     }
 
-    // Klik butang → masuk
     enterBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       enterWedding();
     });
 
-    // Klik di mana-mana pada cover → masuk juga
     coverPage.addEventListener('click', enterWedding);
 
-    // Untuk mobile: tukar teks hint sikit
     if (isMobile) {
       document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
     }
@@ -925,16 +928,13 @@
       setInterval(updateCountdown, 1000);
     })();
 
-    /* ===== KESAN RESIZE (jika user pusing skrin / resize window) ===== */
+    /* ===== RESIZE HANDLER ===== */
     let resizeTimer;
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         const m = window.matchMedia('(max-width: 640px)').matches;
-        const t = window.matchMedia('(min-width: 641px) and (max-width: 1023px)').matches;
-        const d = window.matchMedia('(min-width: 1024px)').matches;
-
-        document.body.dataset.device = m ? 'mobile' : t ? 'tablet' : 'desktop';
+        document.body.dataset.device = m ? 'mobile' : 'desktop';
 
         if (m) {
           document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';

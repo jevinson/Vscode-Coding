@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rusty & Anney · Wedding RSVP</title>
-  <!-- Font Awesome for icons (optional, but nice) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* rustic, warm, organic styling */
     * {
       margin: 0;
       padding: 0;
@@ -15,14 +13,13 @@
     }
 
     body {
-      background-color: #f7f2e9;  /* warm parchment */
+      background-color: #f7f2e9;
       font-family: 'Georgia', 'Times New Roman', serif;
       color: #3e2e1f;
       scroll-behavior: smooth;
       line-height: 1.5;
     }
 
-    /* ---- main scroll container ---- */
     .page {
       max-width: 1100px;
       margin: 0 auto;
@@ -32,7 +29,7 @@
       align-items: center;
     }
 
-    /* ---- top picture / hero ---- */
+    /* ---- hero ---- */
     .hero {
       width: 100%;
       margin-bottom: 2.5rem;
@@ -49,12 +46,10 @@
       display: block;
       object-fit: cover;
       aspect-ratio: 16 / 9;
-      /* warm, slightly faded rustic filter */
       filter: sepia(0.25) contrast(0.95) brightness(1.02);
     }
 
-    /* rustic overlay text on picture (optional name) – but we'll keep names below */
-    /* ---- names and title (rustic & anney) ---- */
+    /* ---- names ---- */
     .names {
       text-align: center;
       margin-bottom: 1.8rem;
@@ -95,10 +90,10 @@
       border-radius: 50px;
     }
 
-    /* ---- countdown section ---- */
+    /* ---- countdown ---- */
     .countdown-section {
       width: 100%;
-      background: #e8dccc;  /* aged wood / linen */
+      background: #e8dccc;
       border-radius: 60px 60px 30px 30px;
       padding: 2.2rem 1.5rem;
       margin: 2rem 0 2.5rem;
@@ -160,7 +155,7 @@
       font-weight: 400;
     }
 
-    /* ---- place / location ---- */
+    /* ---- place ---- */
     .place {
       width: 100%;
       display: flex;
@@ -184,15 +179,8 @@
       opacity: 0.6;
     }
 
-    .place::before {
-      top: 10px;
-      left: 30px;
-    }
-
-    .place::after {
-      bottom: 10px;
-      right: 30px;
-    }
+    .place::before { top: 10px; left: 30px; }
+    .place::after { bottom: 10px; right: 30px; }
 
     .place i {
       font-size: 2.5rem;
@@ -228,7 +216,7 @@
       font-style: normal;
     }
 
-    /* ---- rsvp section (interactive, but scroll only) ---- */
+    /* ---- rsvp ---- */
     .rsvp-section {
       width: 100%;
       background: #e3d5c4;
@@ -333,7 +321,151 @@
       padding-top: 1.2rem;
     }
 
-    /* ---- tiny footer ---- */
+    /* ============================================= */
+    /* ========== JADUAL ACARA (TIMELINE) ========== */
+    /* ============================================= */
+    .schedule-section {
+      width: 100%;
+      margin-top: 3rem;
+      background: #f1e6da;
+      border-radius: 60px 20px 60px 20px;
+      padding: 2.8rem 1.8rem 2.5rem;
+      border: 1px solid #dfcdb9;
+      box-shadow: 0 12px 22px -8px rgba(90, 65, 40, 0.22);
+      position: relative;
+    }
+
+    .schedule-section::before,
+    .schedule-section::after {
+      content: "❦";
+      position: absolute;
+      font-size: 1.8rem;
+      color: #bc9b7b;
+      opacity: 0.7;
+    }
+
+    .schedule-section::before { top: 14px; left: 26px; }
+    .schedule-section::after { bottom: 14px; right: 26px; }
+
+    .schedule-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      color: #4a3724;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .schedule-section h2 i {
+      color: #9a7a5c;
+      margin: 0 10px;
+    }
+
+    .schedule-sub {
+      text-align: center;
+      font-style: italic;
+      color: #7a5e44;
+      letter-spacing: 1.5px;
+      margin-bottom: 2.2rem;
+      font-size: 1.05rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+    }
+
+    /* garis menegak rustic */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #c7ab8c 0px,
+        #c7ab8c 8px,
+        transparent 8px,
+        transparent 14px
+      );
+      border-radius: 3px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2rem 2.8rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* bulatan ikon */
+    .timeline-icon {
+      position: absolute;
+      left: -1.05rem;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #fcf7f0;
+      border: 2px solid #c7ab8c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b6b4b;
+      font-size: 1.05rem;
+      box-shadow: 0 3px 8px rgba(100, 70, 40, 0.18);
+      z-index: 2;
+    }
+
+    .timeline-content {
+      background: #fcf7f0;
+      border: 1px solid #dacbbc;
+      border-radius: 14px 40px 14px 40px;
+      padding: 1.1rem 1.4rem;
+      box-shadow: 0 6px 14px -6px rgba(90, 65, 40, 0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(4px);
+    }
+
+    .timeline-time {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fef9f2;
+      background: #8b6b4b;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 0.55rem;
+      font-weight: 400;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #4a3724;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-content p {
+      font-size: 1rem;
+      color: #6f5a46;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ---- footer ---- */
     .footer-note {
       margin-top: 3.5rem;
       font-size: 0.9rem;
@@ -346,81 +478,48 @@
       text-align: center;
     }
 
-    /* ---- responsive tweaks ---- */
+    /* ---- responsive ---- */
     @media (max-width: 600px) {
-      .page {
-        padding: 1rem 0.8rem 2.5rem;
-      }
-
-      .names h1 {
-        font-size: 2.2rem;
-        letter-spacing: 4px;
-      }
-
-      .timer-number {
-        font-size: 2.2rem;
-      }
-
-      .timer-block {
-        min-width: 70px;
-        padding: 0.7rem 0.4rem 0.4rem;
-      }
-
-      .place h3 {
-        font-size: 1.5rem;
-      }
-
-      .place p {
-        font-size: 1.1rem;
-        padding: 0.4rem 1.2rem;
-      }
-
-      .rsvp-section h2 {
-        font-size: 1.7rem;
-      }
-
-      .hero {
-        border-width: 4px;
-      }
+      .page { padding: 1rem 0.8rem 2.5rem; }
+      .names h1 { font-size: 2.2rem; letter-spacing: 4px; }
+      .timer-number { font-size: 2.2rem; }
+      .timer-block { min-width: 70px; padding: 0.7rem 0.4rem 0.4rem; }
+      .place h3 { font-size: 1.5rem; }
+      .place p { font-size: 1.1rem; padding: 0.4rem 1.2rem; }
+      .rsvp-section h2 { font-size: 1.7rem; }
+      .hero { border-width: 4px; }
+      .schedule-section { padding: 2.2rem 1rem 2rem; }
+      .schedule-section h2 { font-size: 1.5rem; letter-spacing: 3px; }
+      .timeline-content h4 { font-size: 1.1rem; }
+      .timeline-item { padding-left: 2.4rem; }
+      .timeline-icon { width: 36px; height: 36px; font-size: 0.9rem; left: -0.95rem; }
     }
 
     @media (max-width: 400px) {
-      .timer {
-        gap: 0.8rem;
-      }
-
-      .timer-block {
-        min-width: 60px;
-      }
-
-      .timer-number {
-        font-size: 1.8rem;
-      }
-
-      .timer-label {
-        font-size: 0.7rem;
-      }
+      .timer { gap: 0.8rem; }
+      .timer-block { min-width: 60px; }
+      .timer-number { font-size: 1.8rem; }
+      .timer-label { font-size: 0.7rem; }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- TOP PICTURE (wedding themed) -->
+    <!-- TOP PICTURE -->
     <div class="hero">
-      <!-- rustic wedding image from placeholder (unsplash-like source) -->
       <img 
         src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
         alt="Rustic wedding table setting with flowers and candles"
       >
     </div>
 
-    <!-- WEDDING NAMES: RUSTY & ANNEY -->
+    <!-- NAMES -->
     <div class="names">
       <h1>Rusty <span>&</span> Anney</h1>
       <div class="tagline">are getting married</div>
     </div>
 
-    <!-- COUNTDOWN SECTION -->
+    <!-- COUNTDOWN -->
     <div class="countdown-section">
       <h2><i class="fas fa-hourglass-half"></i> Counting down <i class="fas fa-hourglass-half"></i></h2>
       <div class="timer" id="countdown-timer">
@@ -443,7 +542,7 @@
       </div>
     </div>
 
-    <!-- PLACE / VENUE -->
+    <!-- PLACE -->
     <div class="place">
       <i class="fas fa-map-pin"></i>
       <h3>The Old Barn</h3>
@@ -451,7 +550,7 @@
       <span class="address">Asheville, North Carolina · June 14, 2026 · 4:00 PM</span>
     </div>
 
-    <!-- RSVP SECTION (scrolling, no actual submission — just visual) -->
+    <!-- RSVP -->
     <div class="rsvp-section">
       <h2><i class="fas fa-envelope"></i> RSVP <i class="fas fa-envelope"></i></h2>
       <form class="rsvp-form" onsubmit="event.preventDefault(); alert('🌿 Thank you! This is a demo RSVP — we’d love to have you. (Rusty & Anney)');">
@@ -468,22 +567,86 @@
       <div class="rsvp-note">Kindly respond by May 1, 2026</div>
     </div>
 
-    <!-- small footer -->
+    <!-- ============================================= -->
+    <!-- ============ JADUAL ACARA =================== -->
+    <!-- ============================================= -->
+    <div class="schedule-section">
+      <h2><i class="fas fa-calendar-alt"></i> Jadual Acara <i class="fas fa-calendar-alt"></i></h2>
+      <p class="schedule-sub">— atur cara majlis perkahwinan kami —</p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-chair"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">3:00 PM</span>
+            <h4>Ketibaan Tetamu</h4>
+            <p>Para tetamu dijemput hadir dan mendaftar di meja penerimaan tetamu.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-ring"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">4:00 PM</span>
+            <h4>Majlis Akad Nikah</h4>
+            <p>Upacara akad nikah dan lafaz ikrar di hadapan keluarga dan tetamu.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-camera"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">5:00 PM</span>
+            <h4>Sesi Bergambar</h4>
+            <p>Bergambar bersama pengantin, keluarga dan sahabat handai tercinta.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">6:00 PM</span>
+            <h4>Jamuan Makan</h4>
+            <p>Menikmati hidangan istimewa bersama-sama para tetamu yang hadir.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">7:30 PM</span>
+            <h4>Potong Kek & Ucapan</h4>
+            <p>Majlis potong kek pengantin, ucapan daripada keluarga dan tetamu.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-music"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-time">8:30 PM</span>
+            <h4>Persembahan & Majlis Bersurai</h4>
+            <p>Persembahan istimewa dan majlis bersurai. Selamat malam, terima kasih hadir!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- footer -->
     <div class="footer-note">Rusty &amp; Anney · #rusticwedding</div>
   </div>
 
-  <!-- COUNTDOWN SCRIPT (target: June 14, 2026 16:00) -->
+  <!-- COUNTDOWN SCRIPT -->
   <script>
     (function() {
-      // Set wedding date: June 14, 2026 at 4:00 PM (local time)
-      const weddingDate = new Date(2026, 5, 14, 16, 0, 0); // month index 5 = June
+      const weddingDate = new Date(2026, 5, 14, 16, 0, 0); // 14 Jun 2026, 4:00 PM
 
       function updateCountdown() {
         const now = new Date();
         const diff = weddingDate - now;
 
         if (diff <= 0) {
-          // if the date has passed, show zeros
           document.getElementById('days').textContent = '00';
           document.getElementById('hours').textContent = '00';
           document.getElementById('minutes').textContent = '00';
@@ -502,9 +665,7 @@
         document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
       }
 
-      // initial call
       updateCountdown();
-      // update every second
       setInterval(updateCountdown, 1000);
     })();
   </script>

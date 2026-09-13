@@ -108,7 +108,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 .wishes-track{
   display:flex;
   flex-direction:column;
-  gap:0.8rem; /* Rapatkan jarak antara ucapan */
+  gap:0.8rem;
   animation:wishesAutoScroll 60s linear infinite;
   padding:20px 0;
 }
@@ -149,7 +149,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   word-wrap:break-word;
   margin-bottom:0.3rem;
 }
-.wish-item .wish-divider{display:none;} /* Buang divider lama */
+.wish-item .wish-divider{display:none;}
 .wishes-loading,.wishes-empty{text-align:center;padding:2rem 1rem;font-style:italic;color:var(--brown-soft);letter-spacing:2px}
 .wishes-loading i{color:var(--gold);margin-right:8px}
 
@@ -204,7 +204,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .rsvp-section h2{font-size:1.5rem;letter-spacing:5px}
   .photo-preview-wrap{width:130px;height:130px}
   
-  /* WISHES MOBILE (PADAT) */
   .wishes-section{padding:2.2rem 1rem 2rem;margin-top:2.5rem}
   .wishes-section h2{font-size:1.35rem;letter-spacing:4px}
   .wishes-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1rem}
@@ -388,6 +387,22 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 ============================================================ */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOBW6xxwMdFIDL-9CtnUDRYIMs0vNIhwycvPh0EholLqy-FMVjpfevxLxjHs9e5914/exec';
 
+/* ============================================================
+   ⚙️ SETTING TARIKH MAJLIS — UBAH SINI SAHAJA
+   ============================================================
+   Format: 'YYYY-MM-DDTHH:MM:SS' (24 jam)
+   
+   Contoh:
+   - '2026-06-14T16:00:00'  → 14 Jun 2026, 4:00 PM
+   - '2026-12-25T19:30:00'  → 25 Dis 2026, 7:30 PM
+   - '2027-01-01T00:00:00'  → 1 Jan 2027, 12:00 AM
+============================================================ */
+const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
+
+/* ============================================================
+   JANGAN UBAH BAWAH INI KECUALI ANDA TAHU APA YANG DILAKUKAN
+============================================================ */
+
 /* ===== SETUP ===== */
 const isMobile = window.matchMedia('(max-width: 640px)').matches;
 const coverPage = document.getElementById('coverPage');
@@ -467,23 +482,63 @@ coverPage.addEventListener('click', enterWedding);
 
 if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
 
-/* ===== COUNTDOWN ===== */
+/* ============================================================
+   COUNTDOWN AUTO DETECT
+   ============================================================ */
 (function() {
-  const weddingDate = new Date(2026, 5, 14, 16, 0, 0);
+  // Auto detect format — support both 'YYYY-MM-DDTHH:MM:SS' dan legacy
+  let weddingDate;
+  
+  if (typeof WEDDING_DATE_STRING === 'string' && WEDDING_DATE_STRING.indexOf('T') !== -1) {
+    // Format ISO: '2026-06-14T16:00:00'
+    weddingDate = new Date(WEDDING_DATE_STRING);
+  } else if (typeof WEDDING_DATE_STRING === 'object') {
+    // Legacy format: new Date(2026, 5, 14, 16, 0, 0)
+    weddingDate = WEDDING_DATE_STRING;
+  } else {
+    weddingDate = new Date(WEDDING_DATE_STRING);
+  }
+
+  // Validation
+  if (isNaN(weddingDate.getTime())) {
+    console.error('❌ Format tarikh salah!');
+    console.error('   Guna format: YYYY-MM-DDTHH:MM:SS');
+    console.error('   Contoh: 2026-06-14T16:00:00');
+    return;
+  }
+
+  console.log('💍 Wedding Date:', weddingDate.toString());
+  console.log('📅 Countdown akan auto kira dari sekarang.');
+
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
   function update() {
     const diff = weddingDate - new Date();
+
     if (diff <= 0) {
-      ['days','hours','minutes','seconds'].forEach(function(id){ document.getElementById(id).textContent = '00'; });
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
       return;
     }
-    const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000),
-          m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-    document.getElementById('days').textContent = String(d).padStart(2,'0');
-    document.getElementById('hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    daysEl.textContent = String(d).padStart(2, '0');
+    hoursEl.textContent = String(h).padStart(2, '0');
+    minutesEl.textContent = String(m).padStart(2, '0');
+    secondsEl.textContent = String(s).padStart(2, '0');
   }
-  update(); setInterval(update, 1000);
+
+  update();
+  setInterval(update, 1000);
 })();
 
 /* ===== PHOTO UPLOAD ===== */

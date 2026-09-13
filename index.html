@@ -38,6 +38,84 @@
     }
 
     /* ===================================================== */
+    /* ============ MUSIC BUTTON (FLOATING) ================= */
+    /* ===================================================== */
+    .music-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border: 2px solid var(--cream-soft);
+      color: var(--cream-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(90, 65, 40, 0.35), 0 0 0 0 rgba(184, 147, 90, 0.5);
+      z-index: 9998;
+      transition: all 0.3s ease;
+      animation: musicPulse 2.5s infinite;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 26px rgba(90, 65, 40, 0.45), 0 0 0 8px rgba(184, 147, 90, 0.15);
+    }
+
+    .music-btn:active { transform: scale(0.95); }
+
+    .music-btn i {
+      font-size: 1.05rem;
+      transition: transform 0.3s ease;
+    }
+
+    .music-btn.playing i {
+      animation: musicSpin 4s linear infinite;
+    }
+
+    .music-btn.muted {
+      background: linear-gradient(135deg, #a89880, #8b7560);
+      animation: none;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 8px 20px rgba(90, 65, 40, 0.35), 0 0 0 0 rgba(184, 147, 90, 0.5); }
+      50%      { box-shadow: 0 8px 20px rgba(90, 65, 40, 0.35), 0 0 0 14px rgba(184, 147, 90, 0); }
+    }
+
+    @keyframes musicSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* tooltip kecil */
+    .music-btn::after {
+      content: "Music";
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      margin-bottom: 10px;
+      background: var(--brown-deep);
+      color: var(--gold-soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      font-weight: 500;
+    }
+
+    .music-btn:hover::after { opacity: 1; }
+
+    /* ===================================================== */
     /* ============ HALAMAN PEMBUKA (COVER) ================= */
     /* ===================================================== */
     .cover-page {
@@ -81,7 +159,6 @@
       padding: 3.5rem 2.2rem;
     }
 
-    /* frame double-line elegan */
     .cover-frame::before {
       content: "";
       position: absolute;
@@ -151,10 +228,7 @@
       background: linear-gradient(to right, transparent, var(--gold-light), transparent);
     }
 
-    .cover-divider i {
-      font-size: 0.7rem;
-      color: var(--gold-light);
-    }
+    .cover-divider i { font-size: 0.7rem; color: var(--gold-light); }
 
     .enter-btn {
       display: inline-block;
@@ -171,6 +245,7 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
     .enter-btn::before {
@@ -183,20 +258,9 @@
       z-index: -1;
     }
 
-    .enter-btn:hover {
-      color: var(--brown-deep);
-      border-color: var(--gold-light);
-    }
-
-    .enter-btn:hover::before {
-      transform: translateY(0);
-    }
-
-    .enter-btn:active {
-      transform: scale(0.98);
-    }
-
-    .enter-btn i { margin-right: 8px; font-size: 0.85rem; }
+    .enter-btn:hover { color: var(--brown-deep); }
+    .enter-btn:hover::before { transform: translateY(0); }
+    .enter-btn:active { transform: scale(0.98); }
 
     .cover-hint {
       margin-top: 1.8rem;
@@ -303,9 +367,7 @@
       background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
-    /* ===================================================== */
-    /* ========== COUNTDOWN — DEFAULT (Mobile-first) ======== */
-    /* ===================================================== */
+    /* ---- COUNTDOWN ---- */
     .countdown-section {
       width: 100%;
       background: linear-gradient(135deg, var(--linen) 0%, var(--parchment) 100%);
@@ -621,9 +683,7 @@
       letter-spacing: 8px;
     }
 
-    .rsvp-form button:active {
-      transform: translateY(2px);
-    }
+    .rsvp-form button:active { transform: translateY(2px); }
 
     .rsvp-note {
       margin-top: 1.5rem;
@@ -740,9 +800,7 @@
       transition: border-color 0.3s ease;
     }
 
-    .timeline-content:hover {
-      border-left-color: var(--gold);
-    }
+    .timeline-content:hover { border-left-color: var(--gold); }
 
     .timeline-time {
       display: inline-block;
@@ -804,34 +862,18 @@
     /* ============== MOBILE (<= 640px) ===================== */
     /* ===================================================== */
     @media (max-width: 640px) {
-      .cover-frame {
-        padding: 3rem 1.4rem;
-        max-width: 400px;
-      }
+      .music-btn { width: 46px; height: 46px; bottom: 16px; right: 16px; }
+      .music-btn i { font-size: 0.95rem; }
+      .music-btn::after { display: none; }
 
+      .cover-frame { padding: 3rem 1.4rem; max-width: 400px; }
       .cover-frame::before { inset: 8px; }
-
       .cover-small { font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 1.4rem; }
-
-      .cover-frame h1 {
-        font-size: 3.4rem;
-        letter-spacing: 1px;
-      }
-
+      .cover-frame h1 { font-size: 3.4rem; letter-spacing: 1px; }
       .cover-frame h1 span { font-size: 2.4rem; }
-
       .cover-names-sub { font-size: 0.75rem; letter-spacing: 5px; margin-bottom: 1.5rem; }
-
       .cover-divider { margin: 1.2rem 0 1.6rem; }
-
-      .enter-btn {
-        font-size: 0.75rem;
-        padding: 0.95rem 1.4rem;
-        letter-spacing: 4px;
-        width: 100%;
-        max-width: 300px;
-      }
-
+      .enter-btn { font-size: 0.75rem; padding: 0.95rem 1.4rem; letter-spacing: 4px; width: 100%; max-width: 300px; }
       .cover-hint { font-size: 0.65rem; letter-spacing: 3px; margin-top: 1.3rem; }
 
       .page { padding: 1rem 0.9rem 2.5rem; }
@@ -853,10 +895,7 @@
       .timer-number { font-size: 1.35rem; }
       .timer-label { font-size: 0.5rem; letter-spacing: 1.5px; margin-top: 4px; }
 
-      .place {
-        padding: 2rem 1rem;
-        margin: 2rem 0 2.5rem;
-      }
+      .place { padding: 2rem 1rem; margin: 2rem 0 2.5rem; }
       .place .icon-circle { width: 48px; height: 48px; font-size: 1.1rem; }
       .place h3 { font-size: 1.4rem; letter-spacing: 4px; }
       .place .address-line { font-size: 1rem; letter-spacing: 1px; }
@@ -945,10 +984,7 @@
     /* ========== DESKTOP (>= 1024px) ======================= */
     /* ===================================================== */
     @media (min-width: 1024px) {
-      .cover-frame {
-        padding: 4.5rem 3rem;
-        max-width: 680px;
-      }
+      .cover-frame { padding: 4.5rem 3rem; max-width: 680px; }
 
       .cover-small { font-size: 0.95rem; letter-spacing: 10px; }
       .cover-frame h1 { font-size: 5rem; }
@@ -968,33 +1004,18 @@
       .names .tagline::before,
       .names .tagline::after { width: 70px; }
 
-      .countdown-section {
-        padding: 3.5rem 2rem 3rem;
-        margin: 3.5rem 0 4rem;
-      }
+      .countdown-section { padding: 3.5rem 2rem 3rem; margin: 3.5rem 0 4rem; }
       .countdown-section::before,
       .countdown-section::after { width: 120px; }
-
-      .countdown-section h2 {
-        font-size: 1.3rem;
-        letter-spacing: 10px;
-        margin-bottom: 2.5rem;
-      }
+      .countdown-section h2 { font-size: 1.3rem; letter-spacing: 10px; margin-bottom: 2.5rem; }
       .countdown-section h2 i { font-size: 1.1rem; margin: 0 12px; }
 
       .timer { gap: 1.5rem; flex-wrap: wrap; padding: 0 1rem; }
-      .timer-block {
-        min-width: 130px;
-        max-width: none;
-        padding: 1.5rem 1.2rem 1.1rem;
-      }
+      .timer-block { min-width: 130px; max-width: none; padding: 1.5rem 1.2rem 1.1rem; }
       .timer-number { font-size: 3.4rem; letter-spacing: 3px; }
       .timer-label { font-size: 0.85rem; letter-spacing: 5px; margin-top: 8px; }
 
-      .place {
-        padding: 4rem 2.5rem;
-        margin: 4rem 0 4.5rem;
-      }
+      .place { padding: 4rem 2.5rem; margin: 4rem 0 4.5rem; }
       .place .icon-circle { width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 1.5rem; }
       .place h3 { font-size: 2.4rem; letter-spacing: 10px; margin-bottom: 1.2rem; }
       .place .address-line { font-size: 1.35rem; letter-spacing: 3px; }
@@ -1009,17 +1030,12 @@
 
       .rsvp-form { gap: 1.5rem; max-width: 520px; }
       .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
-        padding: 1rem 1.4rem;
-        font-size: 1.15rem;
-        letter-spacing: 1.5px;
+        padding: 1rem 1.4rem; font-size: 1.15rem; letter-spacing: 1.5px;
       }
       .rsvp-form button { font-size: 1.05rem; padding: 1.2rem 3.5rem; letter-spacing: 8px; min-width: 280px; }
       .rsvp-note { font-size: 0.9rem; letter-spacing: 5px; margin-top: 2rem; }
 
-      .schedule-section {
-        padding: 4.5rem 3rem 4rem;
-        margin-top: 5rem;
-      }
+      .schedule-section { padding: 4.5rem 3rem 4rem; margin-top: 5rem; }
       .schedule-section::before,
       .schedule-section::after { width: 140px; }
       .schedule-section h2 { font-size: 2.4rem; letter-spacing: 14px; }
@@ -1040,6 +1056,28 @@
   </style>
 </head>
 <body>
+
+  <!-- =========================================== -->
+  <!-- ========= BACKGROUND MUSIC ELEMENT ======== -->
+  <!-- =========================================== -->
+  <!-- 
+    Lagu: Canon in D (Pachelbel) - klasik perkahwinan
+    Sumber: pixabay (bebas royalti)
+    Format: loop, preload auto
+  -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=canon-in-d-major-pachelbel-114562.mp3" type="audio/mpeg">
+    <!-- Fallback: lagu kedua kalau yang pertama tak load -->
+    <source src="https://cdn.pixabay.com/download/audio/2021/11/25/audio_00fa5593f3.mp3?filename=wedding-music-114221.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- =========================================== -->
+  <!-- =========== TOMBOL MUSIC (FLOATING) ======= -->
+  <!-- =========================================== -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+    <i class="fas fa-music" id="musicIcon"></i>
+  </button>
 
   <!-- =========================================== -->
   <!-- ========= HALAMAN PEMBUKA (COVER) ========= -->
@@ -1202,20 +1240,115 @@
   <!-- =============== JAVASCRIPT ================ -->
   <!-- =========================================== -->
   <script>
-    const isMobile  = window.matchMedia('(max-width: 640px)').matches;
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
     document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
 
     const coverPage = document.getElementById('coverPage');
     const mainPage  = document.getElementById('mainPage');
     const enterBtn  = document.getElementById('enterBtn');
+    const bgMusic   = document.getElementById('bgMusic');
+    const musicBtn  = document.getElementById('musicBtn');
+    const musicIcon = document.getElementById('musicIcon');
 
     document.body.style.overflow = 'hidden';
 
+    /* ====== MUSIC CONTROL ====== */
+    let musicStarted = false;
+
+    // Set volume rendah (background music, bukan konsert)
+    bgMusic.volume = 0;
+
+    // Fade-in volume bila mula main
+    function fadeInVolume(target = 0.35, duration = 2500) {
+      const steps = 50;
+      const stepTime = duration / steps;
+      const stepVol = target / steps;
+      let current = 0;
+      const fade = setInterval(() => {
+        current += stepVol;
+        if (current >= target) {
+          current = target;
+          clearInterval(fade);
+        }
+        bgMusic.volume = Math.min(current, 1);
+      }, stepTime);
+    }
+
+    // Fade-out volume bila mute
+    function fadeOutVolume(duration = 600) {
+      const startVol = bgMusic.volume;
+      const steps = 20;
+      const stepTime = duration / steps;
+      const stepVol = startVol / steps;
+      let current = startVol;
+      const fade = setInterval(() => {
+        current -= stepVol;
+        if (current <= 0) {
+          current = 0;
+          clearInterval(fade);
+          bgMusic.pause();
+        }
+        bgMusic.volume = Math.max(current, 0);
+      }, stepTime);
+    }
+
+    function playMusic() {
+      bgMusic.volume = 0;
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            fadeInVolume(0.35, 2500);
+            musicBtn.classList.add('playing');
+            musicBtn.classList.remove('muted');
+            musicIcon.className = 'fas fa-music';
+            musicStarted = true;
+          })
+          .catch(() => {
+            // Autoplay gagal (biasanya sebab belum interaksi)
+            console.log('Autoplay ditolak, tunggu interaksi pengguna.');
+          });
+      }
+    }
+
+    function toggleMusic() {
+      if (!musicStarted) {
+        playMusic();
+        return;
+      }
+      if (bgMusic.paused) {
+        // Resume + fade in
+        bgMusic.volume = 0;
+        bgMusic.play();
+        fadeInVolume(0.35, 1200);
+        musicBtn.classList.add('playing');
+        musicBtn.classList.remove('muted');
+        musicIcon.className = 'fas fa-music';
+      } else {
+        // Mute + fade out
+        fadeOutVolume(600);
+        musicBtn.classList.remove('playing');
+        musicBtn.classList.add('muted');
+        musicIcon.className = 'fas fa-volume-mute';
+      }
+    }
+
+    musicBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleMusic();
+    });
+
+    /* ====== MASUK KE HALAMAN UTAMA ====== */
     function enterWedding() {
       coverPage.classList.add('hidden');
       mainPage.classList.add('visible');
       document.body.style.overflow = 'auto';
       window.scrollTo(0, 0);
+
+      // Mula main musik selepas interaksi klik (browser benarkan)
+      if (!musicStarted) {
+        playMusic();
+      }
     }
 
     enterBtn.addEventListener('click', function(e) {
@@ -1229,7 +1362,7 @@
       document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
     }
 
-    /* ===== COUNTDOWN ===== */
+    /* ====== COUNTDOWN ====== */
     (function() {
       const weddingDate = new Date(2026, 5, 14, 16, 0, 0);
 
@@ -1259,7 +1392,7 @@
       setInterval(updateCountdown, 1000);
     })();
 
-    /* ===== RESIZE ===== */
+    /* ====== RESIZE ====== */
     let resizeTimer;
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);

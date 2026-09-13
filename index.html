@@ -72,9 +72,7 @@
       transition: transform 0.3s ease;
     }
 
-    .music-btn.playing i {
-      animation: musicSpin 4s linear infinite;
-    }
+    .music-btn.playing i { animation: musicSpin 4s linear infinite; }
 
     .music-btn.muted {
       background: linear-gradient(135deg, #a89880, #8b7560);
@@ -91,7 +89,6 @@
       to   { transform: rotate(360deg); }
     }
 
-    /* tooltip kecil */
     .music-btn::after {
       content: "Music";
       position: absolute;
@@ -676,14 +673,20 @@
       font-weight: 500;
     }
 
-    .rsvp-form button:hover {
+    .rsvp-form button:hover:not(:disabled) {
       background: var(--brown-deep);
       border-color: var(--gold);
       color: var(--gold-light);
       letter-spacing: 8px;
     }
 
-    .rsvp-form button:active { transform: translateY(2px); }
+    .rsvp-form button:active:not(:disabled) { transform: translateY(2px); }
+
+    .rsvp-form button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      letter-spacing: 4px;
+    }
 
     .rsvp-note {
       margin-top: 1.5rem;
@@ -859,6 +862,103 @@
     }
 
     /* ===================================================== */
+    /* ============== RSVP POPUP (ELEGANT) ================== */
+    /* ===================================================== */
+    .rsvp-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 30, 15, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+      padding: 1.5rem;
+      cursor: pointer;
+    }
+
+    .rsvp-popup.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .rsvp-popup-box {
+      background: var(--cream-soft);
+      border: 1px solid var(--gold);
+      max-width: 420px;
+      width: 100%;
+      padding: 2.8rem 2rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+      cursor: default;
+    }
+
+    .rsvp-popup.show .rsvp-popup-box {
+      transform: translateY(0);
+    }
+
+    .rsvp-popup-box::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(184, 147, 90, 0.4);
+      pointer-events: none;
+    }
+
+    .rsvp-popup-box i {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .rsvp-popup-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+    }
+
+    .rsvp-popup-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--brown-mid);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      margin-bottom: 1.8rem;
+    }
+
+    .rsvp-popup-close {
+      background: var(--brown);
+      color: var(--gold-soft);
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+      padding: 0.85rem 2.2rem;
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+
+    .rsvp-popup-close:hover {
+      background: var(--brown-deep);
+      letter-spacing: 6px;
+    }
+
+    /* ===================================================== */
     /* ============== MOBILE (<= 640px) ===================== */
     /* ===================================================== */
     @media (max-width: 640px) {
@@ -928,6 +1028,10 @@
       .timeline-content p { font-size: 0.88rem; }
 
       .footer-note { font-size: 0.7rem; letter-spacing: 4px; margin-top: 2.8rem; }
+
+      .rsvp-popup-box { padding: 2.2rem 1.5rem; }
+      .rsvp-popup-box h3 { font-size: 1.25rem; letter-spacing: 4px; }
+      .rsvp-popup-box p { font-size: 0.95rem; }
     }
 
     /* ===================================================== */
@@ -1060,14 +1164,8 @@
   <!-- =========================================== -->
   <!-- ========= BACKGROUND MUSIC ELEMENT ======== -->
   <!-- =========================================== -->
-  <!-- 
-    Lagu: Canon in D (Pachelbel) - klasik perkahwinan
-    Sumber: pixabay (bebas royalti)
-    Format: loop, preload auto
-  -->
   <audio id="bgMusic" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=canon-in-d-major-pachelbel-114562.mp3" type="audio/mpeg">
-    <!-- Fallback: lagu kedua kalau yang pertama tak load -->
     <source src="https://cdn.pixabay.com/download/audio/2021/11/25/audio_00fa5593f3.mp3?filename=wedding-music-114221.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -1155,16 +1253,16 @@
       <div class="rsvp-section">
         <h2><i class="fas fa-envelope-open"></i> RSVP <i class="fas fa-envelope-open"></i></h2>
         <div class="rsvp-subtitle">Kindly Confirm Your Attendance</div>
-        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Thank you! This is a demo RSVP — we would be delighted to have you. (Rusty & Anney)');">
-          <input type="text" placeholder="Your full name" required>
-          <input type="email" placeholder="Email address" required>
-          <select required>
+        <form class="rsvp-form" id="rsvpForm">
+          <input type="text" id="rsvpName" name="name" placeholder="Your full name" required>
+          <input type="email" id="rsvpEmail" name="email" placeholder="Email address" required>
+          <select id="rsvpAttendance" name="attendance" required>
             <option value="" disabled selected>Will you attend?</option>
-            <option value="yes">Joyfully accepts</option>
-            <option value="no">Regretfully declines</option>
+            <option value="Joyfully Accepts">Joyfully accepts</option>
+            <option value="Regretfully Declines">Regretfully declines</option>
           </select>
-          <textarea placeholder="Any dietary notes or a special message..."></textarea>
-          <button type="submit">Send RSVP</button>
+          <textarea id="rsvpMessage" name="message" placeholder="Any dietary notes or a special message..."></textarea>
+          <button type="submit" id="rsvpSubmitBtn">Send RSVP</button>
         </form>
         <div class="rsvp-note">Respond by May 1, 2026</div>
       </div>
@@ -1237,9 +1335,28 @@
   </div>
 
   <!-- =========================================== -->
+  <!-- ========== RSVP POPUP (ELEGANT) =========== -->
+  <!-- =========================================== -->
+  <div class="rsvp-popup" id="rsvpPopup">
+    <div class="rsvp-popup-box">
+      <i class="fas fa-envelope-open-text" id="popupIcon"></i>
+      <h3 id="popupTitle">Thank You</h3>
+      <p id="rsvpPopupMsg">Your RSVP has been received.</p>
+      <button class="rsvp-popup-close" id="popupCloseBtn">Close</button>
+    </div>
+  </div>
+
+  <!-- =========================================== -->
   <!-- =============== JAVASCRIPT ================ -->
   <!-- =========================================== -->
   <script>
+    /* ============================================================
+       ⚠️ PENTING: GANTI URL DI BAWAH dengan URL Apps Script anda
+       (dari Deploy → Web app → copy URL yang berakhir dengan /exec)
+    ============================================================ */
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfyc.../exec';
+
+    /* ====== SETUP ASAS ====== */
     const isMobile = window.matchMedia('(max-width: 640px)').matches;
     document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
 
@@ -1254,11 +1371,8 @@
 
     /* ====== MUSIC CONTROL ====== */
     let musicStarted = false;
-
-    // Set volume rendah (background music, bukan konsert)
     bgMusic.volume = 0;
 
-    // Fade-in volume bila mula main
     function fadeInVolume(target = 0.35, duration = 2500) {
       const steps = 50;
       const stepTime = duration / steps;
@@ -1274,7 +1388,6 @@
       }, stepTime);
     }
 
-    // Fade-out volume bila mute
     function fadeOutVolume(duration = 600) {
       const startVol = bgMusic.volume;
       const steps = 20;
@@ -1294,30 +1407,23 @@
 
     function playMusic() {
       bgMusic.volume = 0;
-      const playPromise = bgMusic.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            fadeInVolume(0.35, 2500);
-            musicBtn.classList.add('playing');
-            musicBtn.classList.remove('muted');
-            musicIcon.className = 'fas fa-music';
-            musicStarted = true;
-          })
-          .catch(() => {
-            // Autoplay gagal (biasanya sebab belum interaksi)
-            console.log('Autoplay ditolak, tunggu interaksi pengguna.');
-          });
+      const p = bgMusic.play();
+      if (p !== undefined) {
+        p.then(() => {
+          fadeInVolume(0.35, 2500);
+          musicBtn.classList.add('playing');
+          musicBtn.classList.remove('muted');
+          musicIcon.className = 'fas fa-music';
+          musicStarted = true;
+        }).catch(() => {
+          console.log('Autoplay ditolak, tunggu interaksi pengguna.');
+        });
       }
     }
 
     function toggleMusic() {
-      if (!musicStarted) {
-        playMusic();
-        return;
-      }
+      if (!musicStarted) { playMusic(); return; }
       if (bgMusic.paused) {
-        // Resume + fade in
         bgMusic.volume = 0;
         bgMusic.play();
         fadeInVolume(0.35, 1200);
@@ -1325,7 +1431,6 @@
         musicBtn.classList.remove('muted');
         musicIcon.className = 'fas fa-music';
       } else {
-        // Mute + fade out
         fadeOutVolume(600);
         musicBtn.classList.remove('playing');
         musicBtn.classList.add('muted');
@@ -1344,11 +1449,7 @@
       mainPage.classList.add('visible');
       document.body.style.overflow = 'auto';
       window.scrollTo(0, 0);
-
-      // Mula main musik selepas interaksi klik (browser benarkan)
-      if (!musicStarted) {
-        playMusic();
-      }
+      if (!musicStarted) playMusic();
     }
 
     enterBtn.addEventListener('click', function(e) {
@@ -1391,6 +1492,78 @@
       updateCountdown();
       setInterval(updateCountdown, 1000);
     })();
+
+    /* ====== RSVP FORM → GOOGLE SHEETS ====== */
+    const rsvpForm = document.getElementById('rsvpForm');
+    const submitBtn = document.getElementById('rsvpSubmitBtn');
+    const rsvpPopup = document.getElementById('rsvpPopup');
+    const rsvpPopupMsg = document.getElementById('rsvpPopupMsg');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupIcon = document.getElementById('popupIcon');
+    const popupCloseBtn = document.getElementById('popupCloseBtn');
+
+    function showPopup(title, message, isError = false) {
+      popupTitle.textContent = title;
+      rsvpPopupMsg.textContent = message;
+      popupIcon.className = isError
+        ? 'fas fa-exclamation-circle'
+        : 'fas fa-envelope-open-text';
+      popupIcon.style.color = isError ? '#b85a5a' : 'var(--gold)';
+      rsvpPopup.classList.add('show');
+    }
+
+    popupCloseBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      rsvpPopup.classList.remove('show');
+    });
+
+    rsvpPopup.addEventListener('click', function() {
+      rsvpPopup.classList.remove('show');
+    });
+
+    rsvpForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = {
+        name:       document.getElementById('rsvpName').value.trim(),
+        email:      document.getElementById('rsvpEmail').value.trim(),
+        attendance: document.getElementById('rsvpAttendance').value,
+        message:    document.getElementById('rsvpMessage').value.trim()
+      };
+
+      // Loading state
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        showPopup(
+          'Thank You',
+          'Thank you, ' + formData.name + '! Your RSVP has been received. We can\'t wait to celebrate with you.',
+          false
+        );
+
+        rsvpForm.reset();
+
+      } catch (error) {
+        console.error('Error:', error);
+        showPopup(
+          'Oops',
+          'Something went wrong. Please try again or contact us directly.',
+          true
+        );
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
 
     /* ====== RESIZE ====== */
     let resizeTimer;

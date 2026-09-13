@@ -93,21 +93,95 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 .rsvp-form button:disabled{opacity:.7;cursor:not-allowed}
 .rsvp-note{margin-top:1.5rem;font-size:.85rem;color:var(--brown-soft);font-style:italic;letter-spacing:3px;text-transform:uppercase}
 
-/* WISHES */
+/* WISHES — Auto Scroll (tanpa kotak) */
 .wishes-section{width:100%;margin-top:3.5rem;background:var(--cream-soft);padding:3rem 1.5rem 2.8rem;position:relative;box-shadow:0 20px 40px -20px rgba(90,65,40,.2);border:1px solid rgba(184,147,90,.25)}
 .wishes-section h2{text-align:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;letter-spacing:8px;color:var(--brown);text-transform:uppercase;margin-bottom:.4rem}
 .wishes-section h2 i{color:var(--gold);margin:0 10px}
-.wishes-sub{text-align:center;font-style:italic;color:var(--brown-soft);letter-spacing:3px;margin-bottom:2.5rem;font-size:.95rem}
-.wishes-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:900px;margin:0 auto}
-.wish-card{background:var(--parchment);border:1px solid rgba(184,147,90,.3);padding:1.5rem;position:relative;display:flex;gap:1.2rem;align-items:flex-start;transition:all .3s}
-.wish-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px -8px rgba(90,65,40,.2);border-color:var(--gold)}
-.wish-card::before{content:"❝";position:absolute;top:6px;left:10px;font-size:2rem;color:var(--gold);opacity:.3;font-family:'Playfair Display',serif}
-.wish-photo{width:70px;height:70px;flex-shrink:0;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--cream)}
-.wish-photo-placeholder{width:70px;height:70px;flex-shrink:0;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--linen),var(--parchment));display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.5rem}
-.wish-content{flex:1;min-width:0}
-.wish-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--brown);letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
-.wish-date{font-size:.75rem;color:var(--brown-soft);font-style:italic;margin-bottom:.7rem}
-.wish-message{font-size:1.05rem;color:var(--brown-mid);line-height:1.6;font-style:italic;word-wrap:break-word}
+.wishes-sub{text-align:center;font-style:italic;color:var(--brown-soft);letter-spacing:3px;margin-bottom:2rem;font-size:.95rem}
+
+.wishes-scroll-wrap{
+  max-width:700px;
+  margin:0 auto;
+  height:420px;
+  overflow:hidden;
+  position:relative;
+  padding:0 1rem;
+}
+.wishes-scroll-wrap::before,
+.wishes-scroll-wrap::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;
+  height:60px;
+  z-index:2;
+  pointer-events:none;
+}
+.wishes-scroll-wrap::before{
+  top:0;
+  background:linear-gradient(to bottom,var(--cream-soft),transparent);
+}
+.wishes-scroll-wrap::after{
+  bottom:0;
+  background:linear-gradient(to top,var(--cream-soft),transparent);
+}
+
+.wishes-track{
+  display:flex;
+  flex-direction:column;
+  gap:1.8rem;
+  animation:wishesAutoScroll 60s linear infinite;
+  padding:40px 0;
+}
+.wishes-track:hover{ animation-play-state:paused; }
+.wishes-track.no-scroll{
+  animation:none;
+  height:auto;
+}
+
+@keyframes wishesAutoScroll{
+  0%   { transform:translateY(0); }
+  100% { transform:translateY(-50%); }
+}
+
+.wish-item{
+  text-align:center;
+  padding:0.4rem 0;
+}
+.wish-item .wish-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;
+  font-weight:500;
+  color:var(--brown);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:0.5rem;
+}
+.wish-item .wish-date{
+  font-size:0.7rem;
+  color:var(--brown-soft);
+  font-style:italic;
+  letter-spacing:2px;
+  margin-bottom:0.6rem;
+  opacity:.75;
+}
+.wish-item .wish-message{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  color:var(--brown-mid);
+  line-height:1.65;
+  font-style:italic;
+  letter-spacing:0.5px;
+  word-wrap:break-word;
+}
+.wish-item .wish-divider{
+  display:block;
+  margin:1.5rem auto 0;
+  width:60px;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  opacity:.5;
+}
+
 .wishes-loading,.wishes-empty{text-align:center;padding:2rem 1rem;font-style:italic;color:var(--brown-soft);letter-spacing:2px}
 .wishes-loading i{color:var(--gold);margin-right:8px}
 
@@ -158,19 +232,52 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .place h3{font-size:1.4rem;letter-spacing:4px}
   .place .address-line{font-size:1rem}
   .rsvp-section h2{font-size:1.5rem;letter-spacing:5px}
-  .wishes-section h2{font-size:1.35rem;letter-spacing:4px}
-  .wish-photo,.wish-photo-placeholder{width:54px;height:54px;font-size:1.2rem}
-  .wish-name{font-size:.95rem}
-  .wish-message{font-size:.95rem}
-  .schedule-section h2{font-size:1.35rem;letter-spacing:4px}
-  .timeline{padding-left:1.3rem}
-  .timeline-item{padding-left:2.2rem}
-  .timeline-icon{width:34px;height:34px;font-size:.75rem;left:-.9rem}
-  .timeline-content h4{font-size:1rem}
-  .timeline-content p{font-size:.88rem}
   .photo-preview-wrap{width:130px;height:130px}
+  
+  .wishes-section{padding:2.2rem 1rem 2rem;margin-top:2.5rem}
+  .wishes-section h2{font-size:1.35rem;letter-spacing:4px}
+  .wishes-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.5rem}
+  .wishes-scroll-wrap{height:360px;padding:0 .5rem}
+  .wish-item .wish-name{font-size:.95rem;letter-spacing:3px}
+  .wish-item .wish-message{font-size:1rem;line-height:1.55}
+  .wish-item .wish-date{font-size:.65rem}
+  
+  .schedule-section{padding:2.2rem 1.1rem 2rem;margin-top:2.5rem}
+  .schedule-section h2{font-size:1.35rem;letter-spacing:4px}
+  .schedule-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.8rem}
+  .timeline{padding-left:1.3rem}
+  .timeline-item{padding-left:2.2rem;padding-bottom:1.7rem}
+  .timeline-icon{width:34px;height:34px;font-size:.75rem;left:-.9rem}
+  .timeline-content{padding:.1rem 0 .3rem 1rem}
+  .timeline-time{font-size:.65rem;letter-spacing:3px}
+  .timeline-content h4{font-size:1rem;letter-spacing:2px}
+  .timeline-content p{font-size:.88rem}
+  .footer-note{font-size:.7rem;letter-spacing:4px;margin-top:2.8rem}
+  .rsvp-popup-box{padding:2.2rem 1.5rem}
+  .rsvp-popup-box h3{font-size:1.25rem;letter-spacing:4px}
+  .rsvp-popup-box p{font-size:.95rem}
+}
+@media(max-width:380px){
+  .cover-frame{padding:2.5rem 1.1rem}
+  .cover-frame h1{font-size:2.9rem}
+  .cover-frame h1 span{font-size:2rem}
+  .timer{gap:.25rem}
+  .timer-block{max-width:66px;padding:.5rem .15rem .35rem}
+  .timer-number{font-size:1.15rem}
+  .timer-label{font-size:.45rem;letter-spacing:1px}
+  .names h1{font-size:2.9rem}
+  .names h1 span{font-size:1.9rem}
+  .place h3{font-size:1.2rem;letter-spacing:3px}
+  .rsvp-section h2{font-size:1.3rem}
+  .wishes-scroll-wrap{height:320px}
+  .wish-item .wish-message{font-size:.92rem}
 }
 @media(min-width:1024px){
+  .cover-frame{padding:4.5rem 3rem;max-width:680px}
+  .cover-frame h1{font-size:5rem}
+  .cover-frame h1 span{font-size:3.5rem}
+  .enter-btn{font-size:.95rem;padding:1.2rem 3.2rem;letter-spacing:6px}
+  .page{padding:2.5rem 2rem 5rem}
   .names h1{font-size:6.5rem}
   .names h1 span{font-size:4.5rem}
   .timer{flex-wrap:wrap;gap:1.5rem}
@@ -180,8 +287,9 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .place h3{font-size:2.4rem}
   .rsvp-section h2{font-size:2.6rem}
   .wishes-section h2{font-size:2.4rem}
-  .wishes-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .wish-photo,.wish-photo-placeholder{width:80px;height:80px}
+  .wishes-scroll-wrap{height:480px;max-width:800px}
+  .wish-item .wish-name{font-size:1.25rem}
+  .wish-item .wish-message{font-size:1.25rem}
   .schedule-section h2{font-size:2.4rem}
   .timeline-icon{width:50px;height:50px;left:-1.35rem}
 }
@@ -267,9 +375,11 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
     <div class="wishes-section">
       <h2><i class="fas fa-heart"></i> Ucapan & Doa <i class="fas fa-heart"></i></h2>
       <p class="wishes-sub">— Dari tetamu tersayang —</p>
-      <div class="wishes-grid" id="wishesGrid">
-        <div class="wishes-loading" id="wishesLoading">
-          <i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...
+      <div class="wishes-scroll-wrap">
+        <div class="wishes-track" id="wishesGrid">
+          <div class="wishes-loading" id="wishesLoading">
+            <i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...
+          </div>
         </div>
       </div>
     </div>
@@ -378,7 +488,7 @@ function enterWedding() {
   document.body.style.overflow = 'auto';
   window.scrollTo(0, 0);
   if (!musicStarted) playMusic();
-  loadWishes();  // Load ucapan
+  loadWishes();
 }
 enterBtn.addEventListener('click', function(e) { e.stopPropagation(); enterWedding(); });
 coverPage.addEventListener('click', enterWedding);
@@ -501,12 +611,12 @@ rsvpForm.addEventListener('submit', function(e) {
   });
 });
 
-/* ===== LOAD WISHES (JSONP) ===== */
+/* ===== LOAD WISHES (JSONP) — Auto Scroll ===== */
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
   wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...</div>';
+  wishesGrid.classList.remove('no-scroll');
 
-  // Guna JSONP untuk elak CORS
   const callbackName = 'jsonpCallback_' + Date.now();
   const script = document.createElement('script');
   const separator = SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
@@ -516,27 +626,32 @@ function loadWishes() {
     try {
       if (data && data.status === 'success' && data.wishes && data.wishes.length > 0) {
         wishesGrid.innerHTML = '';
-        data.wishes.forEach(function(wish) {
-          const card = document.createElement('div');
-          card.className = 'wish-card';
 
-          const photoHTML = wish.photo
-            ? '<img src="' + wish.photo + '" alt="" class="wish-photo" onerror="this.outerHTML=\'<div class=&quot;wish-photo-placeholder&quot;><i class=&quot;fas fa-user&quot;></i></div>\'">'
-            : '<div class="wish-photo-placeholder"><i class="fas fa-user"></i></div>';
+        // Bina senarai ucapan (tanpa kotak)
+        const wishesHTML = data.wishes.map(function(wish) {
+          return '<div class="wish-item">' +
+            '<div class="wish-name">' + escHtml(wish.name) + '</div>' +
+            '<div class="wish-date">' + fmtDate(wish.timestamp) + '</div>' +
+            '<div class="wish-message">' + escHtml(wish.message) + '</div>' +
+            '<span class="wish-divider"></span>' +
+          '</div>';
+        }).join('');
 
-          card.innerHTML = photoHTML +
-            '<div class="wish-content">' +
-              '<div class="wish-name">' + escHtml(wish.name) + '</div>' +
-              '<div class="wish-date">' + fmtDate(wish.timestamp) + '</div>' +
-              '<div class="wish-message">' + escHtml(wish.message) + '</div>' +
-            '</div>';
-          wishesGrid.appendChild(card);
-        });
+        // Kalau 4 ucapan atau lebih → duplicate untuk loop smooth
+        if (data.wishes.length >= 4) {
+          wishesGrid.innerHTML = wishesHTML + wishesHTML;
+          wishesGrid.style.animationDuration = Math.max(30, data.wishes.length * 8) + 's';
+        } else {
+          wishesGrid.innerHTML = wishesHTML;
+          wishesGrid.classList.add('no-scroll');
+        }
       } else {
         wishesGrid.innerHTML = '<div class="wishes-empty">Belum ada ucapan. Jadilah yang pertama! 💌</div>';
+        wishesGrid.classList.add('no-scroll');
       }
     } catch (err) {
       wishesGrid.innerHTML = '<div class="wishes-empty">Ralat memuatkan ucapan.</div>';
+      wishesGrid.classList.add('no-scroll');
     }
     delete window[callbackName];
     if (script.parentNode) script.parentNode.removeChild(script);
@@ -544,6 +659,7 @@ function loadWishes() {
 
   script.onerror = function() {
     wishesGrid.innerHTML = '<div class="wishes-empty">Ralat sambungan. Cuba refresh.</div>';
+    wishesGrid.classList.add('no-scroll');
     delete window[callbackName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };

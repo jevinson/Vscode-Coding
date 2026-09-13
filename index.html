@@ -242,7 +242,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7b. GALLERY — 6 GAMBAR PHOTOSHOOT
+   7b. GALLERY — 6 GAMBAR (sementara guna gambar.jpg semua)
    Susunan: atas 3 gambar, bawah 1 besar + 2 kecil bertindan
 ============================================================ */
 .gallery-section{
@@ -764,15 +764,15 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
       </div>
     </div>
 
-    <!-- ========== GALLERY — 6 GAMBAR PHOTOSHOOT ========== -->
+    <!-- ========== GALLERY (sementara guna gambar.jpg semua) ========== -->
     <div class="gallery-section">
       <div class="gallery-grid">
-        <img src="photo1.jpg" alt="Photo 1">
-        <img src="photo2.jpg" alt="Photo 2">
-        <img src="photo3.jpg" alt="Photo 3">
-        <img src="photo4.jpg" alt="Photo 4">
-        <img src="photo5.jpg" alt="Photo 5">
-        <img src="photo6.jpg" alt="Photo 6">
+        <img src="gambar.jpg" alt="Photo 1">
+        <img src="gambar.jpg" alt="Photo 2">
+        <img src="gambar.jpg" alt="Photo 3">
+        <img src="gambar.jpg" alt="Photo 4">
+        <img src="gambar.jpg" alt="Photo 5">
+        <img src="gambar.jpg" alt="Photo 6">
       </div>
     </div>
 
@@ -877,11 +877,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 <script>
 /* ============================================================
    ⚙️ SETTING — UBAH SINI SAHAJA
-============================================================
-   Format: 'YYYY-MM-DDTHH:MM:SS' (24 jam)
-   Contoh:
-   - '2026-06-14T16:00:00'  → 14 Jun 2026, 4:00 PM
-   - '2026-12-25T19:30:00'  → 25 Dis 2026, 7:30 PM
 ============================================================ */
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 
@@ -986,14 +981,7 @@ if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk unt
    COUNTDOWN — AUTO DETECT
 ============================================================ */
 (function() {
-  let weddingDate;
-  if (typeof WEDDING_DATE_STRING === 'string' && WEDDING_DATE_STRING.indexOf('T') !== -1) {
-    weddingDate = new Date(WEDDING_DATE_STRING);
-  } else if (typeof WEDDING_DATE_STRING === 'object') {
-    weddingDate = WEDDING_DATE_STRING;
-  } else {
-    weddingDate = new Date(WEDDING_DATE_STRING);
-  }
+  let weddingDate = new Date(WEDDING_DATE_STRING);
 
   if (isNaN(weddingDate.getTime())) {
     console.error('❌ Format tarikh salah! Guna format: YYYY-MM-DDTHH:MM:SS');

@@ -93,94 +93,31 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 .rsvp-form button:disabled{opacity:.7;cursor:not-allowed}
 .rsvp-note{margin-top:1.5rem;font-size:.85rem;color:var(--brown-soft);font-style:italic;letter-spacing:3px;text-transform:uppercase}
 
-/* WISHES — Auto Scroll (tanpa kotak) */
+/* WISHES — Auto Scroll */
 .wishes-section{width:100%;margin-top:3.5rem;background:var(--cream-soft);padding:3rem 1.5rem 2.8rem;position:relative;box-shadow:0 20px 40px -20px rgba(90,65,40,.2);border:1px solid rgba(184,147,90,.25)}
 .wishes-section h2{text-align:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;letter-spacing:8px;color:var(--brown);text-transform:uppercase;margin-bottom:.4rem}
 .wishes-section h2 i{color:var(--gold);margin:0 10px}
 .wishes-sub{text-align:center;font-style:italic;color:var(--brown-soft);letter-spacing:3px;margin-bottom:2rem;font-size:.95rem}
 
-.wishes-scroll-wrap{
-  max-width:700px;
-  margin:0 auto;
-  height:420px;
-  overflow:hidden;
-  position:relative;
-  padding:0 1rem;
-}
-.wishes-scroll-wrap::before,
-.wishes-scroll-wrap::after{
-  content:"";
-  position:absolute;
-  left:0;right:0;
-  height:60px;
-  z-index:2;
-  pointer-events:none;
-}
-.wishes-scroll-wrap::before{
-  top:0;
-  background:linear-gradient(to bottom,var(--cream-soft),transparent);
-}
-.wishes-scroll-wrap::after{
-  bottom:0;
-  background:linear-gradient(to top,var(--cream-soft),transparent);
-}
+.wishes-scroll-wrap{max-width:700px;margin:0 auto;height:420px;overflow:hidden;position:relative;padding:0 1rem}
+.wishes-scroll-wrap::before,.wishes-scroll-wrap::after{content:"";position:absolute;left:0;right:0;height:60px;z-index:2;pointer-events:none}
+.wishes-scroll-wrap::before{top:0;background:linear-gradient(to bottom,var(--cream-soft),transparent)}
+.wishes-scroll-wrap::after{bottom:0;background:linear-gradient(to top,var(--cream-soft),transparent)}
 
-.wishes-track{
-  display:flex;
-  flex-direction:column;
-  gap:1.8rem;
-  animation:wishesAutoScroll 60s linear infinite;
-  padding:40px 0;
-}
-.wishes-track:hover{ animation-play-state:paused; }
-.wishes-track.no-scroll{
-  animation:none;
-  height:auto;
-}
+.wishes-track{display:flex;flex-direction:column;gap:1.8rem;animation:wishesAutoScroll 60s linear infinite;padding:40px 0}
+.wishes-track:hover{animation-play-state:paused}
+.wishes-track.no-scroll{animation:none;height:auto}
 
 @keyframes wishesAutoScroll{
-  0%   { transform:translateY(0); }
-  100% { transform:translateY(-50%); }
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-50%)}
 }
 
-.wish-item{
-  text-align:center;
-  padding:0.4rem 0;
-}
-.wish-item .wish-name{
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem;
-  font-weight:500;
-  color:var(--brown);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  margin-bottom:0.5rem;
-}
-.wish-item .wish-date{
-  font-size:0.7rem;
-  color:var(--brown-soft);
-  font-style:italic;
-  letter-spacing:2px;
-  margin-bottom:0.6rem;
-  opacity:.75;
-}
-.wish-item .wish-message{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.15rem;
-  color:var(--brown-mid);
-  line-height:1.65;
-  font-style:italic;
-  letter-spacing:0.5px;
-  word-wrap:break-word;
-}
-.wish-item .wish-divider{
-  display:block;
-  margin:1.5rem auto 0;
-  width:60px;
-  height:1px;
-  background:linear-gradient(to right,transparent,var(--gold),transparent);
-  opacity:.5;
-}
+.wish-item{text-align:center;padding:0.4rem 0}
+.wish-item .wish-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--brown);letter-spacing:4px;text-transform:uppercase;margin-bottom:0.5rem}
+.wish-item .wish-date{font-size:0.7rem;color:var(--brown-soft);font-style:italic;letter-spacing:2px;margin-bottom:0.6rem;opacity:.75}
+.wish-item .wish-message{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--brown-mid);line-height:1.65;font-style:italic;letter-spacing:0.5px;word-wrap:break-word}
+.wish-item .wish-divider{display:block;margin:1.5rem auto 0;width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.5}
 
 .wishes-loading,.wishes-empty{text-align:center;padding:2rem 1rem;font-style:italic;color:var(--brown-soft);letter-spacing:2px}
 .wishes-loading i{color:var(--gold);margin-right:8px}
@@ -233,7 +170,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .place .address-line{font-size:1rem}
   .rsvp-section h2{font-size:1.5rem;letter-spacing:5px}
   .photo-preview-wrap{width:130px;height:130px}
-  
   .wishes-section{padding:2.2rem 1rem 2rem;margin-top:2.5rem}
   .wishes-section h2{font-size:1.35rem;letter-spacing:4px}
   .wishes-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.5rem}
@@ -241,7 +177,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .wish-item .wish-name{font-size:.95rem;letter-spacing:3px}
   .wish-item .wish-message{font-size:1rem;line-height:1.55}
   .wish-item .wish-date{font-size:.65rem}
-  
   .schedule-section{padding:2.2rem 1.1rem 2rem;margin-top:2.5rem}
   .schedule-section h2{font-size:1.35rem;letter-spacing:4px}
   .schedule-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.8rem}
@@ -412,9 +347,11 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 <script>
 /* ============================================================
-   ⚠️ GANTI URL INI dengan URL Apps Script anda (yang berakhir /exec)
+   ⚠️ GANTI URL DI BAWAH dengan URL Apps Script anda
+   Cara ambil: Deploy → Manage deployments → Copy Web app URL
+   URL MESTI berakhir dengan /exec
 ============================================================ */
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOBW6xxwMdFIDL-9CtnUDRYIMs0vNIhwycvPh0EholLqy-FMVjpfevxLxjHs9e5914/exec';
+const SCRIPT_URL = 'PASTE_URL_APPS_SCRIPT_ANDA_DI_SINI';
 
 /* ===== SETUP ===== */
 const isMobile = window.matchMedia('(max-width: 640px)').matches;
@@ -627,7 +564,6 @@ function loadWishes() {
       if (data && data.status === 'success' && data.wishes && data.wishes.length > 0) {
         wishesGrid.innerHTML = '';
 
-        // Bina senarai ucapan (tanpa kotak)
         const wishesHTML = data.wishes.map(function(wish) {
           return '<div class="wish-item">' +
             '<div class="wish-name">' + escHtml(wish.name) + '</div>' +
@@ -637,7 +573,6 @@ function loadWishes() {
           '</div>';
         }).join('');
 
-        // Kalau 4 ucapan atau lebih → duplicate untuk loop smooth
         if (data.wishes.length >= 4) {
           wishesGrid.innerHTML = wishesHTML + wishesHTML;
           wishesGrid.style.animationDuration = Math.max(30, data.wishes.length * 8) + 's';

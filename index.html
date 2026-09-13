@@ -3,18 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rusty & Anney · Wedding RSVP</title>
+  <title>Rusty & Anney · Wedding Invitation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
+    :root {
+      --cream:        #f7f2e9;
+      --cream-soft:   #faf6f0;
+      --parchment:    #f1e6da;
+      --linen:        #e8dccc;
+      --tan:          #e3d5c4;
+      --beige:        #dacbbc;
+      --gold:         #b8935a;
+      --gold-light:   #d4b483;
+      --gold-soft:    #e8c9a0;
+      --brown-deep:   #3d2c1b;
+      --brown:        #4a3724;
+      --brown-mid:    #6f5a46;
+      --brown-soft:   #8b6b4b;
+    }
+
     html, body {
-      background-color: #f7f2e9;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      color: #3e2e1f;
-      line-height: 1.5;
+      background-color: var(--cream);
+      font-family: 'Cormorant Garamond', 'Georgia', serif;
+      color: var(--brown);
+      line-height: 1.6;
       overflow-x: hidden;
       width: 100%;
+      font-weight: 400;
     }
 
     /* ===================================================== */
@@ -27,7 +47,7 @@
       height: 100vh;
       height: 100dvh;
       background:
-        linear-gradient(rgba(60, 40, 20, 0.5), rgba(60, 40, 20, 0.65)),
+        linear-gradient(rgba(45, 30, 15, 0.55), rgba(45, 30, 15, 0.7)),
         url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -35,7 +55,7 @@
       text-align: center;
       padding: 1.5rem;
       z-index: 9999;
-      transition: opacity 1s ease, visibility 1s ease;
+      transition: opacity 1.2s ease, visibility 1.2s ease;
       cursor: pointer;
     }
 
@@ -46,97 +66,146 @@
     }
 
     .cover-frame {
-      border: 2px solid rgba(247, 240, 230, 0.7);
-      background: rgba(60, 40, 20, 0.4);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-      max-width: 560px;
+      position: relative;
+      border: 1px solid rgba(212, 180, 131, 0.7);
+      background: rgba(45, 30, 15, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 245, 230, 0.15),
+        inset 0 0 0 8px rgba(45, 30, 15, 0.25);
+      max-width: 580px;
       width: 100%;
-      animation: fadeUp 1.4s ease both;
+      animation: fadeUp 1.6s ease both;
+      padding: 3.5rem 2.2rem;
+    }
+
+    /* frame double-line elegan */
+    .cover-frame::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(212, 180, 131, 0.35);
+      pointer-events: none;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(25px); }
+      from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .cover-small {
-      font-size: 0.95rem;
-      letter-spacing: 5px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 8px;
       text-transform: uppercase;
-      color: #f0e3d3;
-      margin-bottom: 1.4rem;
-      opacity: 0.9;
+      color: var(--gold-soft);
+      margin-bottom: 1.8rem;
+      font-weight: 300;
     }
 
     .cover-frame h1 {
-      font-size: 3rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.2rem;
       font-weight: 400;
-      letter-spacing: 5px;
       color: #fdf7ef;
-      text-transform: uppercase;
-      line-height: 1.25;
-      text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
-      margin-bottom: 0.4rem;
+      line-height: 1.1;
+      text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
     }
 
     .cover-frame h1 span {
-      display: inline-block;
-      font-style: italic;
+      color: var(--gold-soft);
+      font-size: 3rem;
+      vertical-align: middle;
+      margin: 0 0.3rem;
+    }
+
+    .cover-names-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: rgba(240, 227, 211, 0.85);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
       font-weight: 300;
-      text-transform: none;
-      color: #e8c9a0;
-      letter-spacing: 2px;
-      margin: 0 0.15rem;
     }
 
     .cover-divider {
-      color: #e8c9a0;
-      font-size: 1.4rem;
-      letter-spacing: 8px;
-      margin: 1rem 0 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 1.5rem 0 2rem;
+      color: var(--gold-light);
+    }
+
+    .cover-divider::before,
+    .cover-divider::after {
+      content: "";
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    }
+
+    .cover-divider i {
+      font-size: 0.7rem;
+      color: var(--gold-light);
     }
 
     .enter-btn {
       display: inline-block;
-      background: #f7f0e6;
-      color: #4a3724;
-      border: none;
-      font-family: 'Georgia', serif;
+      background: transparent;
+      color: #fdf7ef;
+      border: 1px solid var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
       text-transform: uppercase;
-      border-radius: 60px;
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      padding: 1.1rem 2.5rem;
       cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 8px 0 #b89c7d, 0 14px 28px rgba(0, 0, 0, 0.35);
-      transition: all 0.2s ease;
-      animation: pulse 2.4s infinite;
+      font-weight: 500;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enter-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold-light);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
     }
 
     .enter-btn:hover {
-      background: #fffaf3;
-      transform: translateY(-3px);
-      box-shadow: 0 11px 0 #b89c7d, 0 18px 32px rgba(0, 0, 0, 0.4);
+      color: var(--brown-deep);
+      border-color: var(--gold-light);
+    }
+
+    .enter-btn:hover::before {
+      transform: translateY(0);
     }
 
     .enter-btn:active {
-      transform: translateY(5px);
-      box-shadow: 0 3px 0 #b89c7d, 0 8px 16px rgba(0, 0, 0, 0.3);
+      transform: scale(0.98);
     }
 
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 8px 0 #b89c7d, 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(247, 240, 230, 0.5); }
-      50%      { box-shadow: 0 8px 0 #b89c7d, 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 0 16px rgba(247, 240, 230, 0); }
-    }
+    .enter-btn i { margin-right: 8px; font-size: 0.85rem; }
 
     .cover-hint {
-      margin-top: 1.6rem;
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      color: #e6d6c2;
+      margin-top: 1.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      color: rgba(230, 214, 194, 0.7);
       font-style: italic;
       text-transform: uppercase;
-      opacity: 0.8;
+      font-weight: 300;
     }
 
     /* ===================================================== */
@@ -145,7 +214,7 @@
     .main-page {
       opacity: 0;
       visibility: hidden;
-      transition: opacity 1s ease 0.3s, visibility 1s ease 0.3s;
+      transition: opacity 1.2s ease 0.4s, visibility 1.2s ease 0.4s;
     }
 
     .main-page.visible {
@@ -165,12 +234,19 @@
     /* ---- HERO ---- */
     .hero {
       width: 100%;
-      margin-bottom: 2.5rem;
-      border-radius: 32px 32px 16px 16px;
+      margin-bottom: 3rem;
       overflow: hidden;
-      box-shadow: 0 20px 30px -10px rgba(60, 40, 20, 0.25);
-      border: 6px solid #e6d7c2;
+      position: relative;
+      box-shadow: 0 30px 50px -20px rgba(60, 40, 20, 0.35);
       background: #d9c8b2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 245, 230, 0.5);
+      pointer-events: none;
     }
 
     .hero img {
@@ -179,44 +255,52 @@
       display: block;
       object-fit: cover;
       aspect-ratio: 16 / 9;
-      filter: sepia(0.25) contrast(0.95) brightness(1.02);
+      filter: sepia(0.3) contrast(0.95) brightness(1.02);
+      transition: transform 8s ease;
     }
 
+    .hero:hover img { transform: scale(1.05); }
+
     /* ---- NAMES ---- */
-    .names { text-align: center; margin-bottom: 1.8rem; }
+    .names { text-align: center; margin-bottom: 2.5rem; }
 
     .names h1 {
-      font-size: 3.2rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
       font-weight: 400;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: #4a3724;
-      text-shadow: 2px 2px 0 #e9dbcb, 4px 4px 0 rgba(140, 100, 70, 0.1);
-      word-spacing: 0.2em;
+      color: var(--brown);
+      line-height: 1;
+      letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+      text-shadow: 1px 1px 0 rgba(212, 180, 131, 0.2);
     }
 
     .names h1 span {
-      display: inline-block;
-      font-weight: 300;
-      font-style: italic;
-      text-transform: none;
-      letter-spacing: 2px;
-      color: #8b6b4b;
-      margin: 0 0.2rem;
+      font-size: 3.4rem;
+      color: var(--gold);
+      vertical-align: middle;
+      margin: 0 0.4rem;
     }
 
     .names .tagline {
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
-      color: #7a5e44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-size: 1rem;
+      color: var(--brown-soft);
       font-style: italic;
-      border-top: 1px dashed #c7b29b;
-      border-bottom: 1px dashed #c7b29b;
-      display: inline-block;
-      padding: 0.6rem 2rem;
-      letter-spacing: 2px;
-      background-color: #f3ebe1;
-      border-radius: 50px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .names .tagline::before,
+    .names .tagline::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
     /* ===================================================== */
@@ -224,70 +308,100 @@
     /* ===================================================== */
     .countdown-section {
       width: 100%;
-      background: #e8dccc;
-      border-radius: 40px 40px 20px 20px;
-      padding: 1.4rem 0.8rem;
-      margin: 1.5rem 0 1.8rem;
-      box-shadow: inset 0 0 0 2px #f7f0e6, 0 8px 18px rgba(100, 70, 40, 0.15);
-      border: 1px solid #cbb295;
+      background: linear-gradient(135deg, var(--linen) 0%, var(--parchment) 100%);
+      padding: 1.8rem 0.8rem 1.5rem;
+      margin: 1.8rem 0 2rem;
+      position: relative;
+      box-shadow:
+        0 15px 30px -15px rgba(100, 70, 40, 0.25),
+        inset 0 0 0 1px rgba(184, 147, 90, 0.2);
     }
+
+    .countdown-section::before,
+    .countdown-section::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .countdown-section::before { top: 8px; }
+    .countdown-section::after { bottom: 8px; }
 
     .countdown-section h2 {
       text-align: center;
-      font-weight: 400;
-      font-size: 1.05rem;
-      letter-spacing: 2px;
-      color: #4d3826;
-      margin-bottom: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 6px;
+      color: var(--brown);
+      margin-bottom: 1.2rem;
       text-transform: uppercase;
     }
 
     .countdown-section h2 i {
-      color: #9b7b5e;
-      margin-right: 6px;
-      font-size: 0.95rem;
+      color: var(--gold);
+      margin: 0 6px;
+      font-size: 0.85rem;
     }
 
     .timer {
       display: flex;
-      flex-wrap: nowrap;          /* JANGAN turun baris */
+      flex-wrap: nowrap;
       justify-content: center;
       align-items: stretch;
-      gap: 0.4rem;
+      gap: 0.5rem;
       width: 100%;
+      padding: 0 0.4rem;
     }
 
     .timer-block {
-      flex: 1 1 0;                /* semua blok sama lebar */
-      min-width: 0;               /* benarkan kecut */
-      max-width: 78px;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 82px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #fcf7f0;
-      padding: 0.55rem 0.25rem 0.4rem;
-      border-radius: 20px 6px 20px 6px;
-      box-shadow: 0 3px 0 #b8a48c, 0 5px 8px rgba(70, 50, 30, 0.1);
-      border: 1px solid #dacbbc;
+      background: rgba(255, 253, 249, 0.85);
+      padding: 0.7rem 0.3rem 0.55rem;
+      border: 1px solid rgba(184, 147, 90, 0.35);
+      box-shadow: 0 4px 10px -3px rgba(90, 65, 40, 0.15);
+      position: relative;
+    }
+
+    .timer-block::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30%;
+      height: 1px;
+      background: var(--gold);
     }
 
     .timer-number {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #3d2c1b;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--brown-deep);
       line-height: 1;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 0 #fff4e8;
+      letter-spacing: 2px;
     }
 
     .timer-label {
+      font-family: 'Cormorant Garamond', serif;
       font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #8f735b;
-      margin-top: 4px;
-      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--brown-soft);
+      margin-top: 5px;
+      font-weight: 500;
     }
 
     /* ---- PLACE ---- */
@@ -296,318 +410,535 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 2rem 0 3rem;
-      background: #f1e6da;
-      padding: 2rem 1.5rem;
-      border-radius: 80px 20px 80px 20px;
-      box-shadow: 0 10px 18px -6px rgba(90, 65, 40, 0.2);
-      border: 1px solid #dfcdb9;
+      margin: 2.5rem 0 3rem;
+      background: var(--parchment);
+      padding: 2.5rem 1.5rem;
       position: relative;
+      box-shadow: 0 15px 30px -15px rgba(90, 65, 40, 0.2);
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
     }
 
-    .place::before, .place::after {
-      content: "✦"; font-size: 2rem; color: #bc9b7b; position: absolute; opacity: 0.6;
+    .place::before,
+    .place::after {
+      content: "◆";
+      font-size: 0.5rem;
+      color: var(--gold);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    .place::before { top: 10px; left: 30px; }
-    .place::after { bottom: 10px; right: 30px; }
 
-    .place i { font-size: 2.5rem; color: #927b64; margin-bottom: 0.5rem; }
+    .place::before { top: -6px; }
+    .place::after { bottom: -6px; }
+
+    .place .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      font-size: 1.3rem;
+      background: var(--cream-soft);
+    }
 
     .place h3 {
-      font-size: 1.9rem; font-weight: 400; letter-spacing: 2px;
-      color: #4e3825; margin-bottom: 0.5rem; text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: 6px;
+      color: var(--brown);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
     }
 
-    .place p {
-      font-size: 1.35rem; color: #55402c; font-style: italic;
-      background: #fcf6ee; padding: 0.5rem 2rem; border-radius: 40px;
-      border: 1px dashed #b99e84; display: inline-block; margin-bottom: 0.25rem;
+    .place .address-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--brown-mid);
+      font-style: italic;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.6rem;
+      text-align: center;
     }
 
-    .place .address {
-      font-size: 1.15rem; letter-spacing: 1px; color: #715d4a; font-style: normal;
+    .place .divider-dot {
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 8px;
+      margin: 0.4rem 0 0.6rem;
+    }
+
+    .place .date-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+      font-weight: 500;
     }
 
     /* ---- RSVP ---- */
     .rsvp-section {
       width: 100%;
-      background: #e3d5c4;
-      border-radius: 30px 30px 60px 60px;
-      padding: 2.5rem 1.5rem 2.8rem;
+      background: linear-gradient(135deg, var(--parchment) 0%, var(--linen) 100%);
+      padding: 3rem 1.5rem;
       margin-top: 1rem;
       text-align: center;
-      box-shadow: inset 0 0 0 2px #f7efe6, 0 12px 24px -8px #9b856f;
-      border: 1px solid #cbb295;
+      position: relative;
+      box-shadow:
+        0 20px 40px -20px rgba(90, 65, 40, 0.25),
+        inset 0 0 0 1px rgba(184, 147, 90, 0.2);
     }
+
+    .rsvp-section::before,
+    .rsvp-section::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.6;
+    }
+
+    .rsvp-section::before { top: 14px; }
+    .rsvp-section::after { bottom: 14px; }
 
     .rsvp-section h2 {
-      font-size: 2.2rem; font-weight: 400; letter-spacing: 4px;
-      color: #3d2c1b; margin-bottom: 1.5rem; text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 8px;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
     }
 
-    .rsvp-section h2 i { color: #9a7a5c; margin: 0 8px; }
+    .rsvp-section h2 i {
+      color: var(--gold);
+      margin: 0 10px;
+      font-size: 1.2rem;
+      vertical-align: middle;
+    }
+
+    .rsvp-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--brown-soft);
+      letter-spacing: 3px;
+      margin-bottom: 2rem;
+    }
 
     .rsvp-form {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1.2rem; max-width: 500px; margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.1rem;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
     .rsvp-form input,
     .rsvp-form select,
     .rsvp-form textarea {
       width: 100%;
-      padding: 0.9rem 1.2rem;
-      font-family: 'Georgia', serif;
-      font-size: 1rem;
-      background: #fcf7f0;
-      border: 1px solid #b8a084;
-      border-radius: 40px;
-      color: #3e2e1f;
+      padding: 0.85rem 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(184, 147, 90, 0.5);
+      color: var(--brown-deep);
       outline: none;
-      transition: 0.2s;
-      box-shadow: inset 0 2px 6px rgba(150, 120, 90, 0.1);
+      transition: 0.3s;
+      letter-spacing: 1px;
+      border-radius: 0;
+    }
+
+    .rsvp-form input::placeholder,
+    .rsvp-form textarea::placeholder {
+      color: var(--brown-soft);
+      font-style: italic;
+      letter-spacing: 1px;
     }
 
     .rsvp-form input:focus,
     .rsvp-form select:focus,
     .rsvp-form textarea:focus {
-      border-color: #8d6f54; background: #fffcf8;
-      box-shadow: 0 0 0 4px rgba(170, 140, 110, 0.2);
+      border-bottom-color: var(--gold);
+      background: rgba(255, 253, 249, 0.5);
     }
 
-    .rsvp-form textarea { resize: vertical; min-height: 80px; border-radius: 20px; }
+    .rsvp-form textarea {
+      resize: vertical;
+      min-height: 70px;
+      padding-top: 0.6rem;
+    }
+
+    .rsvp-form select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b6b4b' stroke-width='1.5'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      background-size: 14px;
+      padding-right: 2rem;
+    }
+
+    .rsvp-form select option {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream-soft);
+      color: var(--brown-deep);
+    }
 
     .rsvp-form button {
-      background: #7f6047;
-      border: none;
+      background: var(--brown);
+      border: 1px solid var(--brown);
       padding: 1rem 2.8rem;
-      font-size: 1.3rem;
-      font-family: 'Georgia', serif;
-      letter-spacing: 3px;
-      color: #fef9f2;
-      border-radius: 60px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: var(--gold-soft);
       cursor: pointer;
-      box-shadow: 0 6px 0 #4f3928, 0 8px 18px rgba(0, 0, 0, 0.15);
-      transition: 0.1s linear;
+      transition: all 0.3s ease;
       text-transform: uppercase;
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
       min-width: 220px;
+      font-weight: 500;
     }
 
     .rsvp-form button:hover {
-      background: #926e51; transform: translateY(-2px);
-      box-shadow: 0 8px 0 #4f3928, 0 12px 22px rgba(0, 0, 0, 0.15);
+      background: var(--brown-deep);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      letter-spacing: 8px;
     }
 
     .rsvp-form button:active {
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 #4f3928, 0 6px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(2px);
     }
 
     .rsvp-note {
-      margin-top: 1.2rem;
-      font-size: 0.95rem;
-      color: #6f5a46;
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      color: var(--brown-soft);
       font-style: italic;
-      letter-spacing: 1px;
-      border-top: 1px dashed #bba68e;
-      padding-top: 1.2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
     /* ---- JADUAL ACARA ---- */
     .schedule-section {
       width: 100%;
-      margin-top: 3rem;
-      background: #f1e6da;
-      border-radius: 60px 20px 60px 20px;
-      padding: 2.8rem 1.8rem 2.5rem;
-      border: 1px solid #dfcdb9;
-      box-shadow: 0 12px 22px -8px rgba(90, 65, 40, 0.22);
+      margin-top: 3.5rem;
+      background: var(--cream-soft);
+      padding: 3rem 1.8rem 2.8rem;
       position: relative;
+      box-shadow: 0 20px 40px -20px rgba(90, 65, 40, 0.2);
+      border: 1px solid rgba(184, 147, 90, 0.25);
     }
 
-    .schedule-section::before, .schedule-section::after {
-      content: "❦"; position: absolute; font-size: 1.8rem; color: #bc9b7b; opacity: 0.7;
+    .schedule-section::before,
+    .schedule-section::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
-    .schedule-section::before { top: 14px; left: 26px; }
-    .schedule-section::after { bottom: 14px; right: 26px; }
+
+    .schedule-section::before { top: 14px; }
+    .schedule-section::after { bottom: 14px; }
 
     .schedule-section h2 {
-      text-align: center; font-size: 2rem; font-weight: 400;
-      letter-spacing: 4px; color: #4a3724; text-transform: uppercase; margin-bottom: 0.4rem;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: 8px;
+      color: var(--brown);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
     }
-    .schedule-section h2 i { color: #9a7a5c; margin: 0 10px; }
+
+    .schedule-section h2 i {
+      color: var(--gold);
+      margin: 0 10px;
+      font-size: 1.1rem;
+      vertical-align: middle;
+    }
 
     .schedule-sub {
-      text-align: center; font-style: italic; color: #7a5e44;
-      letter-spacing: 1.5px; margin-bottom: 2.2rem; font-size: 1.05rem;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--brown-soft);
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
     }
 
     .timeline {
-      position: relative; max-width: 720px; margin: 0 auto; padding-left: 1.5rem;
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding-left: 1.8rem;
     }
 
     .timeline::before {
-      content: ""; position: absolute; left: 12px; top: 6px; bottom: 6px;
-      width: 3px;
-      background: repeating-linear-gradient(
-        to bottom, #c7ab8c 0px, #c7ab8c 8px, transparent 8px, transparent 14px
-      );
-      border-radius: 3px;
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+      opacity: 0.5;
     }
 
-    .timeline-item { position: relative; padding: 0 0 2rem 2.8rem; }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2.2rem 2.5rem;
+    }
+
     .timeline-item:last-child { padding-bottom: 0; }
 
     .timeline-icon {
-      position: absolute; left: -1.05rem; top: 0;
-      width: 42px; height: 42px; border-radius: 50%;
-      background: #fcf7f0; border: 2px solid #c7ab8c;
-      display: flex; align-items: center; justify-content: center;
-      color: #8b6b4b; font-size: 1.05rem;
-      box-shadow: 0 3px 8px rgba(100, 70, 40, 0.18);
+      position: absolute;
+      left: -1.05rem;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--cream-soft);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.9rem;
       z-index: 2;
+      box-shadow: 0 0 0 4px var(--cream-soft), 0 4px 10px rgba(90, 65, 40, 0.1);
     }
 
     .timeline-content {
-      background: #fcf7f0; border: 1px solid #dacbbc;
-      border-radius: 14px 40px 14px 40px;
-      padding: 1.1rem 1.4rem;
-      box-shadow: 0 6px 14px -6px rgba(90, 65, 40, 0.25);
-      transition: transform 0.2s ease;
+      background: transparent;
+      border: none;
+      border-left: 1px solid rgba(184, 147, 90, 0.3);
+      padding: 0.2rem 0 0.4rem 1.4rem;
+      transition: border-color 0.3s ease;
     }
 
-    .timeline-content:hover { transform: translateX(4px); }
+    .timeline-content:hover {
+      border-left-color: var(--gold);
+    }
 
     .timeline-time {
-      display: inline-block; font-size: 0.85rem; letter-spacing: 2px;
-      text-transform: uppercase; color: #fef9f2; background: #8b6b4b;
-      padding: 0.25rem 1rem; border-radius: 40px; margin-bottom: 0.55rem;
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
 
     .timeline-content h4 {
-      font-size: 1.25rem; font-weight: 600; color: #4a3724;
-      letter-spacing: 1px; margin-bottom: 0.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--brown);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
     }
 
     .timeline-content p {
-      font-size: 1rem; color: #6f5a46; font-style: italic; line-height: 1.55;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--brown-mid);
+      font-style: italic;
+      line-height: 1.55;
+      letter-spacing: 0.5px;
     }
 
     /* ---- FOOTER ---- */
     .footer-note {
-      margin-top: 3.5rem; font-size: 0.9rem; color: #b09b86;
-      letter-spacing: 2px; text-transform: uppercase;
-      border-top: 1px solid #e1d3c4; padding-top: 1.5rem;
-      width: 100%; text-align: center;
+      margin-top: 4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      color: var(--brown-soft);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      padding-top: 1.8rem;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .footer-note::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
     /* ===================================================== */
     /* ============== MOBILE (<= 640px) ===================== */
     /* ===================================================== */
     @media (max-width: 640px) {
-      body { font-size: 15px; }
-
       .cover-frame {
-        padding: 2.6rem 1.3rem;
-        border-radius: 120px 25px 120px 25px;
-        border-width: 1.5px;
+        padding: 3rem 1.4rem;
+        max-width: 400px;
       }
 
-      .cover-small { font-size: 0.7rem; letter-spacing: 4px; margin-bottom: 1rem; }
+      .cover-frame::before { inset: 8px; }
+
+      .cover-small { font-size: 0.7rem; letter-spacing: 6px; margin-bottom: 1.4rem; }
 
       .cover-frame h1 {
-        font-size: 1.95rem;
-        letter-spacing: 3px;
-        line-height: 1.3;
+        font-size: 3.4rem;
+        letter-spacing: 1px;
       }
 
-      .cover-divider { font-size: 1rem; letter-spacing: 6px; margin: 0.8rem 0 1.4rem; }
+      .cover-frame h1 span { font-size: 2.4rem; }
+
+      .cover-names-sub { font-size: 0.75rem; letter-spacing: 5px; margin-bottom: 1.5rem; }
+
+      .cover-divider { margin: 1.2rem 0 1.6rem; }
 
       .enter-btn {
-        font-size: 0.82rem;
-        padding: 1rem 1.5rem;
-        letter-spacing: 2px;
+        font-size: 0.75rem;
+        padding: 0.95rem 1.4rem;
+        letter-spacing: 4px;
         width: 100%;
-        max-width: 320px;
-        border-radius: 50px;
+        max-width: 300px;
       }
 
-      .cover-hint { font-size: 0.68rem; letter-spacing: 2px; margin-top: 1.2rem; }
+      .cover-hint { font-size: 0.65rem; letter-spacing: 3px; margin-top: 1.3rem; }
 
       .page { padding: 1rem 0.9rem 2.5rem; }
-      .hero { border-width: 4px; border-radius: 24px 24px 12px 12px; margin-bottom: 1.8rem; }
-      .names h1 { font-size: 2.1rem; letter-spacing: 3px; }
-      .names .tagline { font-size: 1rem; padding: 0.5rem 1.2rem; letter-spacing: 1.5px; }
+      .hero { margin-bottom: 2rem; }
+      .hero::after { inset: 8px; }
 
-      .place { padding: 1.6rem 1rem; border-radius: 60px 16px 60px 16px; margin: 1.5rem 0 2rem; }
-      .place i { font-size: 2rem; }
-      .place h3 { font-size: 1.35rem; letter-spacing: 1px; }
-      .place p { font-size: 1rem; padding: 0.4rem 1.1rem; }
-      .place .address { font-size: 0.9rem; letter-spacing: 0.5px; }
+      .names h1 { font-size: 3.4rem; }
+      .names h1 span { font-size: 2.2rem; }
+      .names .tagline { font-size: 0.8rem; letter-spacing: 3px; gap: 8px; }
+      .names .tagline::before,
+      .names .tagline::after { width: 24px; }
 
-      .rsvp-section { padding: 1.8rem 1rem 2rem; border-radius: 24px 24px 40px 40px; }
-      .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 1.2rem; }
-      .rsvp-form { gap: 0.9rem; }
-      .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
-        padding: 0.85rem 1rem; font-size: 0.95rem;
+      .countdown-section { padding: 1.5rem 0.6rem 1.3rem; }
+      .countdown-section h2 { font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 1rem; }
+      .countdown-section h2 i { font-size: 0.7rem; margin: 0 4px; }
+
+      .timer { gap: 0.35rem; padding: 0 0.2rem; }
+      .timer-block { max-width: 72px; padding: 0.55rem 0.2rem 0.4rem; }
+      .timer-number { font-size: 1.35rem; }
+      .timer-label { font-size: 0.5rem; letter-spacing: 1.5px; margin-top: 4px; }
+
+      .place {
+        padding: 2rem 1rem;
+        margin: 2rem 0 2.5rem;
       }
-      .rsvp-form button { font-size: 1rem; padding: 0.9rem 1.8rem; letter-spacing: 2px; min-width: 180px; }
-      .rsvp-note { font-size: 0.85rem; }
+      .place .icon-circle { width: 48px; height: 48px; font-size: 1.1rem; }
+      .place h3 { font-size: 1.4rem; letter-spacing: 4px; }
+      .place .address-line { font-size: 1rem; letter-spacing: 1px; }
+      .place .date-line { font-size: 0.8rem; letter-spacing: 2.5px; }
 
-      .schedule-section { padding: 2rem 1rem 1.8rem; border-radius: 40px 16px 40px 16px; margin-top: 2rem; }
-      .schedule-section h2 { font-size: 1.35rem; letter-spacing: 2px; }
-      .schedule-sub { font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 1.6rem; }
-      .timeline { padding-left: 1.2rem; }
-      .timeline-item { padding-left: 2.3rem; padding-bottom: 1.5rem; }
-      .timeline-icon { width: 34px; height: 34px; font-size: 0.8rem; left: -0.85rem; }
-      .timeline-content { padding: 0.9rem 1rem; border-radius: 10px 30px 10px 30px; }
-      .timeline-time { font-size: 0.7rem; letter-spacing: 1.5px; padding: 0.2rem 0.8rem; }
-      .timeline-content h4 { font-size: 1rem; }
-      .timeline-content p { font-size: 0.85rem; }
+      .rsvp-section { padding: 2.5rem 1.2rem; }
+      .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 5px; }
+      .rsvp-section h2 i { font-size: 1rem; margin: 0 6px; }
+      .rsvp-subtitle { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1.5rem; }
 
-      .footer-note { font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 2.5rem; }
+      .rsvp-form { gap: 0.8rem; }
+      .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+        padding: 0.75rem 0.8rem;
+        font-size: 1rem;
+      }
+      .rsvp-form button { font-size: 0.9rem; padding: 0.9rem 1.8rem; letter-spacing: 4px; min-width: 180px; }
+      .rsvp-note { font-size: 0.7rem; letter-spacing: 2px; }
+
+      .schedule-section { padding: 2.2rem 1.1rem 2rem; margin-top: 2.5rem; }
+      .schedule-section h2 { font-size: 1.35rem; letter-spacing: 4px; }
+      .schedule-section h2 i { font-size: 0.95rem; }
+      .schedule-sub { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 1.8rem; }
+
+      .timeline { padding-left: 1.3rem; }
+      .timeline-item { padding-left: 2.2rem; padding-bottom: 1.7rem; }
+      .timeline-icon { width: 34px; height: 34px; font-size: 0.75rem; left: -0.9rem; box-shadow: 0 0 0 3px var(--cream-soft), 0 3px 8px rgba(90, 65, 40, 0.1); }
+      .timeline-content { padding: 0.1rem 0 0.3rem 1rem; }
+      .timeline-time { font-size: 0.65rem; letter-spacing: 3px; }
+      .timeline-content h4 { font-size: 1rem; letter-spacing: 2px; }
+      .timeline-content p { font-size: 0.88rem; }
+
+      .footer-note { font-size: 0.7rem; letter-spacing: 4px; margin-top: 2.8rem; }
     }
 
     /* ===================================================== */
     /* ========== TELEFON KECIL (<= 380px) ================== */
     /* ===================================================== */
     @media (max-width: 380px) {
-      .timer-block { padding: 0.45rem 0.15rem 0.3rem; border-radius: 16px 5px 16px 5px; }
-      .timer-number { font-size: 1.15rem; }
-      .timer-label { font-size: 0.5rem; letter-spacing: 0.5px; }
+      .cover-frame { padding: 2.5rem 1.1rem; }
+      .cover-frame h1 { font-size: 2.9rem; }
+      .cover-frame h1 span { font-size: 2rem; }
+
       .timer { gap: 0.25rem; }
+      .timer-block { max-width: 66px; padding: 0.5rem 0.15rem 0.35rem; }
+      .timer-number { font-size: 1.15rem; }
+      .timer-label { font-size: 0.45rem; letter-spacing: 1px; }
+
+      .names h1 { font-size: 2.9rem; }
+      .names h1 span { font-size: 1.9rem; }
+
+      .place h3 { font-size: 1.2rem; letter-spacing: 3px; }
+      .rsvp-section h2 { font-size: 1.3rem; }
     }
 
     /* ===================================================== */
     /* ========== TABLET (641px – 1023px) =================== */
     /* ===================================================== */
     @media (min-width: 641px) and (max-width: 1023px) {
-      .cover-frame { padding: 3rem 2rem; border-radius: 150px 25px 150px 25px; max-width: 580px; }
-      .cover-frame h1 { font-size: 2.8rem; letter-spacing: 5px; }
-      .enter-btn { font-size: 0.95rem; padding: 1rem 2.2rem; }
+      .cover-frame { padding: 3.5rem 2.2rem; max-width: 560px; }
+      .cover-frame h1 { font-size: 3.8rem; }
+      .cover-frame h1 span { font-size: 2.8rem; }
+      .enter-btn { font-size: 0.85rem; padding: 1rem 2.2rem; }
 
       .page { padding: 1.8rem 1.5rem 3.5rem; }
-      .names h1 { font-size: 2.8rem; letter-spacing: 5px; }
+      .names h1 { font-size: 4.2rem; }
+      .names h1 span { font-size: 3rem; }
 
-      .countdown-section { padding: 2rem 1.2rem; margin: 2rem 0 2.2rem; }
-      .countdown-section h2 { font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 1.5rem; }
+      .countdown-section { padding: 2.2rem 1.2rem; }
+      .countdown-section h2 { font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 1.5rem; }
 
-      .timer { gap: 1rem 1.2rem; flex-wrap: wrap; }
-
-      .timer-block {
-        min-width: 85px;
-        max-width: none;
-        padding: 0.9rem 0.6rem 0.5rem;
-        border-radius: 32px 10px 32px 10px;
-      }
-
+      .timer { gap: 0.8rem; flex-wrap: wrap; }
+      .timer-block { min-width: 90px; max-width: none; padding: 1rem 0.8rem 0.7rem; }
       .timer-number { font-size: 2.4rem; }
-      .timer-label { font-size: 0.8rem; letter-spacing: 2px; }
+      .timer-label { font-size: 0.75rem; letter-spacing: 3px; }
 
       .place h3 { font-size: 1.7rem; }
-      .rsvp-section h2 { font-size: 2rem; }
-      .schedule-section h2 { font-size: 1.8rem; }
+      .place .address-line { font-size: 1.15rem; }
+
+      .rsvp-section h2 { font-size: 1.8rem; letter-spacing: 6px; }
+
+      .schedule-section h2 { font-size: 1.7rem; letter-spacing: 6px; }
+      .timeline-content h4 { font-size: 1.15rem; }
     }
 
     /* ===================================================== */
@@ -615,100 +946,96 @@
     /* ===================================================== */
     @media (min-width: 1024px) {
       .cover-frame {
-        padding: 3.5rem 2.5rem;
-        border-radius: 200px 30px 200px 30px;
-        max-width: 640px;
+        padding: 4.5rem 3rem;
+        max-width: 680px;
       }
 
-      .cover-small { font-size: 1rem; letter-spacing: 6px; }
-
-      .cover-frame h1 {
-        font-size: 3.6rem;
-        letter-spacing: 7px;
-        line-height: 1.2;
-      }
-
-      .cover-divider { font-size: 1.6rem; letter-spacing: 10px; margin: 1.2rem 0 2.2rem; }
-
-      .enter-btn {
-        font-size: 1.05rem;
-        padding: 1.1rem 3rem;
-        letter-spacing: 3px;
-      }
-
-      .cover-hint { font-size: 0.9rem; letter-spacing: 4px; }
+      .cover-small { font-size: 0.95rem; letter-spacing: 10px; }
+      .cover-frame h1 { font-size: 5rem; }
+      .cover-frame h1 span { font-size: 3.5rem; }
+      .cover-names-sub { font-size: 1.1rem; letter-spacing: 8px; }
+      .enter-btn { font-size: 0.95rem; padding: 1.2rem 3.2rem; letter-spacing: 6px; }
+      .cover-hint { font-size: 0.8rem; letter-spacing: 5px; }
 
       .page { padding: 2.5rem 2rem 5rem; }
 
-      .hero {
-        border-width: 8px;
-        border-radius: 40px 40px 20px 20px;
-        margin-bottom: 3rem;
-      }
+      .hero { margin-bottom: 3.5rem; }
+      .hero::after { inset: 18px; }
 
-      .names h1 { font-size: 4rem; letter-spacing: 8px; }
-      .names .tagline { font-size: 1.5rem; padding: 0.8rem 2.6rem; }
+      .names h1 { font-size: 6.5rem; }
+      .names h1 span { font-size: 4.5rem; }
+      .names .tagline { font-size: 1.1rem; letter-spacing: 8px; gap: 20px; }
+      .names .tagline::before,
+      .names .tagline::after { width: 70px; }
 
       .countdown-section {
-        padding: 3rem 2rem;
-        margin: 3rem 0 3.5rem;
-        border-radius: 60px 60px 30px 30px;
+        padding: 3.5rem 2rem 3rem;
+        margin: 3.5rem 0 4rem;
       }
+      .countdown-section::before,
+      .countdown-section::after { width: 120px; }
 
       .countdown-section h2 {
-        font-size: 2.1rem;
-        letter-spacing: 5px;
-        margin-bottom: 2.2rem;
+        font-size: 1.3rem;
+        letter-spacing: 10px;
+        margin-bottom: 2.5rem;
       }
+      .countdown-section h2 i { font-size: 1.1rem; margin: 0 12px; }
 
-      .countdown-section h2 i { font-size: 1.8rem; margin-right: 10px; }
-
-      .timer { gap: 2rem 2.8rem; flex-wrap: wrap; }
-
+      .timer { gap: 1.5rem; flex-wrap: wrap; padding: 0 1rem; }
       .timer-block {
-        min-width: 110px;
+        min-width: 130px;
         max-width: none;
-        padding: 1.3rem 1rem 0.9rem;
-        border-radius: 40px 12px 40px 12px;
+        padding: 1.5rem 1.2rem 1.1rem;
       }
-
-      .timer-number { font-size: 3.6rem; letter-spacing: 2px; }
-      .timer-label { font-size: 1rem; letter-spacing: 3px; margin-top: 6px; }
+      .timer-number { font-size: 3.4rem; letter-spacing: 3px; }
+      .timer-label { font-size: 0.85rem; letter-spacing: 5px; margin-top: 8px; }
 
       .place {
-        padding: 2.8rem 2rem;
-        border-radius: 100px 30px 100px 30px;
-        margin: 3rem 0 3.5rem;
+        padding: 4rem 2.5rem;
+        margin: 4rem 0 4.5rem;
       }
-      .place i { font-size: 3rem; }
-      .place h3 { font-size: 2.2rem; letter-spacing: 3px; }
-      .place p { font-size: 1.5rem; padding: 0.6rem 2.5rem; }
-      .place .address { font-size: 1.25rem; }
+      .place .icon-circle { width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 1.5rem; }
+      .place h3 { font-size: 2.4rem; letter-spacing: 10px; margin-bottom: 1.2rem; }
+      .place .address-line { font-size: 1.35rem; letter-spacing: 3px; }
+      .place .date-line { font-size: 1.05rem; letter-spacing: 6px; }
 
-      .rsvp-section { padding: 3.5rem 2rem 3.5rem; border-radius: 40px 40px 80px 80px; }
-      .rsvp-section h2 { font-size: 2.6rem; letter-spacing: 6px; }
+      .rsvp-section { padding: 5rem 2.5rem; }
+      .rsvp-section::before,
+      .rsvp-section::after { left: 40px; right: 40px; }
+      .rsvp-section h2 { font-size: 2.6rem; letter-spacing: 14px; }
+      .rsvp-section h2 i { font-size: 1.5rem; margin: 0 16px; }
+      .rsvp-subtitle { font-size: 1.15rem; letter-spacing: 5px; margin-bottom: 3rem; }
+
+      .rsvp-form { gap: 1.5rem; max-width: 520px; }
       .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
-        padding: 1rem 1.4rem; font-size: 1.05rem;
+        padding: 1rem 1.4rem;
+        font-size: 1.15rem;
+        letter-spacing: 1.5px;
       }
-      .rsvp-form button { font-size: 1.4rem; padding: 1.1rem 3.2rem; }
+      .rsvp-form button { font-size: 1.05rem; padding: 1.2rem 3.5rem; letter-spacing: 8px; min-width: 280px; }
+      .rsvp-note { font-size: 0.9rem; letter-spacing: 5px; margin-top: 2rem; }
 
       .schedule-section {
-        padding: 3.5rem 2.5rem 3rem;
-        border-radius: 80px 30px 80px 30px;
-        margin-top: 4rem;
+        padding: 4.5rem 3rem 4rem;
+        margin-top: 5rem;
       }
-      .schedule-section h2 { font-size: 2.4rem; letter-spacing: 6px; }
-      .schedule-sub { font-size: 1.15rem; }
+      .schedule-section::before,
+      .schedule-section::after { width: 140px; }
+      .schedule-section h2 { font-size: 2.4rem; letter-spacing: 14px; }
+      .schedule-section h2 i { font-size: 1.4rem; margin: 0 16px; }
+      .schedule-sub { font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 3rem; }
 
-      .timeline { max-width: 820px; padding-left: 2rem; }
-      .timeline-item { padding-left: 3.2rem; padding-bottom: 2.4rem; }
-      .timeline-icon { width: 50px; height: 50px; font-size: 1.2rem; left: -1.25rem; }
-      .timeline-content { padding: 1.4rem 1.8rem; border-radius: 16px 50px 16px 50px; }
-      .timeline-time { font-size: 0.95rem; padding: 0.3rem 1.3rem; }
-      .timeline-content h4 { font-size: 1.5rem; }
-      .timeline-content p { font-size: 1.1rem; }
+      .timeline { max-width: 800px; padding-left: 2.2rem; }
+      .timeline::before { left: 10px; }
+      .timeline-item { padding: 0 0 3rem 3rem; }
+      .timeline-icon { width: 50px; height: 50px; font-size: 1.15rem; left: -1.35rem; box-shadow: 0 0 0 5px var(--cream-soft), 0 6px 14px rgba(90, 65, 40, 0.12); }
+      .timeline-content { padding: 0.3rem 0 0.6rem 1.8rem; }
+      .timeline-time { font-size: 0.9rem; letter-spacing: 6px; margin-bottom: 0.6rem; }
+      .timeline-content h4 { font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 0.5rem; }
+      .timeline-content p { font-size: 1.1rem; letter-spacing: 1px; }
 
-      .footer-note { font-size: 1rem; letter-spacing: 3px; }
+      .footer-note { font-size: 0.9rem; letter-spacing: 10px; margin-top: 5rem; }
     }
   </style>
 </head>
@@ -721,9 +1048,12 @@
     <div class="cover-frame">
       <div class="cover-small">The Wedding Of</div>
       <h1>Rusty <span>&</span> Anney</h1>
-      <div class="cover-divider">✦ ✦ ✦</div>
+      <div class="cover-names-sub">Together Forever</div>
+      <div class="cover-divider">
+        <i class="fas fa-circle"></i>
+      </div>
       <button class="enter-btn" id="enterBtn">
-        <i class="fas fa-envelope-open-text"></i>&nbsp; Rusty &amp; Anney Wedding
+        Open Invitation
       </button>
       <div class="cover-hint">— klik untuk membuka jemputan —</div>
     </div>
@@ -739,19 +1069,19 @@
       <div class="hero">
         <img 
           src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-          alt="Rustic wedding table setting with flowers and candles"
+          alt="Elegant wedding table setting"
         >
       </div>
 
       <!-- NAMES -->
       <div class="names">
         <h1>Rusty <span>&</span> Anney</h1>
-        <div class="tagline">are getting married</div>
+        <div class="tagline">Are Getting Married</div>
       </div>
 
       <!-- COUNTDOWN -->
       <div class="countdown-section">
-        <h2><i class="fas fa-hourglass-half"></i> Counting down <i class="fas fa-hourglass-half"></i></h2>
+        <h2><i class="fas fa-hourglass-half"></i> Counting Down <i class="fas fa-hourglass-half"></i></h2>
         <div class="timer" id="countdown-timer">
           <div class="timer-block">
             <span class="timer-number" id="days">00</span>
@@ -774,16 +1104,20 @@
 
       <!-- PLACE -->
       <div class="place">
-        <i class="fas fa-map-pin"></i>
+        <div class="icon-circle">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
         <h3>The Old Barn</h3>
-        <p>⛪ 1234 Rustic Lane, Willow Creek</p>
-        <span class="address">Asheville, North Carolina · June 14, 2026 · 4:00 PM</span>
+        <div class="address-line">1234 Rustic Lane, Willow Creek</div>
+        <div class="divider-dot">◆ ◆ ◆</div>
+        <div class="date-line">Asheville · June 14, 2026 · 4:00 PM</div>
       </div>
 
       <!-- RSVP -->
       <div class="rsvp-section">
-        <h2><i class="fas fa-envelope"></i> RSVP <i class="fas fa-envelope"></i></h2>
-        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('🌿 Thank you! This is a demo RSVP — we’d love to have you. (Rusty & Anney)');">
+        <h2><i class="fas fa-envelope-open"></i> RSVP <i class="fas fa-envelope-open"></i></h2>
+        <div class="rsvp-subtitle">Kindly Confirm Your Attendance</div>
+        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Thank you! This is a demo RSVP — we would be delighted to have you. (Rusty & Anney)');">
           <input type="text" placeholder="Your full name" required>
           <input type="email" placeholder="Email address" required>
           <select required>
@@ -791,24 +1125,24 @@
             <option value="yes">Joyfully accepts</option>
             <option value="no">Regretfully declines</option>
           </select>
-          <textarea placeholder="Any dietary notes or a rustic message..."></textarea>
+          <textarea placeholder="Any dietary notes or a special message..."></textarea>
           <button type="submit">Send RSVP</button>
         </form>
-        <div class="rsvp-note">Kindly respond by May 1, 2026</div>
+        <div class="rsvp-note">Respond by May 1, 2026</div>
       </div>
 
       <!-- JADUAL ACARA -->
       <div class="schedule-section">
-        <h2><i class="fas fa-calendar-alt"></i> Jadual Acara <i class="fas fa-calendar-alt"></i></h2>
-        <p class="schedule-sub">— atur cara majlis perkahwinan kami —</p>
+        <h2><i class="fas fa-calendar-alt"></i> Order of Events <i class="fas fa-calendar-alt"></i></h2>
+        <p class="schedule-sub">— A celebration to remember —</p>
 
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-chair"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">3:00 PM</span>
-              <h4>Ketibaan Tetamu</h4>
-              <p>Para tetamu dijemput hadir dan mendaftar di meja penerimaan tetamu.</p>
+              <h4>Guest Arrival</h4>
+              <p>Welcome and registration at the reception desk.</p>
             </div>
           </div>
 
@@ -816,8 +1150,8 @@
             <div class="timeline-icon"><i class="fas fa-ring"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">4:00 PM</span>
-              <h4>Majlis Akad Nikah</h4>
-              <p>Upacara akad nikah dan lafaz ikrar di hadapan keluarga dan tetamu.</p>
+              <h4>Wedding Ceremony</h4>
+              <p>The exchange of vows before family and friends.</p>
             </div>
           </div>
 
@@ -825,8 +1159,8 @@
             <div class="timeline-icon"><i class="fas fa-camera"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">5:00 PM</span>
-              <h4>Sesi Bergambar</h4>
-              <p>Bergambar bersama pengantin, keluarga dan sahabat handai tercinta.</p>
+              <h4>Photo Session</h4>
+              <p>Capturing memories with the newlyweds and loved ones.</p>
             </div>
           </div>
 
@@ -834,8 +1168,8 @@
             <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">6:00 PM</span>
-              <h4>Jamuan Makan</h4>
-              <p>Menikmati hidangan istimewa bersama-sama para tetamu yang hadir.</p>
+              <h4>Dinner Reception</h4>
+              <p>An evening of fine dining and joyful celebration.</p>
             </div>
           </div>
 
@@ -843,8 +1177,8 @@
             <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">7:30 PM</span>
-              <h4>Potong Kek & Ucapan</h4>
-              <p>Majlis potong kek pengantin, ucapan daripada keluarga dan tetamu.</p>
+              <h4>Cake & Toasts</h4>
+              <p>Cutting of the cake and heartfelt speeches.</p>
             </div>
           </div>
 
@@ -852,15 +1186,15 @@
             <div class="timeline-icon"><i class="fas fa-music"></i></div>
             <div class="timeline-content">
               <span class="timeline-time">8:30 PM</span>
-              <h4>Persembahan & Majlis Bersurai</h4>
-              <p>Persembahan istimewa dan majlis bersurai. Selamat malam, terima kasih hadir!</p>
+              <h4>Dancing & Farewell</h4>
+              <p>An evening of music, dancing and warm farewells.</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- footer -->
-      <div class="footer-note">Rusty &amp; Anney · #rusticwedding</div>
+      <div class="footer-note">Rusty &amp; Anney · 2026</div>
     </div>
   </div>
 
@@ -868,12 +1202,9 @@
   <!-- =============== JAVASCRIPT ================ -->
   <!-- =========================================== -->
   <script>
-    /* ===== DETEKSI JENIS PERANTI ===== */
     const isMobile  = window.matchMedia('(max-width: 640px)').matches;
-
     document.body.dataset.device = isMobile ? 'mobile' : 'desktop';
 
-    /* ===== MASUK KE HALAMAN UTAMA ===== */
     const coverPage = document.getElementById('coverPage');
     const mainPage  = document.getElementById('mainPage');
     const enterBtn  = document.getElementById('enterBtn');
@@ -900,7 +1231,7 @@
 
     /* ===== COUNTDOWN ===== */
     (function() {
-      const weddingDate = new Date(2026, 5, 14, 16, 0, 0); // 14 Jun 2026, 4:00 PM
+      const weddingDate = new Date(2026, 5, 14, 16, 0, 0);
 
       function updateCountdown() {
         const now = new Date();
@@ -928,19 +1259,16 @@
       setInterval(updateCountdown, 1000);
     })();
 
-    /* ===== RESIZE HANDLER ===== */
+    /* ===== RESIZE ===== */
     let resizeTimer;
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
         const m = window.matchMedia('(max-width: 640px)').matches;
         document.body.dataset.device = m ? 'mobile' : 'desktop';
-
-        if (m) {
-          document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
-        } else {
-          document.querySelector('.cover-hint').textContent = '— klik untuk membuka jemputan —';
-        }
+        document.querySelector('.cover-hint').textContent = m
+          ? '— ketuk untuk membuka jemputan —'
+          : '— klik untuk membuka jemputan —';
       }, 200);
     });
   </script>

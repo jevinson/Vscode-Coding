@@ -93,24 +93,63 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 .rsvp-form button:disabled{opacity:.7;cursor:not-allowed}
 .rsvp-note{margin-top:1.5rem;font-size:.85rem;color:var(--brown-soft);font-style:italic;letter-spacing:3px;text-transform:uppercase}
 
-/* WISHES — Auto Scroll */
+/* =========================================
+   WISHES — Auto Scroll (VERSI PADAT)
+   ========================================= */
 .wishes-section{width:100%;margin-top:3.5rem;background:var(--cream-soft);padding:3rem 1.5rem 2.8rem;position:relative;box-shadow:0 20px 40px -20px rgba(90,65,40,.2);border:1px solid rgba(184,147,90,.25)}
 .wishes-section h2{text-align:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;letter-spacing:8px;color:var(--brown);text-transform:uppercase;margin-bottom:.4rem}
 .wishes-section h2 i{color:var(--gold);margin:0 10px}
-.wishes-sub{text-align:center;font-style:italic;color:var(--brown-soft);letter-spacing:3px;margin-bottom:2rem;font-size:.95rem}
+.wishes-sub{text-align:center;font-style:italic;color:var(--brown-soft);letter-spacing:3px;margin-bottom:1.5rem;font-size:.95rem}
 .wishes-scroll-wrap{max-width:700px;margin:0 auto;height:420px;overflow:hidden;position:relative;padding:0 1rem}
 .wishes-scroll-wrap::before,.wishes-scroll-wrap::after{content:"";position:absolute;left:0;right:0;height:60px;z-index:2;pointer-events:none}
 .wishes-scroll-wrap::before{top:0;background:linear-gradient(to bottom,var(--cream-soft),transparent)}
 .wishes-scroll-wrap::after{bottom:0;background:linear-gradient(to top,var(--cream-soft),transparent)}
-.wishes-track{display:flex;flex-direction:column;gap:1.8rem;animation:wishesAutoScroll 60s linear infinite;padding:40px 0}
+
+.wishes-track{
+  display:flex;
+  flex-direction:column;
+  gap:0.8rem; /* Rapatkan jarak antara ucapan */
+  animation:wishesAutoScroll 60s linear infinite;
+  padding:20px 0;
+}
 .wishes-track:hover{animation-play-state:paused}
 .wishes-track.no-scroll{animation:none;height:auto}
 @keyframes wishesAutoScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.wish-item{text-align:center;padding:0.4rem 0}
-.wish-item .wish-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--brown);letter-spacing:4px;text-transform:uppercase;margin-bottom:0.5rem}
-.wish-item .wish-date{font-size:0.7rem;color:var(--brown-soft);font-style:italic;letter-spacing:2px;margin-bottom:0.6rem;opacity:.75}
-.wish-item .wish-message{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--brown-mid);line-height:1.65;font-style:italic;letter-spacing:0.5px;word-wrap:break-word}
-.wish-item .wish-divider{display:block;margin:1.5rem auto 0;width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.5}
+
+.wish-item{
+  text-align:center;
+  padding:0.6rem 1rem;
+  background: rgba(255, 253, 249, 0.5);
+  border-bottom: 1px solid rgba(184,147,90,0.15);
+}
+.wish-item .wish-name{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;
+  font-weight:500;
+  color:var(--brown);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:0.2rem;
+}
+.wish-item .wish-date{
+  font-size:0.65rem;
+  color:var(--brown-soft);
+  font-style:italic;
+  letter-spacing:2px;
+  margin-bottom:0.3rem;
+  opacity:.75;
+}
+.wish-item .wish-message{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  color:var(--brown-mid);
+  line-height:1.45;
+  font-style:italic;
+  letter-spacing:0.5px;
+  word-wrap:break-word;
+  margin-bottom:0.3rem;
+}
+.wish-item .wish-divider{display:none;} /* Buang divider lama */
 .wishes-loading,.wishes-empty{text-align:center;padding:2rem 1rem;font-style:italic;color:var(--brown-soft);letter-spacing:2px}
 .wishes-loading i{color:var(--gold);margin-right:8px}
 
@@ -145,7 +184,9 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 .rsvp-popup-close{background:var(--brown);color:var(--gold-soft);border:none;padding:.85rem 2.2rem;font-size:.85rem;letter-spacing:5px;text-transform:uppercase;cursor:pointer;font-weight:500}
 .rsvp-popup-close:hover{background:var(--brown-deep)}
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+   ========================================= */
 @media(max-width:640px){
   .music-btn{width:46px;height:46px;bottom:16px;right:16px}
   .cover-frame{padding:3rem 1.4rem;max-width:400px}
@@ -162,13 +203,17 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .place .address-line{font-size:1rem}
   .rsvp-section h2{font-size:1.5rem;letter-spacing:5px}
   .photo-preview-wrap{width:130px;height:130px}
+  
+  /* WISHES MOBILE (PADAT) */
   .wishes-section{padding:2.2rem 1rem 2rem;margin-top:2.5rem}
   .wishes-section h2{font-size:1.35rem;letter-spacing:4px}
-  .wishes-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.5rem}
+  .wishes-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1rem}
   .wishes-scroll-wrap{height:360px;padding:0 .5rem}
-  .wish-item .wish-name{font-size:.95rem;letter-spacing:3px}
-  .wish-item .wish-message{font-size:1rem;line-height:1.55}
-  .wish-item .wish-date{font-size:.65rem}
+  .wish-item{padding:0.5rem 0.5rem;}
+  .wish-item .wish-name{font-size:0.85rem;letter-spacing:2px;}
+  .wish-item .wish-message{font-size:0.9rem;line-height:1.4;}
+  .wish-item .wish-date{font-size:0.6rem;}
+
   .schedule-section{padding:2.2rem 1.1rem 2rem;margin-top:2.5rem}
   .schedule-section h2{font-size:1.35rem;letter-spacing:4px}
   .schedule-sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.8rem}
@@ -215,8 +260,8 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .rsvp-section h2{font-size:2.6rem}
   .wishes-section h2{font-size:2.4rem}
   .wishes-scroll-wrap{height:480px;max-width:800px}
-  .wish-item .wish-name{font-size:1.25rem}
-  .wish-item .wish-message{font-size:1.25rem}
+  .wish-item .wish-name{font-size:1.05rem}
+  .wish-item .wish-message{font-size:1.1rem}
   .schedule-section h2{font-size:2.4rem}
   .timeline-icon{width:50px;height:50px;left:-1.35rem}
 }

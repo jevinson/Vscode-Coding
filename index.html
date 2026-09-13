@@ -242,6 +242,45 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
+   7b. GALLERY — 6 GAMBAR PHOTOSHOOT
+   Susunan: atas 3 gambar, bawah 1 besar + 2 kecil bertindan
+============================================================ */
+.gallery-section{
+  width:100%;
+  margin:0 0 3rem;
+  padding:0 1rem;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  grid-template-rows:180px 180px;
+  grid-template-areas:
+    "a b b c"
+    "d d e f";
+  gap:8px;
+  max-width:900px;
+  margin:0 auto;
+}
+.gallery-grid img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  filter:sepia(.15) contrast(.98) brightness(1.02);
+  transition:transform .5s ease,filter .5s ease;
+  cursor:pointer;
+}
+.gallery-grid img:hover{
+  transform:scale(1.03);
+  filter:sepia(0) contrast(1) brightness(1.05);
+}
+.gallery-grid img:nth-child(1){grid-area:a}
+.gallery-grid img:nth-child(2){grid-area:b}
+.gallery-grid img:nth-child(3){grid-area:c}
+.gallery-grid img:nth-child(4){grid-area:d}
+.gallery-grid img:nth-child(5){grid-area:e}
+.gallery-grid img:nth-child(6){grid-area:f}
+
+
+/* ============================================================
    8. PLACE
 ============================================================ */
 .place{
@@ -596,6 +635,14 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .timer-block{max-width:72px;padding:.55rem .2rem .4rem}
   .timer-number{font-size:1.35rem}
   .timer-label{font-size:.5rem}
+
+  /* GALLERY mobile */
+  .gallery-section{padding:0 .5rem;margin-bottom:2rem}
+  .gallery-grid{
+    grid-template-rows:120px 120px;
+    gap:5px;
+  }
+
   .place h3{font-size:1.4rem;letter-spacing:4px}
   .place .address-line{font-size:1rem}
   .rsvp-section h2{font-size:1.5rem;letter-spacing:5px}
@@ -634,6 +681,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .timer-label{font-size:.45rem;letter-spacing:1px}
   .names h1{font-size:2.9rem}
   .names h1 span{font-size:1.9rem}
+  .gallery-grid{grid-template-rows:100px 100px}
   .place h3{font-size:1.2rem;letter-spacing:3px}
   .rsvp-section h2{font-size:1.3rem}
   .wishes-scroll-wrap{height:320px}
@@ -652,6 +700,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .timer-block{min-width:130px;max-width:none;padding:1.5rem 1.2rem 1.1rem}
   .timer-number{font-size:3.4rem}
   .timer-label{font-size:.85rem}
+  .gallery-grid{grid-template-rows:220px 220px}
   .place h3{font-size:2.4rem}
   .rsvp-section h2{font-size:2.6rem}
   .wishes-section h2{font-size:2.4rem}
@@ -712,6 +761,18 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
         <div class="timer-block"><span class="timer-number" id="hours">00</span><span class="timer-label">Hours</span></div>
         <div class="timer-block"><span class="timer-number" id="minutes">00</span><span class="timer-label">Minutes</span></div>
         <div class="timer-block"><span class="timer-number" id="seconds">00</span><span class="timer-label">Seconds</span></div>
+      </div>
+    </div>
+
+    <!-- ========== GALLERY — 6 GAMBAR PHOTOSHOOT ========== -->
+    <div class="gallery-section">
+      <div class="gallery-grid">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <img src="photo4.jpg" alt="Photo 4">
+        <img src="photo5.jpg" alt="Photo 5">
+        <img src="photo6.jpg" alt="Photo 6">
       </div>
     </div>
 

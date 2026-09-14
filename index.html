@@ -442,7 +442,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
     <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
     <img src="" alt="" id="lightboxImg">
     <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
-    <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>      
   </div>
 </div>
 
@@ -460,14 +460,14 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 // CONFIG — 2 URL
 // ============================================================
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
-const WEDDING_DATE_DISPLAY = '14 June 2026 · The Old Barn, Willow Creek';
+const WEDDING_DATE_DISPLAY = '21 November 2026 · The Old Barn, Willow Creek';
 
 const URL_UCAPAN  = 'https://script.google.com/macros/s/AKfycbyVVyPRjC72nyeauKhU0lJVXKOXZJK-OVMhkgMrsXXBjqk_Y2MrVxwLHYk1xKfUtNC4/exec';
 const URL_MOMENTS = 'https://script.google.com/macros/s/AKfycbxPyPFRPz9oUu7o9WJJFa4zdZtUOKSf4jGRQPreAM_J2ljg4V9F_C_BnMlyh4ELZtCqsQ/exec';
 
 const LOCATIONS = {
-  church:    { name: 'Sacred Heart Church', address: '123 Church St, Asheville, NC', lat: 35.5951, lng: -82.5515 },
-  reception: { name: 'The Old Barn',        address: '1234 Rustic Lane, Willow Creek', lat: 35.6123, lng: -82.5678 }
+  church:    { name: 'Gereja Kristus Nokotungag', address: 'Gereja Kristus Nokotungag Kg.Tomgotuo, 89650 Tambunan, Sabah', lat: 5.722890883950867, lng:116.40436871690693 },
+  reception: { name: 'Wedding Event',address: 'Kg. Tombotuon, Jalan Tambunan - Kota Kinabalu, 89650 Tambunan, Sabah', lat: 5.7255669509575675, lng: -116.40277901935414 }
 };
 
 
@@ -478,7 +478,7 @@ function fixDriveUrl(url) {
   if (!url) return url;
   const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
   if (match && match[1] && url.indexOf('drive.google.com') > -1) {
-    return 'https://lh3.googleusercontent.com/d/' + match[1];
+    return 'https://lh3.googleuserconteZnt.com/d/' + match[1];
   }
   return url;
 }

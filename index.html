@@ -250,7 +250,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 }
 </style>
 </head>
-
 <body>
 
 <audio id="bgMusic" loop preload="auto">
@@ -309,12 +308,12 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 
       <div class="gallery-section">
         <div class="gallery-grid" id="galleryGrid">
-          <img src="gambar.jpg" alt="Photo 1" data-index="0">
-          <img src="gambar.jpg" alt="Photo 2" data-index="1">
-          <img src="gambar.jpg" alt="Photo 3" data-index="2">
-          <img src="gambar.jpg" alt="Photo 4" data-index="3">
-          <img src="gambar.jpg" alt="Photo 5" data-index="4">
-          <img src="gambar.jpg" alt="Photo 6" data-index="5">
+          <img src="gambar.jpg" alt="Photo 1">
+          <img src="gambar.jpg" alt="Photo 2">
+          <img src="gambar.jpg" alt="Photo 3">
+          <img src="gambar.jpg" alt="Photo 4">
+          <img src="gambar.jpg" alt="Photo 5">
+          <img src="gambar.jpg" alt="Photo 6">
         </div>
       </div>
 
@@ -324,9 +323,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
           <div class="loc-tag">Wedding Ceremony</div>
           <h3 id="churchName">Sacred Heart Church</h3>
           <p class="loc-address" id="churchAddress">123 Church St, Asheville, NC</p>
-          <div class="loc-map-embed">
-            <iframe id="churchMap" loading="lazy" allowfullscreen></iframe>
-          </div>
+          <div class="loc-map-embed"><iframe id="churchMap" loading="lazy" allowfullscreen></iframe></div>
           <div class="loc-buttons">
             <a href="#" id="churchGoogleBtn" target="_blank" rel="noopener" class="loc-btn google"><i class="fab fa-google"></i> Google Maps</a>
             <a href="#" id="churchWazeBtn" target="_blank" rel="noopener" class="loc-btn waze"><i class="fas fa-location-arrow"></i> Waze</a>
@@ -338,9 +335,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
           <div class="loc-tag">Wedding Reception</div>
           <h3 id="receptionName">The Old Barn</h3>
           <p class="loc-address" id="receptionAddress">1234 Rustic Lane, Willow Creek</p>
-          <div class="loc-map-embed">
-            <iframe id="receptionMap" loading="lazy" allowfullscreen></iframe>
-          </div>
+          <div class="loc-map-embed"><iframe id="receptionMap" loading="lazy" allowfullscreen></iframe></div>
           <div class="loc-buttons">
             <a href="#" id="receptionGoogleBtn" target="_blank" rel="noopener" class="loc-btn google"><i class="fab fa-google"></i> Google Maps</a>
             <a href="#" id="receptionWazeBtn" target="_blank" rel="noopener" class="loc-btn waze"><i class="fas fa-location-arrow"></i> Waze</a>
@@ -409,7 +404,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
             <label class="form-label">Nama Anda</label>
             <input type="text" id="momentName" placeholder="Nama anda" required maxlength="50">
           </div>
-
           <div class="form-group">
             <label class="form-label">Gambar / Video</label>
             <label for="momentFileInput" class="moment-dropzone">
@@ -418,14 +412,12 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
               <div class="dz-hint">Gambar (JPG, PNG) atau Video (MP4) — Max 5MB</div>
             </label>
             <input type="file" id="momentFileInput" accept="image/*,video/*">
-
             <div class="moment-preview" id="momentPreview">
               <button type="button" class="remove-file" id="momentRemoveFile"><i class="fas fa-times"></i></button>
               <div id="momentPreviewContent"></div>
               <div class="file-name" id="momentFileName"></div>
             </div>
           </div>
-
           <button type="submit" id="momentSubmitBtn">Hantar Moment</button>
         </form>
       </div>
@@ -465,7 +457,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 
 <script>
 // ============================================================
-// CONFIG
+// CONFIG — 2 URL BERASINGAN
 // ============================================================
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '14 June 2026 · The Old Barn, Willow Creek';
@@ -554,7 +546,6 @@ function updateLightbox() {
   if (!item) return;
   const v = lightbox.querySelector('video');
   if (v) v.remove();
-
   if (item.isVideo) {
     lightboxImg.style.display = 'none';
     const video = document.createElement('video');
@@ -569,7 +560,6 @@ function updateLightbox() {
   }
   document.getElementById('lightboxCounter').textContent = (currentLightboxIndex + 1) + ' / ' + currentLightboxItems.length;
 }
-
 function nextLightbox() { currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length; updateLightbox(); }
 function prevLightbox() { currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length; updateLightbox(); }
 
@@ -682,15 +672,17 @@ rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('sho
 
 
 // ============================================================
-// SEND TO APPS SCRIPT
+// SEND TO APPS SCRIPT — guna fetch no-cors (assume success)
 // ============================================================
 function sendTo(url, data, callback) {
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.onload = function() { if (callback) callback(null); };
-  xhr.onerror = function() { if (callback) callback('error'); };
-  xhr.send('payload=' + encodeURIComponent(JSON.stringify(data)));
+  fetch(url, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'payload=' + encodeURIComponent(JSON.stringify(data))
+  })
+  .then(function() { if (callback) callback(null); })
+  .catch(function(err) { if (callback) callback(err); });
 }
 
 
@@ -739,18 +731,18 @@ function loadWishes() {
 
   window[cbName] = function(data) {
     try {
-      if (data && data.status === 'success' && data.ucapan && data.ucapan.length > 0) {
-        const html = data.ucapan.map(function(w) {
+      const list = (data && (data.ucapan || data.wishes)) || [];
+      if (data && data.status === 'success' && list.length > 0) {
+        const html = list.map(function(w) {
           return '<div class="wish-item">' +
             '<div class="wish-name">' + escHtml(w.name) + '</div>' +
             '<div class="wish-date">' + fmtDate(w.timestamp) + '</div>' +
             '<div class="wish-message">' + escHtml(w.message) + '</div>' +
           '</div>';
         }).join('');
-
-        if (data.ucapan.length >= 4) {
+        if (list.length >= 4) {
           wishesGrid.innerHTML = html + html;
-          wishesGrid.style.animationDuration = Math.max(30, data.ucapan.length * 8) + 's';
+          wishesGrid.style.animationDuration = Math.max(30, list.length * 8) + 's';
         } else {
           wishesGrid.innerHTML = html;
           wishesGrid.classList.add('no-scroll');

@@ -109,7 +109,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   3. MUSIC BUTTON (ATAS KANAN)
+   3. MUSIC BUTTON
 ============================================================ */
 .music-btn{
   position:fixed;top:22px;right:22px;
@@ -236,7 +236,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   6. HERO IMAGE
+   6. HERO
 ============================================================ */
 .hero{
   width:100%;margin-bottom:3rem;
@@ -256,7 +256,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7. NAMES + WEDDING DATE
+   7. NAMES
 ============================================================ */
 .names{text-align:center;margin-bottom:2.5rem}
 .names h1{
@@ -1576,31 +1576,15 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 <script>
 /* ============================================================
-   ⚙️ SETTING — UBAH SINI SAHAJA
+   CONFIG
 ============================================================ */
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '14 June 2026 · The Old Barn, Willow Creek';
-
-/* URL Apps Script — JANGAN UBAH */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOBW6xxwMdFIDL-9CtnUDRYIMs0vNIhwycvPh0EholLqy-FMVjpfevxLxjHs9e5914/exec';
 
-
-/* ============================================================
-   📍 LOCATIONS
-============================================================ */
 const LOCATIONS = {
-  church: {
-    name: 'Sacred Heart Church',
-    address: '123 Church St, Asheville, NC',
-    lat: 35.5951,
-    lng: -82.5515
-  },
-  reception: {
-    name: 'The Old Barn',
-    address: '1234 Rustic Lane, Willow Creek',
-    lat: 35.6123,
-    lng: -82.5678
-  }
+  church: { name: 'Sacred Heart Church', address: '123 Church St, Asheville, NC', lat: 35.5951, lng: -82.5515 },
+  reception: { name: 'The Old Barn', address: '1234 Rustic Lane, Willow Creek', lat: 35.6123, lng: -82.5678 }
 };
 
 
@@ -1617,54 +1601,25 @@ const musicIcon = document.getElementById('musicIcon');
 const topTabs = document.getElementById('topTabs');
 
 document.body.style.overflow = 'hidden';
+document.getElementById('weddingDateLine').textContent = WEDDING_DATE_DISPLAY;
 
 
 /* ============================================================
-   WEDDING DATE LINE
-============================================================ */
-(function() {
-  const el = document.getElementById('weddingDateLine');
-  if (el) {
-    el.textContent = WEDDING_DATE_DISPLAY;
-  }
-})();
-
-
-/* ============================================================
-   SETUP LOCATIONS
+   LOCATIONS
 ============================================================ */
 function setupLocation(key, data) {
-  const nameEl = document.getElementById(key + 'Name');
-  const addrEl = document.getElementById(key + 'Address');
-  const mapFrame = document.getElementById(key + 'Map');
-  const googleBtn = document.getElementById(key + 'GoogleBtn');
-  const wazeBtn = document.getElementById(key + 'WazeBtn');
-
-  if (nameEl) nameEl.textContent = data.name;
-  if (addrEl) addrEl.textContent = data.address;
-
-  if (mapFrame) {
-    mapFrame.src = 'https://maps.google.com/maps?q=' + data.lat + ',' + data.lng +
-                   '&z=15&output=embed';
-  }
-
-  if (googleBtn) {
-    googleBtn.href = 'https://www.google.com/maps/search/?api=1&query=' +
-                     data.lat + ',' + data.lng;
-  }
-
-  if (wazeBtn) {
-    wazeBtn.href = 'https://waze.com/ul?ll=' + data.lat + ',' + data.lng +
-                   '&navigate=yes';
-  }
+  document.getElementById(key + 'Name').textContent = data.name;
+  document.getElementById(key + 'Address').textContent = data.address;
+  document.getElementById(key + 'Map').src = 'https://maps.google.com/maps?q=' + data.lat + ',' + data.lng + '&z=15&output=embed';
+  document.getElementById(key + 'GoogleBtn').href = 'https://www.google.com/maps/search/?api=1&query=' + data.lat + ',' + data.lng;
+  document.getElementById(key + 'WazeBtn').href = 'https://waze.com/ul?ll=' + data.lat + ',' + data.lng + '&navigate=yes';
 }
-
 setupLocation('church', LOCATIONS.church);
 setupLocation('reception', LOCATIONS.reception);
 
 
 /* ============================================================
-   TAB SWITCHING
+   TABS
 ============================================================ */
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -1672,42 +1627,29 @@ const tabContents = document.querySelectorAll('.tab-content');
 tabBtns.forEach(function(btn) {
   btn.addEventListener('click', function() {
     const tabName = btn.dataset.tab;
-
     tabBtns.forEach(function(b) { b.classList.remove('active'); });
     tabContents.forEach(function(c) { c.classList.remove('active'); });
-
     btn.classList.add('active');
     document.getElementById('tab-' + tabName).classList.add('active');
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (tabName === 'moments') {
-      loadMoments();
-    } else {
-      loadWishes();
-    }
+    if (tabName === 'moments') loadMoments();
+    else loadWishes();
   });
 });
 
 
 /* ============================================================
-   GALLERY LIGHTBOX
+   LIGHTBOX
 ============================================================ */
 const galleryImages = document.querySelectorAll('#galleryGrid img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const lightboxCounter = document.getElementById('lightboxCounter');
 let currentLightboxIndex = 0;
 let currentLightboxItems = [];
-let currentLightboxType = 'image';
 
-function openLightbox(index, items, type) {
+function openLightbox(index, items) {
   currentLightboxIndex = index;
-  currentLightboxItems = items || galleryImages;
-  currentLightboxType = type || 'image';
+  currentLightboxItems = items;
   updateLightbox();
   lightbox.classList.add('show');
   document.body.style.overflow = 'hidden';
@@ -1716,85 +1658,60 @@ function openLightbox(index, items, type) {
 function closeLightbox() {
   lightbox.classList.remove('show');
   lightbox.classList.remove('is-video');
-  const existingVideo = lightbox.querySelector('video');
-  if (existingVideo) existingVideo.remove();
+  const v = lightbox.querySelector('video');
+  if (v) v.remove();
   document.body.style.overflow = 'auto';
 }
 
 function updateLightbox() {
   const item = currentLightboxItems[currentLightboxIndex];
   if (!item) return;
-
-  const existingVideo = lightbox.querySelector('video');
-  if (existingVideo) existingVideo.remove();
+  const v = lightbox.querySelector('video');
+  if (v) v.remove();
   lightbox.classList.remove('is-video');
 
-  const src = item.src || item.url || '';
-  const isVideo = item.isVideo || (src && src.match(/\.(mp4|webm|mov)/i)) || (item.type === 'video');
-
-  if (isVideo) {
+  if (item.isVideo) {
     lightbox.classList.add('is-video');
     lightboxImg.style.display = 'none';
     const video = document.createElement('video');
-    video.src = src;
+    video.src = item.src || item.url;
     video.controls = true;
-    video.autoplay = true;
     video.playsInline = true;
     video.style.cssText = 'max-width:95vw;max-height:85vh;display:block;';
-    lightbox.querySelector('.lightbox-img-wrap').insertBefore(
-      video,
-      lightboxImg.nextSibling
-    );
+    lightbox.querySelector('.lightbox-img-wrap').appendChild(video);
   } else {
     lightboxImg.style.display = '';
-    lightboxImg.src = src;
-    lightboxImg.alt = item.alt || 'Fullscreen';
+    lightboxImg.src = item.src || item.url;
   }
-
-  lightboxCounter.textContent = (currentLightboxIndex + 1) + ' / ' + currentLightboxItems.length;
+  document.getElementById('lightboxCounter').textContent = (currentLightboxIndex + 1) + ' / ' + currentLightboxItems.length;
 }
 
 function nextLightbox() {
   currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
   updateLightbox();
 }
-
 function prevLightbox() {
   currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
   updateLightbox();
 }
 
 galleryImages.forEach(function(img, i) {
-  img.addEventListener('click', function() { openLightbox(i, Array.from(galleryImages), 'image'); });
+  img.addEventListener('click', function() {
+    const items = Array.from(galleryImages).map(function(im) { return { src: im.src, isVideo: false }; });
+    openLightbox(i, items);
+  });
 });
 
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); nextLightbox(); });
-lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); prevLightbox(); });
-lightbox.addEventListener('click', function(e) {
-  if (e.target === lightbox) closeLightbox();
-});
-
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxNext').addEventListener('click', function(e) { e.stopPropagation(); nextLightbox(); });
+document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); prevLightbox(); });
+lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', function(e) {
   if (!lightbox.classList.contains('show')) return;
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowRight') nextLightbox();
   if (e.key === 'ArrowLeft') prevLightbox();
 });
-
-let touchStartX = 0;
-let touchEndX = 0;
-lightbox.addEventListener('touchstart', function(e) {
-  touchStartX = e.changedTouches[0].screenX;
-}, {passive: true});
-lightbox.addEventListener('touchend', function(e) {
-  touchEndX = e.changedTouches[0].screenX;
-  const diff = touchStartX - touchEndX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0) nextLightbox();
-    else prevLightbox();
-  }
-}, {passive: true});
 
 
 /* ============================================================
@@ -1803,58 +1720,33 @@ lightbox.addEventListener('touchend', function(e) {
 let musicStarted = false;
 bgMusic.volume = 0;
 
-function fadeInVolume(target, duration) {
-  target = target || 0.35; duration = duration || 2500;
-  const steps = 50, stepTime = duration / steps, stepVol = target / steps;
-  let current = 0;
-  const fade = setInterval(function() {
-    current += stepVol;
-    if (current >= target) { current = target; clearInterval(fade); }
-    bgMusic.volume = Math.min(current, 1);
-  }, stepTime);
-}
-
-function fadeOutVolume(duration) {
-  duration = duration || 600;
-  const startVol = bgMusic.volume, steps = 20, stepTime = duration / steps, stepVol = startVol / steps;
-  let current = startVol;
-  const fade = setInterval(function() {
-    current -= stepVol;
-    if (current <= 0) { current = 0; clearInterval(fade); bgMusic.pause(); }
-    bgMusic.volume = Math.max(current, 0);
-  }, stepTime);
-}
-
 function playMusic() {
   bgMusic.volume = 0;
-  const p = bgMusic.play();
-  if (p !== undefined) {
-    p.then(function() {
-      fadeInVolume(0.35, 2500);
-      musicBtn.classList.add('playing');
-      musicBtn.classList.remove('muted');
-      musicIcon.className = 'fas fa-music';
-      musicStarted = true;
-    }).catch(function() {});
-  }
+  bgMusic.play().then(function() {
+    let v = 0;
+    const fade = setInterval(function() {
+      v += 0.02;
+      if (v >= 0.35) { v = 0.35; clearInterval(fade); }
+      bgMusic.volume = v;
+    }, 100);
+    musicBtn.classList.add('playing');
+    musicIcon.className = 'fas fa-music';
+    musicStarted = true;
+  }).catch(function() {});
 }
 
 function toggleMusic() {
   if (!musicStarted) { playMusic(); return; }
   if (bgMusic.paused) {
-    bgMusic.volume = 0; bgMusic.play();
-    fadeInVolume(0.35, 1200);
+    bgMusic.play();
     musicBtn.classList.add('playing');
-    musicBtn.classList.remove('muted');
     musicIcon.className = 'fas fa-music';
   } else {
-    fadeOutVolume(600);
+    bgMusic.pause();
     musicBtn.classList.remove('playing');
-    musicBtn.classList.add('muted');
     musicIcon.className = 'fas fa-volume-mute';
   }
 }
-
 musicBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMusic(); });
 
 
@@ -1868,9 +1760,7 @@ function enterWedding() {
   document.body.style.overflow = 'auto';
   window.scrollTo(0, 0);
   if (!musicStarted) playMusic();
-
   setTimeout(function() { topTabs.classList.add('visible'); }, 600);
-
   loadWishes();
 }
 
@@ -1884,23 +1774,14 @@ if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk unt
    COUNTDOWN
 ============================================================ */
 (function() {
-  let weddingDate = new Date(WEDDING_DATE_STRING);
-
-  if (isNaN(weddingDate.getTime())) {
-    console.error('❌ Format tarikh salah! Guna format: YYYY-MM-DDTHH:MM:SS');
-    return;
-  }
-
-  console.log('💍 Wedding Date:', weddingDate.toString());
-
+  const weddingDate = new Date(WEDDING_DATE_STRING).getTime();
   const daysEl = document.getElementById('days');
   const hoursEl = document.getElementById('hours');
   const minutesEl = document.getElementById('minutes');
   const secondsEl = document.getElementById('seconds');
 
   function update() {
-    const diff = weddingDate - new Date();
-
+    const diff = weddingDate - new Date().getTime();
     if (diff <= 0) {
       daysEl.textContent = '00';
       hoursEl.textContent = '00';
@@ -1908,18 +1789,11 @@ if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk unt
       secondsEl.textContent = '00';
       return;
     }
-
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-
-    daysEl.textContent = String(d).padStart(2, '0');
-    hoursEl.textContent = String(h).padStart(2, '0');
-    minutesEl.textContent = String(m).padStart(2, '0');
-    secondsEl.textContent = String(s).padStart(2, '0');
+    daysEl.textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+    hoursEl.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+    minutesEl.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    secondsEl.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
   }
-
   update();
   setInterval(update, 1000);
 })();
@@ -1929,49 +1803,33 @@ if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk unt
    POPUP
 ============================================================ */
 const rsvpPopup = document.getElementById('rsvpPopup');
-const rsvpPopupMsg = document.getElementById('rsvpPopupMsg');
-const popupTitle = document.getElementById('popupTitle');
-const popupIcon = document.getElementById('popupIcon');
-const popupCloseBtn = document.getElementById('popupCloseBtn');
-
 function showPopup(title, msg, isError) {
-  popupTitle.textContent = title;
-  rsvpPopupMsg.textContent = msg;
-  popupIcon.className = isError ? 'fas fa-exclamation-circle' : 'fas fa-envelope-open-text';
-  popupIcon.style.color = isError ? '#b85a5a' : 'var(--gold)';
+  document.getElementById('popupTitle').textContent = title;
+  document.getElementById('rsvpPopupMsg').textContent = msg;
+  const icon = document.getElementById('popupIcon');
+  icon.className = isError ? 'fas fa-exclamation-circle' : 'fas fa-envelope-open-text';
+  icon.style.color = isError ? '#b85a5a' : 'var(--gold)';
   rsvpPopup.classList.add('show');
 }
-
-popupCloseBtn.addEventListener('click', function(e) { e.stopPropagation(); rsvpPopup.classList.remove('show'); });
+document.getElementById('popupCloseBtn').addEventListener('click', function() { rsvpPopup.classList.remove('show'); });
 rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('show'); });
 
 
 /* ============================================================
-   HELPER: Send to Apps Script (FormData method)
+   SEND TO APPS SCRIPT
 ============================================================ */
 function sendToAppsScript(data, callback) {
-  // Guna FormData — paling reliable untuk Apps Script
-  const formData = new FormData();
-  formData.append('payload', JSON.stringify(data));
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: formData,
-    mode: 'no-cors'
-  })
-  .then(function() {
-    // no-cors mode — tak boleh read response
-    // Assume success
-    if (callback) callback(null);
-  })
-  .catch(function(err) {
-    if (callback) callback(err);
-  });
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', SCRIPT_URL, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() { if (callback) callback(null); };
+  xhr.onerror = function() { if (callback) callback('error'); };
+  xhr.send('payload=' + encodeURIComponent(JSON.stringify(data)));
 }
 
 
 /* ============================================================
-   RSVP SUBMIT
+   RSVP FORM
 ============================================================ */
 const rsvpForm = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('rsvpSubmitBtn');
@@ -1983,76 +1841,69 @@ rsvpForm.addEventListener('submit', function(e) {
     name: document.getElementById('rsvpName').value.trim(),
     message: document.getElementById('rsvpMessage').value.trim()
   };
-  const originalText = submitBtn.textContent;
+  const original = submitBtn.textContent;
   submitBtn.textContent = 'Menghantar...';
   submitBtn.disabled = true;
 
   sendToAppsScript(formData, function(err) {
     if (!err) {
-      showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '! Ucapan anda telah diterima.', false);
+      showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '!', false);
       rsvpForm.reset();
-      setTimeout(loadWishes, 2500);
+      setTimeout(loadWishes, 3000);
     } else {
-      showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
+      showPopup('Oops', 'Ada masalah. Cuba lagi.', true);
     }
-    submitBtn.textContent = originalText;
+    submitBtn.textContent = original;
     submitBtn.disabled = false;
   });
 });
 
 
 /* ============================================================
-   LOAD WISHES (JSONP)
+   LOAD WISHES
 ============================================================ */
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
-  if (!wishesGrid) return;
-  wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...</div>';
+  wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan...</div>';
   wishesGrid.classList.remove('no-scroll');
 
-  const callbackName = 'jsonpWish_' + Date.now();
+  const cbName = 'cbWish_' + Date.now();
   const script = document.createElement('script');
-  const separator = SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
-  script.src = SCRIPT_URL + separator + 'type=wishes&callback=' + callbackName;
+  script.src = SCRIPT_URL + '?type=wishes&callback=' + cbName;
 
-  window[callbackName] = function(data) {
+  window[cbName] = function(data) {
     try {
       if (data && data.status === 'success' && data.wishes && data.wishes.length > 0) {
-        wishesGrid.innerHTML = '';
-        const wishesHTML = data.wishes.map(function(wish) {
+        const html = data.wishes.map(function(w) {
           return '<div class="wish-item">' +
-            '<div class="wish-name">' + escHtml(wish.name) + '</div>' +
-            '<div class="wish-date">' + fmtDate(wish.timestamp) + '</div>' +
-            '<div class="wish-message">' + escHtml(wish.message) + '</div>' +
+            '<div class="wish-name">' + escHtml(w.name) + '</div>' +
+            '<div class="wish-date">' + fmtDate(w.timestamp) + '</div>' +
+            '<div class="wish-message">' + escHtml(w.message) + '</div>' +
           '</div>';
         }).join('');
 
         if (data.wishes.length >= 4) {
-          wishesGrid.innerHTML = wishesHTML + wishesHTML;
+          wishesGrid.innerHTML = html + html;
           wishesGrid.style.animationDuration = Math.max(30, data.wishes.length * 8) + 's';
         } else {
-          wishesGrid.innerHTML = wishesHTML;
+          wishesGrid.innerHTML = html;
           wishesGrid.classList.add('no-scroll');
         }
       } else {
         wishesGrid.innerHTML = '<div class="wishes-empty">Belum ada ucapan. Jadilah yang pertama! 💌</div>';
         wishesGrid.classList.add('no-scroll');
       }
-    } catch (err) {
-      wishesGrid.innerHTML = '<div class="wishes-empty">Ralat memuatkan ucapan.</div>';
-      wishesGrid.classList.add('no-scroll');
+    } catch (e) {
+      wishesGrid.innerHTML = '<div class="wishes-empty">Ralat memuatkan.</div>';
     }
-    delete window[callbackName];
+    delete window[cbName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
-
   script.onerror = function() {
-    wishesGrid.innerHTML = '<div class="wishes-empty">Ralat sambungan. Cuba refresh.</div>';
-    wishesGrid.classList.add('no-scroll');
-    delete window[callbackName];
+    wishesGrid.innerHTML = '<div class="wishes-empty">Ralat sambungan.</div>';
+    delete window[cbName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
-
   document.body.appendChild(script);
 }
 
@@ -2061,9 +1912,7 @@ function loadWishes() {
    MOMENT UPLOAD
 ============================================================ */
 const momentForm = document.getElementById('momentForm');
-const momentName = document.getElementById('momentName');
 const momentFileInput = document.getElementById('momentFileInput');
-const momentDropzone = document.getElementById('momentDropzone');
 const momentPreview = document.getElementById('momentPreview');
 const momentPreviewContent = document.getElementById('momentPreviewContent');
 const momentFileName = document.getElementById('momentFileName');
@@ -2085,7 +1934,7 @@ momentFileInput.addEventListener('change', function(e) {
   }
 
   momentFileNameValue = file.name;
-  const isVideo = file.type.startsWith('video/');
+  const isVideo = file.type.indexOf('video') === 0;
   momentFileType = isVideo ? 'video' : 'image';
 
   const reader = new FileReader();
@@ -2101,13 +1950,14 @@ momentFileInput.addEventListener('change', function(e) {
       const img = new Image();
       img.onload = function() {
         const canvas = document.createElement('canvas');
-        const MAX = 800;
+        const MAX = 500;
         let w = img.width, h = img.height;
         if (w > h) { if (w > MAX) { h *= MAX/w; w = MAX; } }
         else { if (h > MAX) { w *= MAX/h; h = MAX; } }
-        canvas.width = w; canvas.height = h;
+        canvas.width = w;
+        canvas.height = h;
         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        momentFileBase64 = canvas.toDataURL('image/jpeg', 0.8);
+        momentFileBase64 = canvas.toDataURL('image/jpeg', 0.7);
         momentPreviewContent.innerHTML = '<img src="' + momentFileBase64 + '" alt="Preview">';
         momentFileName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
         momentPreview.classList.add('show');
@@ -2132,17 +1982,17 @@ momentForm.addEventListener('submit', function(e) {
   e.preventDefault();
 
   if (!momentFileBase64) {
-    alert('Sila pilih gambar atau video terlebih dahulu.');
+    alert('Sila pilih gambar atau video dulu.');
     return;
   }
 
-  const nameVal = momentName.value.trim();
+  const nameVal = document.getElementById('momentName').value.trim();
   if (!nameVal) {
-    alert('Sila masukkan nama anda.');
+    alert('Sila masukkan nama.');
     return;
   }
 
-  const originalText = momentSubmitBtn.textContent;
+  const original = momentSubmitBtn.textContent;
   momentSubmitBtn.textContent = 'Menghantar...';
   momentSubmitBtn.disabled = true;
 
@@ -2156,94 +2006,75 @@ momentForm.addEventListener('submit', function(e) {
 
   sendToAppsScript(formData, function(err) {
     if (!err) {
-      showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '! Moment anda telah dihantar.', false);
+      showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '!', false);
       momentForm.reset();
       momentFileBase64 = '';
       momentFileType = '';
       momentFileNameValue = '';
       momentPreview.classList.remove('show');
       momentPreviewContent.innerHTML = '';
-      setTimeout(loadMoments, 4000);
+      setTimeout(loadMoments, 5000);
     } else {
-      showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
+      showPopup('Oops', 'Ada masalah. Cuba lagi.', true);
     }
-    momentSubmitBtn.textContent = originalText;
+    momentSubmitBtn.textContent = original;
     momentSubmitBtn.disabled = false;
   });
 });
 
 
 /* ============================================================
-   LOAD MOMENTS (JSONP)
+   LOAD MOMENTS
 ============================================================ */
 function loadMoments() {
-  const momentsGallery = document.getElementById('momentsGallery');
-  if (!momentsGallery) return;
-  momentsGallery.innerHTML = '<div class="moments-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan moments...</div>';
+  const gallery = document.getElementById('momentsGallery');
+  gallery.innerHTML = '<div class="moments-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan...</div>';
 
-  const callbackName = 'jsonpMoment_' + Date.now();
+  const cbName = 'cbMoment_' + Date.now();
   const script = document.createElement('script');
-  const separator = SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
-  script.src = SCRIPT_URL + separator + 'type=moments&callback=' + callbackName;
+  script.src = SCRIPT_URL + '?type=moments&callback=' + cbName;
 
-  window[callbackName] = function(data) {
+  window[cbName] = function(data) {
     try {
-      if (data && data.status === 'success' && data.moments && data.moments.length > 0) {
-        const validMoments = data.moments.filter(function(m) { return m.url && m.url.indexOf('http') === 0; });
+      const valid = data && data.moments ? data.moments.filter(function(m) { return m.url; }) : [];
 
-        if (validMoments.length === 0) {
-          momentsGallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
-        } else {
-          momentsGallery.innerHTML = validMoments.map(function(m, i) {
-            const isVideo = m.type === 'video';
-            const thumbnail = isVideo
-              ? '<video src="' + m.url + '" muted playsinline preload="metadata"></video>'
-              : '<img src="' + m.url + '" alt="' + escHtml(m.name) + '" loading="lazy">';
-
-            return '<div class="moment-card" data-index="' + i + '">' +
-              thumbnail +
-              '<div class="moment-type-badge">' + (isVideo ? '🎥 Video' : '📷 Foto') + '</div>' +
-              '<div class="moment-overlay">' +
-                '<div class="moment-name">' + escHtml(m.name) + '</div>' +
-                '<div class="moment-date">' + fmtDate(m.timestamp) + '</div>' +
-              '</div>' +
-            '</div>';
-          }).join('');
-
-          const cards = momentsGallery.querySelectorAll('.moment-card');
-          const items = validMoments.map(function(m) {
-            const isVideo = m.type === 'video';
-            return {
-              src: m.url,
-              alt: m.name || 'Moment',
-              isVideo: isVideo,
-              type: isVideo ? 'video' : 'image'
-            };
-          });
-
-          cards.forEach(function(card, i) {
-            card.addEventListener('click', function() {
-              openLightbox(i, items, 'moments');
-            });
-          });
-        }
+      if (valid.length === 0) {
+        gallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
       } else {
-        momentsGallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
+        gallery.innerHTML = valid.map(function(m, i) {
+          const isVideo = m.type === 'video';
+          const thumb = isVideo
+            ? '<video src="' + m.url + '" muted playsinline preload="metadata"></video>'
+            : '<img src="' + m.url + '" alt="' + escHtml(m.name) + '" loading="lazy">';
+          return '<div class="moment-card" data-i="' + i + '">' +
+            thumb +
+            '<div class="moment-type-badge">' + (isVideo ? '🎥 Video' : '📷 Foto') + '</div>' +
+            '<div class="moment-overlay">' +
+              '<div class="moment-name">' + escHtml(m.name) + '</div>' +
+              '<div class="moment-date">' + fmtDate(m.timestamp) + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+
+        const items = valid.map(function(m) {
+          return { src: m.url, isVideo: m.type === 'video' };
+        });
+
+        gallery.querySelectorAll('.moment-card').forEach(function(card, i) {
+          card.addEventListener('click', function() { openLightbox(i, items); });
+        });
       }
-    } catch (err) {
-      console.error(err);
-      momentsGallery.innerHTML = '<div class="moments-empty">Ralat memuatkan moments.</div>';
+    } catch (e) {
+      gallery.innerHTML = '<div class="moments-empty">Ralat memuatkan.</div>';
     }
-    delete window[callbackName];
+    delete window[cbName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
-
   script.onerror = function() {
-    momentsGallery.innerHTML = '<div class="moments-empty">Ralat sambungan. Cuba refresh.</div>';
-    delete window[callbackName];
+    gallery.innerHTML = '<div class="moments-empty">Ralat sambungan.</div>';
+    delete window[cbName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
-
   document.body.appendChild(script);
 }
 
@@ -2251,10 +2082,10 @@ function loadMoments() {
 /* ============================================================
    HELPERS
 ============================================================ */
-function escHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text || '';
-  return div.innerHTML;
+function escHtml(t) {
+  const d = document.createElement('div');
+  d.textContent = t || '';
+  return d.innerHTML;
 }
 
 function fmtDate(ts) {
@@ -2262,25 +2093,10 @@ function fmtDate(ts) {
   try {
     const d = new Date(ts);
     if (isNaN(d.getTime())) return '';
-    const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ogos','Sep','Okt','Nov','Dis'];
-    return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    const m = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ogos','Sep','Okt','Nov','Dis'];
+    return d.getDate() + ' ' + m[d.getMonth()] + ' ' + d.getFullYear();
   } catch (e) { return ''; }
 }
-
-
-/* ============================================================
-   RESIZE HANDLER
-============================================================ */
-let resizeTimer;
-window.addEventListener('resize', function() {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(function() {
-    const m = window.matchMedia('(max-width: 640px)').matches;
-    document.querySelector('.cover-hint').textContent = m
-      ? '— ketuk untuk membuka jemputan —'
-      : '— klik untuk membuka jemputan —';
-  }, 200);
-});
 </script>
 </body>
 </html>

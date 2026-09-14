@@ -457,7 +457,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 
 <script>
 // ============================================================
-// CONFIG — 2 URL BARU
+// CONFIG — 2 URL
 // ============================================================
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '14 June 2026 · The Old Barn, Willow Creek';
@@ -469,6 +469,19 @@ const LOCATIONS = {
   church:    { name: 'Sacred Heart Church', address: '123 Church St, Asheville, NC', lat: 35.5951, lng: -82.5515 },
   reception: { name: 'The Old Barn',        address: '1234 Rustic Lane, Willow Creek', lat: 35.6123, lng: -82.5678 }
 };
+
+
+// ============================================================
+// FIX DRIVE URL — convert format lama ke baru
+// ============================================================
+function fixDriveUrl(url) {
+  if (!url) return url;
+  const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (match && match[1] && url.indexOf('drive.google.com') > -1) {
+    return 'https://lh3.googleusercontent.com/d/' + match[1];
+  }
+  return url;
+}
 
 
 // ============================================================
@@ -672,7 +685,7 @@ rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('sho
 
 
 // ============================================================
-// SEND — XHR, assume success bila readyState 4
+// SEND — XHR
 // ============================================================
 function sendTo(url, data, callback) {
   try {
@@ -695,7 +708,7 @@ function sendTo(url, data, callback) {
 
 
 // ============================================================
-// RSVP FORM → URL_UCAPAN
+// RSVP FORM
 // ============================================================
 const rsvpForm = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('rsvpSubmitBtn');
@@ -726,7 +739,7 @@ rsvpForm.addEventListener('submit', function(e) {
 
 
 // ============================================================
-// LOAD WISHES → URL_UCAPAN
+// LOAD WISHES
 // ============================================================
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
@@ -775,7 +788,7 @@ function loadWishes() {
 
 
 // ============================================================
-// MOMENT UPLOAD → URL_MOMENTS
+// MOMENT UPLOAD
 // ============================================================
 const momentForm = document.getElementById('momentForm');
 const momentFileInput = document.getElementById('momentFileInput');
@@ -879,7 +892,7 @@ momentForm.addEventListener('submit', function(e) {
 
 
 // ============================================================
-// LOAD MOMENTS → URL_MOMENTS
+// LOAD MOMENTS — guna fixDriveUrl
 // ============================================================
 function loadMoments() {
   const gallery = document.getElementById('momentsGallery');
@@ -897,9 +910,10 @@ function loadMoments() {
       } else {
         gallery.innerHTML = valid.map(function(m, i) {
           const isVideo = m.type === 'video';
+          const fixedUrl = fixDriveUrl(m.url);
           const thumb = isVideo
-            ? '<video src="' + m.url + '" muted playsinline preload="metadata"></video>'
-            : '<img src="' + m.url + '" alt="' + escHtml(m.name) + '" loading="lazy">';
+            ? '<video src="' + fixedUrl + '" muted playsinline preload="metadata"></video>'
+            : '<img src="' + fixedUrl + '" alt="' + escHtml(m.name) + '" loading="lazy">';
           return '<div class="moment-card" data-i="' + i + '">' + thumb +
             '<div class="moment-type-badge">' + (isVideo ? '🎥 Video' : '📷 Foto') + '</div>' +
             '<div class="moment-overlay"><div class="moment-name">' + escHtml(m.name) + '</div>' +
@@ -907,7 +921,7 @@ function loadMoments() {
         }).join('');
 
         const items = valid.map(function(m) {
-          return { src: m.url, isVideo: m.type === 'video' };
+          return { src: fixDriveUrl(m.url), isVideo: m.type === 'video' };
         });
 
         gallery.querySelectorAll('.moment-card').forEach(function(card, i) {

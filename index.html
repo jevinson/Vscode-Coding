@@ -150,7 +150,7 @@ body {
   position: fixed;
   inset: 0;
   height: 100dvh;
-  background: linear-gradient(rgba(45, 30, 15, .55), rgba(45, 30, 15, .7)), url('gambar.jpg') center/cover;
+  background: linear-gradient(rgba(45, 30, 15, .55), rgba(45, 30, 15, .7)), url('gambar3.jpg') center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1766,7 +1766,7 @@ body {
 
       <!-- HERO IMAGE -->
       <div class="hero">
-        <img src="gambar.jpg" alt="Wedding">
+        <img src="gambar1.jpg" alt="Wedding">
       </div>
 
       <!-- COUPLE NAMES -->
@@ -1790,12 +1790,12 @@ body {
       <!-- GALLERY -->
       <div class="gallery-section">
         <div class="gallery-grid" id="galleryGrid">
-          <img src="gambar.jpg" alt="Photo 1">
-          <img src="gambar.jpg" alt="Photo 2">
-          <img src="gambar.jpg" alt="Photo 3">
-          <img src="gambar.jpg" alt="Photo 4">
-          <img src="gambar.jpg" alt="Photo 5">
-          <img src="gambar.jpg" alt="Photo 6">
+          <img src="gambar1.jpg" alt="Photo 1">
+          <img src="gambar2.jpg" alt="Photo 2">
+          <img src="gambar3.jpg" alt="Photo 3">
+          <img src="gambar4.jpg" alt="Photo 4">
+          <img src="gambar5.jpg" alt="Photo 5">
+          <img src="gambar6.jpg" alt="Photo 6">
         </div>
       </div>
 
@@ -1985,7 +1985,7 @@ body {
    CONFIG
    ============================================================ */
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
-const WEDDING_DATE_DISPLAY = '21 November 2026 · The Old Barn, Willow Creek';
+const WEDDING_DATE_DISPLAY = '21 November 2026';
 
 const URL_UCAPAN = 'https://script.google.com/macros/s/AKfycbyVVyPRjC72nyeauKhU0lJVXKOXZJK-OVMhkgMrsXXBjqk_Y2MrVxwLHYk1xKfUtNC4/exec';
 const URL_MOMENTS = 'https://script.google.com/macros/s/AKfycbxPyPFRPz9oUu7o9WJJFa4zdZtUOKSf4jGRQPreAM_J2ljg4V9F_C_BnMlyh4ELZtCqsQ/exec';
@@ -2181,7 +2181,7 @@ function enterWedding() {
 
 enterBtn.addEventListener('click', function(e) { e.stopPropagation(); enterWedding(); });
 coverPage.addEventListener('click', enterWedding);
-if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
+if (isMobile) document.querySelector('.cover-hint').textContent = 'tekan untuk buka jemputan';
 
 /* ============================================================
    COUNTDOWN — days / hours / minutes / seconds

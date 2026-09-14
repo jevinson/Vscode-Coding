@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   RESET & VARIABLES
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +40,9 @@ body {
   overflow-x: hidden;
 }
 
-/* TABS */
+/* ============================================================
+   TABS
+   ============================================================ */
 .top-tabs {
   position: fixed;
   bottom: 20px;
@@ -98,7 +103,9 @@ body {
   padding-bottom: 7rem;
 }
 
-/* MUSIC */
+/* ============================================================
+   MUSIC BUTTON
+   ============================================================ */
 .music-btn {
   position: fixed;
   top: 22px;
@@ -128,18 +135,17 @@ body {
 }
 
 @keyframes musicPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 8px 20px rgba(90, 65, 40, .35), 0 0 0 0 rgba(184, 147, 90, .5)
+  0%, 100% {
+    box-shadow: 0 8px 20px rgba(90, 65, 40, .35), 0 0 0 0 rgba(184, 147, 90, .5);
   }
-
   50% {
-    box-shadow: 0 8px 20px rgba(90, 65, 40, .35), 0 0 0 14px rgba(184, 147, 90, 0)
+    box-shadow: 0 8px 20px rgba(90, 65, 40, .35), 0 0 0 14px rgba(184, 147, 90, 0);
   }
 }
 
-/* COVER */
+/* ============================================================
+   COVER PAGE
+   ============================================================ */
 .cover-page {
   position: fixed;
   inset: 0;
@@ -257,7 +263,9 @@ body {
   text-transform: uppercase;
 }
 
-/* MAIN */
+/* ============================================================
+   MAIN PAGE
+   ============================================================ */
 .main-page {
   opacity: 0;
   visibility: hidden;
@@ -289,7 +297,9 @@ body {
   width: 100%;
 }
 
-/* HERO */
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero {
   width: 100%;
   margin-bottom: 3rem;
@@ -315,7 +325,9 @@ body {
   filter: sepia(.3) contrast(.95);
 }
 
-/* NAMES */
+/* ============================================================
+   NAMES
+   ============================================================ */
 .names {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -379,7 +391,9 @@ body {
   background: var(--cream);
 }
 
-/* COUNTDOWN */
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
 .countdown-section {
   width: 100%;
   background: linear-gradient(135deg, var(--linen), var(--parchment));
@@ -435,7 +449,9 @@ body {
   margin-top: 5px;
 }
 
-/* GALLERY */
+/* ============================================================
+   GALLERY
+   ============================================================ */
 .gallery-section {
   width: 100%;
   margin: 0 0 3rem;
@@ -467,31 +483,16 @@ body {
   filter: sepia(0);
 }
 
-.gallery-grid img:nth-child(1) {
-  grid-area: a;
-}
+.gallery-grid img:nth-child(1) { grid-area: a; }
+.gallery-grid img:nth-child(2) { grid-area: b; }
+.gallery-grid img:nth-child(3) { grid-area: c; }
+.gallery-grid img:nth-child(4) { grid-area: d; }
+.gallery-grid img:nth-child(5) { grid-area: e; }
+.gallery-grid img:nth-child(6) { grid-area: f; }
 
-.gallery-grid img:nth-child(2) {
-  grid-area: b;
-}
-
-.gallery-grid img:nth-child(3) {
-  grid-area: c;
-}
-
-.gallery-grid img:nth-child(4) {
-  grid-area: d;
-}
-
-.gallery-grid img:nth-child(5) {
-  grid-area: e;
-}
-
-.gallery-grid img:nth-child(6) {
-  grid-area: f;
-}
-
-/* LIGHTBOX */
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -562,13 +563,8 @@ body {
   font-size: 1.1rem;
 }
 
-.lightbox-nav.prev {
-  left: -70px;
-}
-
-.lightbox-nav.next {
-  right: -70px;
-}
+.lightbox-nav.prev { left: -70px; }
+.lightbox-nav.next { right: -70px; }
 
 .lightbox-counter {
   position: absolute;
@@ -581,21 +577,14 @@ body {
 }
 
 @media(max-width:768px) {
-  .lightbox-nav.prev {
-    left: 6px;
-  }
-
-  .lightbox-nav.next {
-    right: 6px;
-  }
-
-  .lightbox-close {
-    top: 6px;
-    right: 6px;
-  }
+  .lightbox-nav.prev { left: 6px; }
+  .lightbox-nav.next { right: 6px; }
+  .lightbox-close { top: 6px; right: 6px; }
 }
 
-/* LOCATIONS */
+/* ============================================================
+   LOCATIONS
+   ============================================================ */
 .locations-section {
   width: 100%;
   margin: 0 0 3rem;
@@ -727,7 +716,9 @@ body {
   font-size: 1rem;
 }
 
-/* RSVP */
+/* ============================================================
+   RSVP
+   ============================================================ */
 .rsvp-section {
   width: 100%;
   background: linear-gradient(135deg, var(--parchment), var(--linen));
@@ -840,7 +831,9 @@ body {
   text-transform: uppercase;
 }
 
-/* WISHES */
+/* ============================================================
+   WISHES
+   ============================================================ */
 .wishes-section {
   width: 100%;
   margin-top: 3.5rem;
@@ -902,13 +895,8 @@ body {
 }
 
 @keyframes wishesAutoScroll {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-50%);
-  }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 
 .wish-item {
@@ -957,7 +945,9 @@ body {
   margin-right: 8px;
 }
 
-/* SCHEDULE */
+/* ============================================================
+   SCHEDULE
+   ============================================================ */
 .schedule-section {
   width: 100%;
   margin-top: 3.5rem;
@@ -1067,46 +1057,48 @@ body {
   font-style: italic;
 }
 
-/* MOMENTS TAB */
+/* ============================================================
+   MOMENTS TAB
+   ============================================================ */
 .moments-hero {
   width: 100%;
   text-align: center;
-  padding: 2rem 1rem 2.5rem;
+  padding: 1.5rem 1rem 1.8rem;
   background: linear-gradient(135deg, var(--linen), var(--parchment));
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   border: 1px solid rgba(184, 147, 90, .3);
 }
 
 .moments-hero h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: var(--brown);
-  margin-bottom: .6rem;
+  margin-bottom: .4rem;
   line-height: 1.1;
 }
 
 .moments-hero p {
   font-style: italic;
   color: var(--brown-soft);
-  font-size: 1rem;
+  font-size: .9rem;
   letter-spacing: 2px;
 }
 
 .moment-upload-section {
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto 3rem;
+  max-width: 420px;
+  margin: 0 auto 2rem;
   background: var(--cream-soft);
-  padding: 2.5rem 1.8rem;
+  padding: 1.5rem 1.2rem;
   border: 1px solid rgba(184, 147, 90, .35);
-  box-shadow: 0 20px 40px -20px rgba(90, 65, 40, .25);
+  box-shadow: 0 15px 30px -15px rgba(90, 65, 40, .2);
   position: relative;
 }
 
 .moment-upload-section::before {
   content: "";
   position: absolute;
-  inset: 8px;
+  inset: 6px;
   border: 1px solid rgba(184, 147, 90, .2);
   pointer-events: none;
 }
@@ -1114,11 +1106,11 @@ body {
 .moment-upload-section h2 {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  letter-spacing: 6px;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--brown);
-  margin-bottom: .4rem;
+  margin-bottom: .3rem;
   position: relative;
   z-index: 1;
 }
@@ -1128,8 +1120,8 @@ body {
   font-style: italic;
   color: var(--brown-soft);
   letter-spacing: 2px;
-  margin-bottom: 1.8rem;
-  font-size: .9rem;
+  margin-bottom: 1rem;
+  font-size: .8rem;
   position: relative;
   z-index: 1;
 }
@@ -1137,16 +1129,16 @@ body {
 .moment-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: .9rem;
   position: relative;
   z-index: 1;
 }
 
 .moment-form input[type="text"] {
   width: 100%;
-  padding: 1rem 1.2rem;
+  padding: .8rem 1rem;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   background: rgba(255, 253, 249, .85);
   border: 1px solid rgba(184, 147, 90, .35);
   color: var(--brown-deep);
@@ -1159,7 +1151,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 1rem;
+  padding: 1.2rem 1rem;
   border: 2px dashed rgba(184, 147, 90, .5);
   background: rgba(255, 253, 249, .5);
   cursor: pointer;
@@ -1167,13 +1159,13 @@ body {
 }
 
 .moment-dropzone i {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: var(--gold);
-  margin-bottom: .8rem;
+  margin-bottom: .4rem;
 }
 
 .moment-dropzone .dz-text {
-  font-size: .95rem;
+  font-size: .8rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--brown-soft);
@@ -1181,10 +1173,10 @@ body {
 }
 
 .moment-dropzone .dz-hint {
-  font-size: .75rem;
+  font-size: .7rem;
   color: var(--brown-soft);
   font-style: italic;
-  margin-top: .4rem;
+  margin-top: .3rem;
 }
 
 #momentFileInput {
@@ -1243,15 +1235,15 @@ body {
 .moment-form button[type="submit"] {
   background: var(--brown);
   border: 1px solid var(--brown);
-  padding: 1rem 2.8rem;
+  padding: .75rem 1.8rem;
   font-family: 'Cormorant Garamond', serif;
-  font-size: .95rem;
-  letter-spacing: 6px;
+  font-size: .8rem;
+  letter-spacing: 4px;
   color: var(--gold-soft);
   cursor: pointer;
   text-transform: uppercase;
   align-self: center;
-  min-width: 220px;
+  min-width: 180px;
   font-weight: 500;
   transition: all .3s;
 }
@@ -1297,8 +1289,8 @@ body {
 
 .moments-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -1380,7 +1372,9 @@ body {
   margin-right: 8px;
 }
 
-/* WATERMARK */
+/* ============================================================
+   WATERMARK
+   ============================================================ */
 .watermark {
   width: 100%;
   display: flex;
@@ -1396,7 +1390,9 @@ body {
   opacity: .8;
 }
 
-/* POPUP */
+/* ============================================================
+   POPUP
+   ============================================================ */
 .rsvp-popup {
   position: fixed;
   inset: 0;
@@ -1475,7 +1471,9 @@ body {
   font-weight: 500;
 }
 
-/* MOBILE */
+/* ============================================================
+   MOBILE
+   ============================================================ */
 @media(max-width:640px) {
   .top-tabs {
     bottom: 14px;
@@ -1630,15 +1628,15 @@ body {
   }
 
   .moments-hero h1 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
 
   .moment-upload-section {
-    padding: 2rem 1.2rem;
+    padding: 1.2rem 1rem;
   }
 
   .moment-upload-section h2 {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
   }
 
   .moment-form button[type="submit"] {
@@ -1656,7 +1654,7 @@ body {
   }
 
   .watermark img {
-    width: 60px;
+    width: 150px;
   }
 }
 
@@ -1705,21 +1703,34 @@ body {
   }
 
   .moments-hero h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
+  }
+
+  .watermark img {
+    width: 120px;
   }
 }
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     AUDIO (background music)
+     ============================================================ -->
 <audio id="bgMusic" loop preload="auto">
   <source src="wedding.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ============================================================
+     MUSIC TOGGLE BUTTON (top right)
+     ============================================================ -->
 <button class="music-btn" id="musicBtn" aria-label="Toggle music">
   <i class="fas fa-music" id="musicIcon"></i>
 </button>
 
+<!-- ============================================================
+     COVER PAGE (envelope / opening screen)
+     ============================================================ -->
 <div class="cover-page" id="coverPage">
   <div class="cover-frame">
     <div class="cover-small">The Wedding Of</div>
@@ -1731,7 +1742,12 @@ body {
   </div>
 </div>
 
+<!-- ============================================================
+     MAIN PAGE (after opening invitation)
+     ============================================================ -->
 <div class="main-page" id="mainPage">
+
+  <!-- BOTTOM TABS (Invitation / Moments) -->
   <div class="top-tabs" id="topTabs">
     <button class="tab-btn active" data-tab="invitation">
       <i class="fas fa-envelope-open-text"></i> Invitation
@@ -1742,17 +1758,25 @@ body {
   </div>
 
   <div class="page">
+
+    <!-- ============================================================
+         TAB 1: INVITATION
+         ============================================================ -->
     <div class="tab-content active" id="tab-invitation">
+
+      <!-- HERO IMAGE -->
       <div class="hero">
         <img src="gambar.jpg" alt="Wedding">
       </div>
 
+      <!-- COUPLE NAMES -->
       <div class="names">
         <h1>Rusty <span>&</span> Anney</h1>
         <div class="tagline">Are Getting Married</div>
         <div class="wedding-date-line" id="weddingDateLine"></div>
       </div>
 
+      <!-- COUNTDOWN TIMER -->
       <div class="countdown-section">
         <h2><i class="fas fa-hourglass-half"></i> Counting Down <i class="fas fa-hourglass-half"></i></h2>
         <div class="timer">
@@ -1763,6 +1787,7 @@ body {
         </div>
       </div>
 
+      <!-- GALLERY -->
       <div class="gallery-section">
         <div class="gallery-grid" id="galleryGrid">
           <img src="gambar.jpg" alt="Photo 1">
@@ -1774,7 +1799,10 @@ body {
         </div>
       </div>
 
+      <!-- LOCATIONS (Church + Reception) -->
       <div class="locations-section">
+
+        <!-- Church Card -->
         <div class="location-card" id="churchCard">
           <div class="loc-icon-circle"><i class="fas fa-church"></i></div>
           <div class="loc-tag">Wedding Ceremony</div>
@@ -1787,6 +1815,7 @@ body {
           </div>
         </div>
 
+        <!-- Reception Card -->
         <div class="location-card" id="receptionCard">
           <div class="loc-icon-circle"><i class="fas fa-glass-cheers"></i></div>
           <div class="loc-tag">Wedding Reception</div>
@@ -1798,8 +1827,10 @@ body {
             <a href="#" id="receptionWazeBtn" target="_blank" rel="noopener" class="loc-btn waze"><i class="fas fa-location-arrow"></i> Waze</a>
           </div>
         </div>
+
       </div>
 
+      <!-- RSVP FORM (ucapan & doa) -->
       <div class="rsvp-section">
         <h2>R.S.V.P.</h2>
         <div class="rsvp-subtitle">Kirimkan Ucapan & Doa Restu</div>
@@ -1817,6 +1848,7 @@ body {
         <div class="rsvp-note">Rusty &amp; Anney · 14 June 2026</div>
       </div>
 
+      <!-- WISHES LIST (auto scroll) -->
       <div class="wishes-section">
         <h2><i class="fas fa-heart"></i> Ucapan & Doa <i class="fas fa-heart"></i></h2>
         <p class="wishes-sub">— Dari tetamu tersayang —</p>
@@ -1827,6 +1859,7 @@ body {
         </div>
       </div>
 
+      <!-- SCHEDULE TIMELINE -->
       <div class="schedule-section">
         <h2><i class="fas fa-calendar-alt"></i> Order of Events <i class="fas fa-calendar-alt"></i></h2>
         <p class="schedule-sub">— A celebration to remember —</p>
@@ -1858,17 +1891,25 @@ body {
         </div>
       </div>
 
+      <!-- WATERMARK LOGO -->
       <div class="watermark">
         <img src="2.png" alt="Logo">
       </div>
+
     </div>
 
+    <!-- ============================================================
+         TAB 2: SHARE MOMENTS
+         ============================================================ -->
     <div class="tab-content" id="tab-moments">
+
+      <!-- MOMENTS HERO -->
       <div class="moments-hero">
         <h1>Share Your Moments</h1>
         <p>— Abadikan kenangan anda bersama kami —</p>
       </div>
 
+      <!-- UPLOAD FORM -->
       <div class="moment-upload-section">
         <h2>Upload Gambar / Video</h2>
         <p class="sub">Kongsikan detik indah anda</p>
@@ -1895,6 +1936,7 @@ body {
         </form>
       </div>
 
+      <!-- MOMENTS GALLERY -->
       <div class="moments-gallery-section">
         <h2><i class="fas fa-images"></i> Moments <i class="fas fa-images"></i></h2>
         <p class="sub">— Dari tetamu tersayang —</p>
@@ -1903,13 +1945,19 @@ body {
         </div>
       </div>
 
+      <!-- WATERMARK LOGO -->
       <div class="watermark">
         <img src="2.png" alt="Logo">
       </div>
+
     </div>
+
   </div>
 </div>
 
+<!-- ============================================================
+     LIGHTBOX (fullscreen image viewer)
+     ============================================================ -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-img-wrap">
     <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
@@ -1920,6 +1968,9 @@ body {
   </div>
 </div>
 
+<!-- ============================================================
+     POPUP MODAL (thank you message)
+     ============================================================ -->
 <div class="rsvp-popup" id="rsvpPopup">
   <div class="rsvp-popup-box">
     <i class="fas fa-envelope-open-text" id="popupIcon"></i>
@@ -1930,6 +1981,9 @@ body {
 </div>
 
 <script>
+/* ============================================================
+   CONFIG
+   ============================================================ */
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '21 November 2026 · The Old Barn, Willow Creek';
 
@@ -1951,6 +2005,9 @@ const LOCATIONS = {
   }
 };
 
+/* ============================================================
+   FIX DRIVE URL — convert format lama ke thumbnail
+   ============================================================ */
 function fixDriveUrl(url) {
   if (!url) return url;
   const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
@@ -1960,6 +2017,9 @@ function fixDriveUrl(url) {
   return url;
 }
 
+/* ============================================================
+   SETUP — elements & initial state
+   ============================================================ */
 const isMobile = window.matchMedia('(max-width: 640px)').matches;
 const coverPage = document.getElementById('coverPage');
 const mainPage = document.getElementById('mainPage');
@@ -1972,6 +2032,9 @@ const topTabs = document.getElementById('topTabs');
 document.body.style.overflow = 'hidden';
 document.getElementById('weddingDateLine').textContent = WEDDING_DATE_DISPLAY;
 
+/* ============================================================
+   LOCATIONS — setup map + buttons
+   ============================================================ */
 function setupLocation(key, data) {
   document.getElementById(key + 'Name').textContent = data.name;
   document.getElementById(key + 'Address').textContent = data.address;
@@ -1982,6 +2045,9 @@ function setupLocation(key, data) {
 setupLocation('church', LOCATIONS.church);
 setupLocation('reception', LOCATIONS.reception);
 
+/* ============================================================
+   TABS — switch between Invitation & Moments
+   ============================================================ */
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
 
@@ -1998,6 +2064,9 @@ tabBtns.forEach(function(btn) {
   });
 });
 
+/* ============================================================
+   LIGHTBOX — fullscreen image viewer
+   ============================================================ */
 const galleryImages = document.querySelectorAll('#galleryGrid img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
@@ -2061,6 +2130,9 @@ document.getElementById('lightboxNext').addEventListener('click', function(e) { 
 document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); prevLightbox(); });
 lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
 
+/* ============================================================
+   MUSIC — play / pause toggle
+   ============================================================ */
 let musicStarted = false;
 bgMusic.volume = 0;
 
@@ -2093,6 +2165,9 @@ function toggleMusic() {
 }
 musicBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMusic(); });
 
+/* ============================================================
+   ENTER WEDDING — open invitation from cover page
+   ============================================================ */
 function enterWedding() {
   coverPage.classList.add('hidden');
   mainPage.classList.add('visible');
@@ -2108,6 +2183,9 @@ enterBtn.addEventListener('click', function(e) { e.stopPropagation(); enterWeddi
 coverPage.addEventListener('click', enterWedding);
 if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk untuk membuka jemputan —';
 
+/* ============================================================
+   COUNTDOWN — days / hours / minutes / seconds
+   ============================================================ */
 (function() {
   const weddingDate = new Date(WEDDING_DATE_STRING).getTime();
   const daysEl = document.getElementById('days');
@@ -2132,6 +2210,9 @@ if (isMobile) document.querySelector('.cover-hint').textContent = '— ketuk unt
   setInterval(update, 1000);
 })();
 
+/* ============================================================
+   POPUP — thank you modal
+   ============================================================ */
 const rsvpPopup = document.getElementById('rsvpPopup');
 
 function showPopup(title, msg, isError) {
@@ -2146,6 +2227,9 @@ function showPopup(title, msg, isError) {
 document.getElementById('popupCloseBtn').addEventListener('click', function() { rsvpPopup.classList.remove('show'); });
 rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('show'); });
 
+/* ============================================================
+   SEND — post to Apps Script
+   ============================================================ */
 function sendTo(url, data, callback) {
   try {
     const xhr = new XMLHttpRequest();
@@ -2161,6 +2245,9 @@ function sendTo(url, data, callback) {
   }
 }
 
+/* ============================================================
+   RSVP FORM — submit ucapan & doa
+   ============================================================ */
 const rsvpForm = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('rsvpSubmitBtn');
 
@@ -2187,6 +2274,9 @@ rsvpForm.addEventListener('submit', function(e) {
   });
 });
 
+/* ============================================================
+   LOAD WISHES — fetch from Apps Script (auto scroll)
+   ============================================================ */
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
   wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan...</div>';
@@ -2230,6 +2320,9 @@ function loadWishes() {
   document.body.appendChild(script);
 }
 
+/* ============================================================
+   MOMENT UPLOAD — file input + preview
+   ============================================================ */
 const momentForm = document.getElementById('momentForm');
 const momentFileInput = document.getElementById('momentFileInput');
 const momentPreview = document.getElementById('momentPreview');
@@ -2293,6 +2386,9 @@ momentRemoveFile.addEventListener('click', function(e) {
   momentPreviewContent.innerHTML = '';
 });
 
+/* ============================================================
+   MOMENT FORM — submit gambar/video
+   ============================================================ */
 momentForm.addEventListener('submit', function(e) {
   e.preventDefault();
   if (!momentFileBase64) { alert('Sila pilih gambar atau video dulu.'); return; }
@@ -2326,6 +2422,9 @@ momentForm.addEventListener('submit', function(e) {
   });
 });
 
+/* ============================================================
+   LOAD MOMENTS — fetch gallery from Apps Script
+   ============================================================ */
 function loadMoments() {
   const gallery = document.getElementById('momentsGallery');
   gallery.innerHTML = '<div class="moments-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan...</div>';
@@ -2370,6 +2469,9 @@ function loadMoments() {
   document.body.appendChild(script);
 }
 
+/* ============================================================
+   HELPERS — escape HTML & format date
+   ============================================================ */
 function escHtml(t) {
   const d = document.createElement('div');
   d.textContent = t || '';

@@ -1334,7 +1334,6 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 <!-- ========== MAIN PAGE ========== -->
 <div class="main-page" id="mainPage">
 
-  <!-- BOTTOM TAB NAVIGATION — IPHONE GLASS DOCK -->
   <div class="top-tabs" id="topTabs">
     <button class="tab-btn active" data-tab="invitation">
       <i class="fas fa-envelope-open-text"></i> Invitation
@@ -1512,7 +1511,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
             <label for="momentFileInput" class="moment-dropzone" id="momentDropzone">
               <i class="fas fa-cloud-upload-alt"></i>
               <div class="dz-text">Tekan untuk pilih fail</div>
-              <div class="dz-hint">Gambar (JPG, PNG) atau Video (MP4) — Max 10MB</div>
+              <div class="dz-hint">Gambar (JPG, PNG) atau Video (MP4) — Max 5MB</div>
             </label>
             <input type="file" id="momentFileInput" accept="image/*,video/*">
 
@@ -1587,7 +1586,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOBW6xxwMdFIDL-9Ctn
 
 
 /* ============================================================
-   📍 LOCATIONS — UBAH SINI UNTUK MAP
+   📍 LOCATIONS
 ============================================================ */
 const LOCATIONS = {
   church: {
@@ -1731,7 +1730,7 @@ function updateLightbox() {
   lightbox.classList.remove('is-video');
 
   const src = item.src || item.url || '';
-  const isVideo = item.isVideo || (src && src.match(/\.(mp4|webm|mov)$/i)) || (item.type === 'video');
+  const isVideo = item.isVideo || (src && src.match(/\.(mp4|webm|mov)/i)) || (item.type === 'video');
 
   if (isVideo) {
     lightbox.classList.add('is-video');
@@ -1948,6 +1947,30 @@ rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('sho
 
 
 /* ============================================================
+   HELPER: Send to Apps Script (FormData method)
+============================================================ */
+function sendToAppsScript(data, callback) {
+  // Guna FormData — paling reliable untuk Apps Script
+  const formData = new FormData();
+  formData.append('payload', JSON.stringify(data));
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: formData,
+    mode: 'no-cors'
+  })
+  .then(function() {
+    // no-cors mode — tak boleh read response
+    // Assume success
+    if (callback) callback(null);
+  })
+  .catch(function(err) {
+    if (callback) callback(err);
+  });
+}
+
+
+/* ============================================================
    RSVP SUBMIT
 ============================================================ */
 const rsvpForm = document.getElementById('rsvpForm');
@@ -1964,22 +1987,14 @@ rsvpForm.addEventListener('submit', function(e) {
   submitBtn.textContent = 'Menghantar...';
   submitBtn.disabled = true;
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  })
-  .then(function() {
-    showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '! Ucapan anda telah diterima.', false);
-    rsvpForm.reset();
-    setTimeout(loadWishes, 2500);
-  })
-  .catch(function(err) {
-    console.error(err);
-    showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
-  })
-  .finally(function() {
+  sendToAppsScript(formData, function(err) {
+    if (!err) {
+      showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '! Ucapan anda telah diterima.', false);
+      rsvpForm.reset();
+      setTimeout(loadWishes, 2500);
+    } else {
+      showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
+    }
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
   });
@@ -2063,8 +2078,8 @@ momentFileInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (!file) return;
 
-  if (file.size > 10 * 1024 * 1024) {
-    alert('Fail terlalu besar. Max 10MB.');
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Fail terlalu besar. Max 5MB.');
     momentFileInput.value = '';
     return;
   }
@@ -2139,27 +2154,19 @@ momentForm.addEventListener('submit', function(e) {
     fileData: momentFileBase64
   };
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  })
-  .then(function() {
-    showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '! Moment anda telah dihantar.', false);
-    momentForm.reset();
-    momentFileBase64 = '';
-    momentFileType = '';
-    momentFileNameValue = '';
-    momentPreview.classList.remove('show');
-    momentPreviewContent.innerHTML = '';
-    setTimeout(loadMoments, 2500);
-  })
-  .catch(function(err) {
-    console.error(err);
-    showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
-  })
-  .finally(function() {
+  sendToAppsScript(formData, function(err) {
+    if (!err) {
+      showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '! Moment anda telah dihantar.', false);
+      momentForm.reset();
+      momentFileBase64 = '';
+      momentFileType = '';
+      momentFileNameValue = '';
+      momentPreview.classList.remove('show');
+      momentPreviewContent.innerHTML = '';
+      setTimeout(loadMoments, 4000);
+    } else {
+      showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
+    }
     momentSubmitBtn.textContent = originalText;
     momentSubmitBtn.disabled = false;
   });
@@ -2182,13 +2189,13 @@ function loadMoments() {
   window[callbackName] = function(data) {
     try {
       if (data && data.status === 'success' && data.moments && data.moments.length > 0) {
-        const validMoments = data.moments.filter(function(m) { return m.url; });
+        const validMoments = data.moments.filter(function(m) { return m.url && m.url.indexOf('http') === 0; });
 
         if (validMoments.length === 0) {
           momentsGallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
         } else {
           momentsGallery.innerHTML = validMoments.map(function(m, i) {
-            const isVideo = m.type === 'video' || (m.url && m.url.match(/\.(mp4|webm|mov)$/i));
+            const isVideo = m.type === 'video';
             const thumbnail = isVideo
               ? '<video src="' + m.url + '" muted playsinline preload="metadata"></video>'
               : '<img src="' + m.url + '" alt="' + escHtml(m.name) + '" loading="lazy">';
@@ -2205,7 +2212,7 @@ function loadMoments() {
 
           const cards = momentsGallery.querySelectorAll('.moment-card');
           const items = validMoments.map(function(m) {
-            const isVideo = m.type === 'video' || (m.url && m.url.match(/\.(mp4|webm|mov)$/i));
+            const isVideo = m.type === 'video';
             return {
               src: m.url,
               alt: m.name || 'Moment',

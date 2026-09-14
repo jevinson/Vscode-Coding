@@ -457,13 +457,13 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:v
 
 <script>
 // ============================================================
-// CONFIG — 2 URL BERASINGAN
+// CONFIG — 2 URL BARU
 // ============================================================
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '14 June 2026 · The Old Barn, Willow Creek';
 
-const URL_UCAPAN  = 'https://script.google.com/macros/s/AKfycbxLy3kVuYyHVZLnYWVcofoHdhpvRg5OliDaJHBfwGfeRdJujWE1eDMwZZosRrZU8J7F/exec';
-const URL_MOMENTS = 'https://script.google.com/macros/s/AKfycbzZ9PDZD_4jYjxCmhb4qNpapQ45rzMVmZfi0UdCfysYAc0NIOoyIIcdTqnFYuh6z9UUtw/exec';
+const URL_UCAPAN  = 'https://script.google.com/macros/s/AKfycbyVVyPRjC72nyeauKhU0lJVXKOXZJK-OVMhkgMrsXXBjqk_Y2MrVxwLHYk1xKfUtNC4/exec';
+const URL_MOMENTS = 'https://script.google.com/macros/s/AKfycbxPyPFRPz9oUu7o9WJJFa4zdZtUOKSf4jGRQPreAM_J2ljg4V9F_C_BnMlyh4ELZtCqsQ/exec';
 
 const LOCATIONS = {
   church:    { name: 'Sacred Heart Church', address: '123 Church St, Asheville, NC', lat: 35.5951, lng: -82.5515 },
@@ -672,17 +672,25 @@ rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('sho
 
 
 // ============================================================
-// SEND TO APPS SCRIPT — guna fetch no-cors (assume success)
+// SEND — XHR, assume success bila readyState 4
 // ============================================================
 function sendTo(url, data, callback) {
-  fetch(url, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'payload=' + encodeURIComponent(JSON.stringify(data))
-  })
-  .then(function() { if (callback) callback(null); })
-  .catch(function(err) { if (callback) callback(err); });
+  try {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (callback) callback(null);
+      }
+    };
+    setTimeout(function() {
+      if (callback) callback(null);
+    }, 6000);
+    xhr.send('payload=' + encodeURIComponent(JSON.stringify(data)));
+  } catch (e) {
+    if (callback) callback(e);
+  }
 }
 
 

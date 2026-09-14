@@ -31,10 +31,88 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   2. MUSIC BUTTON
+   2. BOTTOM TAB NAVIGATION — IPHONE GLASS DOCK
+============================================================ */
+.top-tabs{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(120%);
+  z-index:9997;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(28px) saturate(200%);
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.6);
+  display:flex;
+  justify-content:center;
+  padding:6px;
+  gap:4px;
+  box-shadow:
+    0 -8px 32px rgba(45,30,15,.15),
+    0 -2px 8px rgba(45,30,15,.08),
+    inset 0 1px 0 rgba(255,255,255,.7),
+    inset 0 -1px 0 rgba(255,255,255,.3);
+  opacity:0;
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+  width:auto;
+  max-width:calc(100% - 24px);
+}
+.top-tabs.visible{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
+.tab-btn{
+  padding:.7rem 1.4rem;
+  background:transparent;
+  border:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--brown-mid);
+  cursor:pointer;
+  font-weight:600;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border-radius:22px;
+  white-space:nowrap;
+  position:relative;
+}
+.tab-btn i{
+  font-size:.88rem;
+  transition:transform .3s ease;
+}
+.tab-btn.active{
+  background:linear-gradient(180deg, rgba(74,55,36,0.95), rgba(61,44,27,0.98));
+  color:var(--gold-soft);
+  box-shadow:
+    0 4px 14px rgba(74,55,36,.35),
+    inset 0 1px 0 rgba(255,255,255,.15);
+  letter-spacing:3px;
+}
+.tab-btn.active i{
+  transform:scale(1.15);
+}
+.tab-btn:not(.active):hover{
+  background:rgba(184,147,90,.15);
+  color:var(--brown);
+}
+.tab-btn:not(.active):active{
+  transform:scale(.94);
+}
+
+.main-page.tabs-visible .page{padding-bottom:7rem}
+
+
+/* ============================================================
+   3. MUSIC BUTTON (ATAS KANAN)
 ============================================================ */
 .music-btn{
-  position:fixed;bottom:22px;right:22px;
+  position:fixed;top:22px;right:22px;
   width:52px;height:52px;border-radius:50%;
   background:linear-gradient(135deg,var(--gold-light),var(--gold));
   border:2px solid var(--cream-soft);
@@ -56,7 +134,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   3. COVER PAGE
+   4. COVER PAGE
 ============================================================ */
 .cover-page{
   position:fixed;inset:0;
@@ -141,7 +219,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   4. MAIN PAGE
+   5. MAIN PAGE
 ============================================================ */
 .main-page{
   opacity:0;visibility:hidden;
@@ -153,10 +231,12 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   padding:1.5rem 1.2rem 4rem;
   display:flex;flex-direction:column;align-items:center;
 }
+.tab-content{display:none}
+.tab-content.active{display:flex;flex-direction:column;align-items:center;width:100%}
 
 
 /* ============================================================
-   5. HERO IMAGE
+   6. HERO IMAGE
 ============================================================ */
 .hero{
   width:100%;margin-bottom:3rem;
@@ -176,7 +256,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   6. NAMES + WEDDING DATE
+   7. NAMES + WEDDING DATE
 ============================================================ */
 .names{text-align:center;margin-bottom:2.5rem}
 .names h1{
@@ -222,7 +302,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7. COUNTDOWN
+   8. COUNTDOWN
 ============================================================ */
 .countdown-section{
   width:100%;
@@ -264,7 +344,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7b. GALLERY
+   9. GALLERY
 ============================================================ */
 .gallery-section{
   width:100%;
@@ -303,7 +383,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7c. LIGHTBOX
+   10. LIGHTBOX
 ============================================================ */
 .lightbox{
   position:fixed;inset:0;
@@ -358,6 +438,16 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   color:var(--gold-light);font-size:.85rem;
   letter-spacing:4px;font-family:'Playfair Display',serif;
 }
+.lightbox.is-video .lightbox-img-wrap{
+  max-width:min(95vw, 800px);
+}
+.lightbox.is-video img{display:none !important}
+.lightbox.is-video video{
+  display:block;
+  max-width:95vw;
+  max-height:85vh;
+  width:auto;
+}
 @media(max-width:768px){
   .lightbox-nav{width:40px;height:40px;font-size:.95rem}
   .lightbox-nav.prev{left:6px}
@@ -369,7 +459,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   7d. LOCATION MAPS
+   11. LOCATION MAPS
 ============================================================ */
 .locations-section{
   width:100%;
@@ -470,7 +560,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   8. RSVP FORM — CLEAN STYLE
+   12. RSVP FORM
 ============================================================ */
 .rsvp-section{
   width:100%;
@@ -577,7 +667,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   9. WISHES (Auto Scroll)
+   13. WISHES
 ============================================================ */
 .wishes-section{
   width:100%;margin-top:3.5rem;
@@ -659,7 +749,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   10. SCHEDULE (Timeline)
+   14. SCHEDULE
 ============================================================ */
 .schedule-section{
   width:100%;margin-top:3.5rem;
@@ -720,7 +810,301 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   11. FOOTER
+   15. SHARE MOMENTS TAB
+============================================================ */
+.moments-hero{
+  width:100%;
+  text-align:center;
+  padding:2rem 1rem 2.5rem;
+  background:linear-gradient(135deg,var(--linen),var(--parchment));
+  margin-bottom:2.5rem;
+  border:1px solid rgba(184,147,90,.3);
+}
+.moments-hero h1{
+  font-family:'Great Vibes',cursive;
+  font-size:3.2rem;
+  color:var(--brown);
+  margin-bottom:.6rem;
+  line-height:1.1;
+}
+.moments-hero p{
+  font-style:italic;
+  color:var(--brown-soft);
+  font-size:1rem;
+  letter-spacing:2px;
+}
+
+.moment-upload-section{
+  width:100%;
+  max-width:600px;
+  margin:0 auto 3rem;
+  background:var(--cream-soft);
+  padding:2.5rem 1.8rem;
+  border:1px solid rgba(184,147,90,.35);
+  box-shadow:0 20px 40px -20px rgba(90,65,40,.25);
+  position:relative;
+}
+.moment-upload-section::before{
+  content:"";position:absolute;inset:8px;
+  border:1px solid rgba(184,147,90,.2);
+  pointer-events:none;
+}
+.moment-upload-section h2{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--brown);
+  margin-bottom:.4rem;
+  position:relative;z-index:1;
+}
+.moment-upload-section .sub{
+  text-align:center;
+  font-style:italic;
+  color:var(--brown-soft);
+  letter-spacing:2px;
+  margin-bottom:1.8rem;
+  font-size:.9rem;
+  position:relative;z-index:1;
+}
+
+.moment-form{
+  display:flex;flex-direction:column;
+  gap:1.2rem;
+  position:relative;z-index:1;
+}
+.moment-form .form-group{
+  display:flex;flex-direction:column;
+  gap:.5rem;
+}
+.moment-form .form-label{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--brown-mid);
+  font-weight:600;
+  padding-left:.2rem;
+}
+.moment-form input[type="text"]{
+  width:100%;
+  padding:1rem 1.2rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;
+  background:rgba(255,253,249,.85);
+  border:1px solid rgba(184,147,90,.35);
+  color:var(--brown-deep);
+  outline:none;
+  transition:.3s;
+  border-radius:2px;
+}
+.moment-form input[type="text"]:focus{
+  border-color:var(--gold);
+  background:rgba(255,253,249,1);
+  box-shadow:0 0 0 3px rgba(184,147,90,.1);
+}
+
+.moment-dropzone{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2.5rem 1rem;
+  border:2px dashed rgba(184,147,90,.5);
+  background:rgba(255,253,249,.5);
+  cursor:pointer;
+  transition:.3s;
+  text-align:center;
+}
+.moment-dropzone:hover{
+  border-color:var(--gold);
+  background:rgba(255,253,249,.85);
+}
+.moment-dropzone i{
+  font-size:2rem;
+  color:var(--gold);
+  margin-bottom:.8rem;
+}
+.moment-dropzone .dz-text{
+  font-size:.95rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--brown-soft);
+  font-weight:500;
+}
+.moment-dropzone .dz-hint{
+  font-size:.75rem;
+  color:var(--brown-soft);
+  font-style:italic;
+  margin-top:.4rem;
+  opacity:.7;
+}
+#momentFileInput{display:none}
+
+.moment-preview{
+  display:none;
+  position:relative;
+  width:100%;
+  max-width:280px;
+  margin:0 auto;
+}
+.moment-preview.show{display:block}
+.moment-preview img,
+.moment-preview video{
+  width:100%;
+  max-height:280px;
+  object-fit:cover;
+  display:block;
+  border:1px solid var(--gold);
+  padding:4px;
+  background:var(--cream-soft);
+}
+.moment-preview .file-name{
+  text-align:center;
+  font-size:.75rem;
+  font-style:italic;
+  color:var(--brown-soft);
+  margin-top:.4rem;
+  letter-spacing:1px;
+  word-break:break-all;
+}
+.moment-preview .remove-file{
+  position:absolute;
+  top:-10px;right:-10px;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--brown);
+  color:var(--cream-soft);
+  border:2px solid var(--cream-soft);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:.75rem;
+}
+
+.moment-form button[type="submit"]{
+  background:var(--brown);
+  border:1px solid var(--brown);
+  padding:1rem 2.8rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.95rem;
+  letter-spacing:6px;
+  color:var(--gold-soft);
+  cursor:pointer;
+  text-transform:uppercase;
+  align-self:center;
+  min-width:220px;
+  font-weight:500;
+  transition:all .3s;
+}
+.moment-form button[type="submit"]:hover:not(:disabled){
+  background:var(--brown-deep);
+  border-color:var(--gold);
+  color:var(--gold-light);
+  letter-spacing:8px;
+}
+.moment-form button[type="submit"]:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+.moments-gallery-section{
+  width:100%;
+  margin:0 auto;
+  padding:0;
+}
+.moments-gallery-section h2{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem;
+  letter-spacing:8px;
+  color:var(--brown);
+  text-transform:uppercase;
+  margin-bottom:.4rem;
+}
+.moments-gallery-section h2 i{color:var(--gold);margin:0 10px}
+.moments-gallery-section .sub{
+  text-align:center;
+  font-style:italic;
+  color:var(--brown-soft);
+  letter-spacing:3px;
+  margin-bottom:2rem;
+  font-size:.95rem;
+}
+.moments-gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+  gap:10px;
+  max-width:900px;
+  margin:0 auto;
+}
+.moment-card{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:var(--cream-soft);
+  border:1px solid rgba(184,147,90,.3);
+  cursor:pointer;
+  transition:.3s;
+}
+.moment-card:hover{
+  transform:scale(1.02);
+  border-color:var(--gold);
+}
+.moment-card img,
+.moment-card video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.moment-card .moment-overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:linear-gradient(to top, rgba(45,30,15,.9), transparent);
+  padding:1.5rem .7rem .6rem;
+  color:#fdf7ef;
+  text-align:left;
+}
+.moment-card .moment-name{
+  font-family:'Playfair Display',serif;
+  font-size:.8rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:.1rem;
+}
+.moment-card .moment-date{
+  font-size:.6rem;
+  font-style:italic;
+  opacity:.8;
+  letter-spacing:1px;
+}
+.moment-card .moment-type-badge{
+  position:absolute;
+  top:8px;right:8px;
+  background:rgba(45,30,15,.8);
+  color:var(--gold-light);
+  padding:3px 8px;
+  font-size:.55rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  border-radius:3px;
+  font-weight:600;
+}
+.moments-loading,
+.moments-empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:3rem 1rem;
+  font-style:italic;
+  color:var(--brown-soft);
+  letter-spacing:2px;
+}
+.moments-loading i{color:var(--gold);margin-right:8px}
+
+
+/* ============================================================
+   16. FOOTER
 ============================================================ */
 .footer-note{
   margin-top:4rem;font-size:.8rem;
@@ -736,7 +1120,7 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   12. POPUP
+   17. POPUP
 ============================================================ */
 .rsvp-popup{
   position:fixed;inset:0;
@@ -783,10 +1167,28 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 
 /* ============================================================
-   13. RESPONSIVE
+   18. RESPONSIVE
 ============================================================ */
 @media(max-width:640px){
-  .music-btn{width:46px;height:46px;bottom:16px;right:16px}
+  .top-tabs{
+    bottom:14px;
+    padding:5px;
+    gap:3px;
+    border-radius:24px;
+    max-width:calc(100% - 20px);
+  }
+  .tab-btn{
+    padding:.65rem 1rem;
+    font-size:.7rem;
+    letter-spacing:1.5px;
+    border-radius:20px;
+    gap:5px;
+  }
+  .tab-btn i{font-size:.8rem}
+  .tab-btn.active{letter-spacing:2px}
+  .main-page.tabs-visible .page{padding-bottom:6rem}
+
+  .music-btn{width:46px;height:46px;top:16px;right:16px}
   .cover-frame{padding:3rem 1.4rem;max-width:400px}
   .cover-frame h1{font-size:3.4rem}
   .cover-frame h1 span{font-size:2.4rem}
@@ -841,9 +1243,23 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .rsvp-popup-box{padding:2.2rem 1.5rem}
   .rsvp-popup-box h3{font-size:1.25rem;letter-spacing:4px}
   .rsvp-popup-box p{font-size:.95rem}
+
+  .moments-hero{padding:1.5rem .8rem 2rem;margin-bottom:2rem}
+  .moments-hero h1{font-size:2.4rem}
+  .moments-hero p{font-size:.85rem}
+  .moment-upload-section{padding:2rem 1.2rem}
+  .moment-upload-section h2{font-size:1.25rem;letter-spacing:4px}
+  .moment-upload-section .sub{font-size:.8rem}
+  .moment-form button[type="submit"]{font-size:.85rem;padding:.9rem 2rem;letter-spacing:4px;min-width:auto;width:100%}
+  .moments-gallery-section h2{font-size:1.35rem;letter-spacing:4px}
+  .moments-gallery-section .sub{font-size:.8rem;letter-spacing:2px;margin-bottom:1.5rem}
+  .moments-gallery{grid-template-columns:repeat(2, 1fr);gap:8px}
 }
 
 @media(max-width:380px){
+  .top-tabs{bottom:10px;padding:4px;border-radius:22px}
+  .tab-btn{font-size:.62rem;letter-spacing:1px;padding:.55rem .8rem;border-radius:18px;gap:4px}
+  .tab-btn i{font-size:.75rem}
   .cover-frame{padding:2.5rem 1.1rem}
   .cover-frame h1{font-size:2.9rem}
   .cover-frame h1 span{font-size:2rem}
@@ -860,6 +1276,8 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .rsvp-form input,.rsvp-form textarea{font-size:.9rem;padding:.75rem .9rem}
   .wishes-scroll-wrap{height:320px}
   .wish-item .wish-message{font-size:.92rem}
+  .moments-hero h1{font-size:2rem}
+  .moment-upload-section h2{font-size:1.1rem}
 }
 
 @media(min-width:1024px){
@@ -882,6 +1300,8 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
   .wish-item .wish-message{font-size:1.1rem}
   .schedule-section h2{font-size:2.4rem}
   .timeline-icon{width:50px;height:50px;left:-1.35rem}
+  .moments-hero h1{font-size:4rem}
+  .moments-gallery{grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:14px}
 }
 </style>
 </head>
@@ -913,155 +1333,215 @@ html,body{background:var(--cream);font-family:'Cormorant Garamond','Georgia',ser
 
 <!-- ========== MAIN PAGE ========== -->
 <div class="main-page" id="mainPage">
+
+  <!-- BOTTOM TAB NAVIGATION — IPHONE GLASS DOCK -->
+  <div class="top-tabs" id="topTabs">
+    <button class="tab-btn active" data-tab="invitation">
+      <i class="fas fa-envelope-open-text"></i> Invitation
+    </button>
+    <button class="tab-btn" data-tab="moments">
+      <i class="fas fa-camera"></i> Share Moments
+    </button>
+  </div>
+
   <div class="page">
 
-    <!-- HERO IMAGE -->
-    <div class="hero">
-      <img src="gambar.jpg" alt="Wedding">
-    </div>
+    <!-- ============================================================
+         TAB 1: INVITATION
+    ============================================================ -->
+    <div class="tab-content active" id="tab-invitation">
 
-    <!-- NAMES + WEDDING DATE -->
-    <div class="names">
-      <h1>Rusty <span>&</span> Anney</h1>
-      <div class="tagline">Are Getting Married</div>
-      <div class="wedding-date-line" id="weddingDateLine"></div>
-    </div>
-
-    <!-- COUNTDOWN -->
-    <div class="countdown-section">
-      <h2><i class="fas fa-hourglass-half"></i> Counting Down <i class="fas fa-hourglass-half"></i></h2>
-      <div class="timer">
-        <div class="timer-block"><span class="timer-number" id="days">00</span><span class="timer-label">Days</span></div>
-        <div class="timer-block"><span class="timer-number" id="hours">00</span><span class="timer-label">Hours</span></div>
-        <div class="timer-block"><span class="timer-number" id="minutes">00</span><span class="timer-label">Minutes</span></div>
-        <div class="timer-block"><span class="timer-number" id="seconds">00</span><span class="timer-label">Seconds</span></div>
+      <div class="hero">
+        <img src="gambar.jpg" alt="Wedding">
       </div>
-    </div>
 
-    <!-- ========== GALLERY ========== -->
-    <div class="gallery-section">
-      <div class="gallery-grid" id="galleryGrid">
-        <img src="gambar.jpg" alt="Photo 1" data-index="0">
-        <img src="gambar.jpg" alt="Photo 2" data-index="1">
-        <img src="gambar.jpg" alt="Photo 3" data-index="2">
-        <img src="gambar.jpg" alt="Photo 4" data-index="3">
-        <img src="gambar.jpg" alt="Photo 5" data-index="4">
-        <img src="gambar.jpg" alt="Photo 6" data-index="5">
+      <div class="names">
+        <h1>Rusty <span>&</span> Anney</h1>
+        <div class="tagline">Are Getting Married</div>
+        <div class="wedding-date-line" id="weddingDateLine"></div>
       </div>
-    </div>
 
-    <!-- ========== 2 LOCATION MAPS ========== -->
-    <div class="locations-section">
-
-      <!-- LOCATION 1: CHURCH -->
-      <div class="location-card" id="churchCard">
-        <div class="loc-icon-circle"><i class="fas fa-church"></i></div>
-        <div class="loc-tag">Wedding Ceremony</div>
-        <h3 id="churchName">Sacred Heart Church</h3>
-        <p class="loc-address" id="churchAddress">123 Church St, Asheville, NC</p>
-        <div class="loc-map-embed">
-          <iframe id="churchMap" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="loc-buttons">
-          <a href="#" id="churchGoogleBtn" target="_blank" rel="noopener" class="loc-btn google">
-            <i class="fab fa-google"></i> Google Maps
-          </a>
-          <a href="#" id="churchWazeBtn" target="_blank" rel="noopener" class="loc-btn waze">
-            <i class="fas fa-location-arrow"></i> Waze
-          </a>
+      <div class="countdown-section">
+        <h2><i class="fas fa-hourglass-half"></i> Counting Down <i class="fas fa-hourglass-half"></i></h2>
+        <div class="timer">
+          <div class="timer-block"><span class="timer-number" id="days">00</span><span class="timer-label">Days</span></div>
+          <div class="timer-block"><span class="timer-number" id="hours">00</span><span class="timer-label">Hours</span></div>
+          <div class="timer-block"><span class="timer-number" id="minutes">00</span><span class="timer-label">Minutes</span></div>
+          <div class="timer-block"><span class="timer-number" id="seconds">00</span><span class="timer-label">Seconds</span></div>
         </div>
       </div>
 
-      <!-- LOCATION 2: RECEPTION -->
-      <div class="location-card" id="receptionCard">
-        <div class="loc-icon-circle"><i class="fas fa-glass-cheers"></i></div>
-        <div class="loc-tag">Wedding Reception</div>
-        <h3 id="receptionName">The Old Barn</h3>
-        <p class="loc-address" id="receptionAddress">1234 Rustic Lane, Willow Creek</p>
-        <div class="loc-map-embed">
-          <iframe id="receptionMap" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="loc-buttons">
-          <a href="#" id="receptionGoogleBtn" target="_blank" rel="noopener" class="loc-btn google">
-            <i class="fab fa-google"></i> Google Maps
-          </a>
-          <a href="#" id="receptionWazeBtn" target="_blank" rel="noopener" class="loc-btn waze">
-            <i class="fas fa-location-arrow"></i> Waze
-          </a>
+      <div class="gallery-section">
+        <div class="gallery-grid" id="galleryGrid">
+          <img src="gambar.jpg" alt="Photo 1" data-index="0">
+          <img src="gambar.jpg" alt="Photo 2" data-index="1">
+          <img src="gambar.jpg" alt="Photo 3" data-index="2">
+          <img src="gambar.jpg" alt="Photo 4" data-index="3">
+          <img src="gambar.jpg" alt="Photo 5" data-index="4">
+          <img src="gambar.jpg" alt="Photo 6" data-index="5">
         </div>
       </div>
 
-    </div>
-
-    <!-- ========== RSVP (Nama + Ucapan sahaja) ========== -->
-    <div class="rsvp-section">
-      <h2>R.S.V.P.</h2>
-      <div class="rsvp-subtitle">Kirimkan Ucapan & Doa Restu</div>
-
-      <form class="rsvp-form" id="rsvpForm">
-        <div class="form-group">
-          <label class="form-label">Nama</label>
-          <input type="text" id="rsvpName" placeholder="Nama anda" required maxlength="50">
+      <div class="locations-section">
+        <div class="location-card" id="churchCard">
+          <div class="loc-icon-circle"><i class="fas fa-church"></i></div>
+          <div class="loc-tag">Wedding Ceremony</div>
+          <h3 id="churchName">Sacred Heart Church</h3>
+          <p class="loc-address" id="churchAddress">123 Church St, Asheville, NC</p>
+          <div class="loc-map-embed">
+            <iframe id="churchMap" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="loc-buttons">
+            <a href="#" id="churchGoogleBtn" target="_blank" rel="noopener" class="loc-btn google">
+              <i class="fab fa-google"></i> Google Maps
+            </a>
+            <a href="#" id="churchWazeBtn" target="_blank" rel="noopener" class="loc-btn waze">
+              <i class="fas fa-location-arrow"></i> Waze
+            </a>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Ucapan & Doa Restu</label>
-          <textarea id="rsvpMessage" placeholder="Tulis ucapan anda di sini..." required maxlength="500"></textarea>
-        </div>
-
-        <button type="submit" id="rsvpSubmitBtn">Kirim Ucapan</button>
-      </form>
-
-      <div class="rsvp-note">Rusty &amp; Anney · 14 June 2026</div>
-    </div>
-
-    <!-- WISHES -->
-    <div class="wishes-section">
-      <h2><i class="fas fa-heart"></i> Ucapan & Doa <i class="fas fa-heart"></i></h2>
-      <p class="wishes-sub">— Dari tetamu tersayang —</p>
-      <div class="wishes-scroll-wrap">
-        <div class="wishes-track" id="wishesGrid">
-          <div class="wishes-loading" id="wishesLoading">
-            <i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...
+        <div class="location-card" id="receptionCard">
+          <div class="loc-icon-circle"><i class="fas fa-glass-cheers"></i></div>
+          <div class="loc-tag">Wedding Reception</div>
+          <h3 id="receptionName">The Old Barn</h3>
+          <p class="loc-address" id="receptionAddress">1234 Rustic Lane, Willow Creek</p>
+          <div class="loc-map-embed">
+            <iframe id="receptionMap" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="loc-buttons">
+            <a href="#" id="receptionGoogleBtn" target="_blank" rel="noopener" class="loc-btn google">
+              <i class="fab fa-google"></i> Google Maps
+            </a>
+            <a href="#" id="receptionWazeBtn" target="_blank" rel="noopener" class="loc-btn waze">
+              <i class="fas fa-location-arrow"></i> Waze
+            </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- SCHEDULE -->
-    <div class="schedule-section">
-      <h2><i class="fas fa-calendar-alt"></i> Order of Events <i class="fas fa-calendar-alt"></i></h2>
-      <p class="schedule-sub">— A celebration to remember —</p>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-chair"></i></div>
-          <div class="timeline-content"><span class="timeline-time">3:00 PM</span><h4>Guest Arrival</h4><p>Welcome and registration at the reception desk.</p></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-ring"></i></div>
-          <div class="timeline-content"><span class="timeline-time">4:00 PM</span><h4>Wedding Ceremony</h4><p>The exchange of vows before family and friends.</p></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-camera"></i></div>
-          <div class="timeline-content"><span class="timeline-time">5:00 PM</span><h4>Photo Session</h4><p>Capturing memories with the newlyweds and loved ones.</p></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
-          <div class="timeline-content"><span class="timeline-time">6:00 PM</span><h4>Dinner Reception</h4><p>An evening of fine dining and joyful celebration.</p></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
-          <div class="timeline-content"><span class="timeline-time">7:30 PM</span><h4>Cake & Toasts</h4><p>Cutting of the cake and heartfelt speeches.</p></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-music"></i></div>
-          <div class="timeline-content"><span class="timeline-time">8:30 PM</span><h4>Dancing & Farewell</h4><p>An evening of music, dancing and warm farewells.</p></div>
+      <div class="rsvp-section">
+        <h2>R.S.V.P.</h2>
+        <div class="rsvp-subtitle">Kirimkan Ucapan & Doa Restu</div>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <div class="form-group">
+            <label class="form-label">Nama</label>
+            <input type="text" id="rsvpName" placeholder="Nama anda" required maxlength="50">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ucapan & Doa Restu</label>
+            <textarea id="rsvpMessage" placeholder="Tulis ucapan anda di sini..." required maxlength="500"></textarea>
+          </div>
+
+          <button type="submit" id="rsvpSubmitBtn">Kirim Ucapan</button>
+        </form>
+
+        <div class="rsvp-note">Rusty &amp; Anney · 14 June 2026</div>
+      </div>
+
+      <div class="wishes-section">
+        <h2><i class="fas fa-heart"></i> Ucapan & Doa <i class="fas fa-heart"></i></h2>
+        <p class="wishes-sub">— Dari tetamu tersayang —</p>
+        <div class="wishes-scroll-wrap">
+          <div class="wishes-track" id="wishesGrid">
+            <div class="wishes-loading" id="wishesLoading">
+              <i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="schedule-section">
+        <h2><i class="fas fa-calendar-alt"></i> Order of Events <i class="fas fa-calendar-alt"></i></h2>
+        <p class="schedule-sub">— A celebration to remember —</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-chair"></i></div>
+            <div class="timeline-content"><span class="timeline-time">3:00 PM</span><h4>Guest Arrival</h4><p>Welcome and registration at the reception desk.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-ring"></i></div>
+            <div class="timeline-content"><span class="timeline-time">4:00 PM</span><h4>Wedding Ceremony</h4><p>The exchange of vows before family and friends.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-camera"></i></div>
+            <div class="timeline-content"><span class="timeline-time">5:00 PM</span><h4>Photo Session</h4><p>Capturing memories with the newlyweds and loved ones.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+            <div class="timeline-content"><span class="timeline-time">6:00 PM</span><h4>Dinner Reception</h4><p>An evening of fine dining and joyful celebration.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
+            <div class="timeline-content"><span class="timeline-time">7:30 PM</span><h4>Cake & Toasts</h4><p>Cutting of the cake and heartfelt speeches.</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-music"></i></div>
+            <div class="timeline-content"><span class="timeline-time">8:30 PM</span><h4>Dancing & Farewell</h4><p>An evening of music, dancing and warm farewells.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">Rusty &amp; Anney · 2026</div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer-note">Rusty &amp; Anney · 2026</div>
+    <!-- ============================================================
+         TAB 2: SHARE MOMENTS
+    ============================================================ -->
+    <div class="tab-content" id="tab-moments">
+
+      <div class="moments-hero">
+        <h1>Share Your Moments</h1>
+        <p>— Abadikan kenangan anda bersama kami —</p>
+      </div>
+
+      <div class="moment-upload-section">
+        <h2>Upload Gambar / Video</h2>
+        <p class="sub">Kongsikan detik indah anda</p>
+
+        <form class="moment-form" id="momentForm">
+          <div class="form-group">
+            <label class="form-label">Nama Anda</label>
+            <input type="text" id="momentName" placeholder="Nama anda" required maxlength="50">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Gambar / Video</label>
+            <label for="momentFileInput" class="moment-dropzone" id="momentDropzone">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <div class="dz-text">Tekan untuk pilih fail</div>
+              <div class="dz-hint">Gambar (JPG, PNG) atau Video (MP4) — Max 10MB</div>
+            </label>
+            <input type="file" id="momentFileInput" accept="image/*,video/*">
+
+            <div class="moment-preview" id="momentPreview">
+              <button type="button" class="remove-file" id="momentRemoveFile">
+                <i class="fas fa-times"></i>
+              </button>
+              <div id="momentPreviewContent"></div>
+              <div class="file-name" id="momentFileName"></div>
+            </div>
+          </div>
+
+          <button type="submit" id="momentSubmitBtn">Hantar Moment</button>
+        </form>
+      </div>
+
+      <div class="moments-gallery-section">
+        <h2><i class="fas fa-images"></i> Moments <i class="fas fa-images"></i></h2>
+        <p class="sub">— Dari tetamu tersayang —</p>
+        <div class="moments-gallery" id="momentsGallery">
+          <div class="moments-loading">
+            <i class="fas fa-spinner fa-spin"></i> Memuatkan moments...
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">Rusty &amp; Anney · 2026</div>
+    </div>
+
   </div>
 </div>
 
@@ -1135,12 +1615,13 @@ const enterBtn = document.getElementById('enterBtn');
 const bgMusic = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
 const musicIcon = document.getElementById('musicIcon');
+const topTabs = document.getElementById('topTabs');
 
 document.body.style.overflow = 'hidden';
 
 
 /* ============================================================
-   WEDDING DATE LINE (bawah nama)
+   WEDDING DATE LINE
 ============================================================ */
 (function() {
   const el = document.getElementById('weddingDateLine');
@@ -1151,7 +1632,7 @@ document.body.style.overflow = 'hidden';
 
 
 /* ============================================================
-   SETUP LOCATIONS — isi map iframe dan button link
+   SETUP LOCATIONS
 ============================================================ */
 function setupLocation(key, data) {
   const nameEl = document.getElementById(key + 'Name');
@@ -1184,6 +1665,33 @@ setupLocation('reception', LOCATIONS.reception);
 
 
 /* ============================================================
+   TAB SWITCHING
+============================================================ */
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    const tabName = btn.dataset.tab;
+
+    tabBtns.forEach(function(b) { b.classList.remove('active'); });
+    tabContents.forEach(function(c) { c.classList.remove('active'); });
+
+    btn.classList.add('active');
+    document.getElementById('tab-' + tabName).classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (tabName === 'moments') {
+      loadMoments();
+    } else {
+      loadWishes();
+    }
+  });
+});
+
+
+/* ============================================================
    GALLERY LIGHTBOX
 ============================================================ */
 const galleryImages = document.querySelectorAll('#galleryGrid img');
@@ -1194,9 +1702,13 @@ const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
 const lightboxCounter = document.getElementById('lightboxCounter');
 let currentLightboxIndex = 0;
+let currentLightboxItems = [];
+let currentLightboxType = 'image';
 
-function openLightbox(index) {
+function openLightbox(index, items, type) {
   currentLightboxIndex = index;
+  currentLightboxItems = items || galleryImages;
+  currentLightboxType = type || 'image';
   updateLightbox();
   lightbox.classList.add('show');
   document.body.style.overflow = 'hidden';
@@ -1204,28 +1716,57 @@ function openLightbox(index) {
 
 function closeLightbox() {
   lightbox.classList.remove('show');
+  lightbox.classList.remove('is-video');
+  const existingVideo = lightbox.querySelector('video');
+  if (existingVideo) existingVideo.remove();
   document.body.style.overflow = 'auto';
 }
 
 function updateLightbox() {
-  const img = galleryImages[currentLightboxIndex];
-  lightboxImg.src = img.src;
-  lightboxImg.alt = img.alt;
-  lightboxCounter.textContent = (currentLightboxIndex + 1) + ' / ' + galleryImages.length;
+  const item = currentLightboxItems[currentLightboxIndex];
+  if (!item) return;
+
+  const existingVideo = lightbox.querySelector('video');
+  if (existingVideo) existingVideo.remove();
+  lightbox.classList.remove('is-video');
+
+  const src = item.src || item.url || '';
+  const isVideo = item.isVideo || (src && src.match(/\.(mp4|webm|mov)$/i)) || (item.type === 'video');
+
+  if (isVideo) {
+    lightbox.classList.add('is-video');
+    lightboxImg.style.display = 'none';
+    const video = document.createElement('video');
+    video.src = src;
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.style.cssText = 'max-width:95vw;max-height:85vh;display:block;';
+    lightbox.querySelector('.lightbox-img-wrap').insertBefore(
+      video,
+      lightboxImg.nextSibling
+    );
+  } else {
+    lightboxImg.style.display = '';
+    lightboxImg.src = src;
+    lightboxImg.alt = item.alt || 'Fullscreen';
+  }
+
+  lightboxCounter.textContent = (currentLightboxIndex + 1) + ' / ' + currentLightboxItems.length;
 }
 
 function nextLightbox() {
-  currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+  currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
   updateLightbox();
 }
 
 function prevLightbox() {
-  currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+  currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
   updateLightbox();
 }
 
 galleryImages.forEach(function(img, i) {
-  img.addEventListener('click', function() { openLightbox(i); });
+  img.addEventListener('click', function() { openLightbox(i, Array.from(galleryImages), 'image'); });
 });
 
 lightboxClose.addEventListener('click', closeLightbox);
@@ -1324,9 +1865,13 @@ musicBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMusi
 function enterWedding() {
   coverPage.classList.add('hidden');
   mainPage.classList.add('visible');
+  mainPage.classList.add('tabs-visible');
   document.body.style.overflow = 'auto';
   window.scrollTo(0, 0);
   if (!musicStarted) playMusic();
+
+  setTimeout(function() { topTabs.classList.add('visible'); }, 600);
+
   loadWishes();
 }
 
@@ -1403,7 +1948,7 @@ rsvpPopup.addEventListener('click', function() { rsvpPopup.classList.remove('sho
 
 
 /* ============================================================
-   RSVP SUBMIT (Nama + Ucapan sahaja)
+   RSVP SUBMIT
 ============================================================ */
 const rsvpForm = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('rsvpSubmitBtn');
@@ -1411,6 +1956,7 @@ const submitBtn = document.getElementById('rsvpSubmitBtn');
 rsvpForm.addEventListener('submit', function(e) {
   e.preventDefault();
   const formData = {
+    type: 'wish',
     name: document.getElementById('rsvpName').value.trim(),
     message: document.getElementById('rsvpMessage').value.trim()
   };
@@ -1445,13 +1991,14 @@ rsvpForm.addEventListener('submit', function(e) {
 ============================================================ */
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
+  if (!wishesGrid) return;
   wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan ucapan...</div>';
   wishesGrid.classList.remove('no-scroll');
 
-  const callbackName = 'jsonpCallback_' + Date.now();
+  const callbackName = 'jsonpWish_' + Date.now();
   const script = document.createElement('script');
   const separator = SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
-  script.src = SCRIPT_URL + separator + 'callback=' + callbackName;
+  script.src = SCRIPT_URL + separator + 'type=wishes&callback=' + callbackName;
 
   window[callbackName] = function(data) {
     try {
@@ -1494,6 +2041,209 @@ function loadWishes() {
   document.body.appendChild(script);
 }
 
+
+/* ============================================================
+   MOMENT UPLOAD
+============================================================ */
+const momentForm = document.getElementById('momentForm');
+const momentName = document.getElementById('momentName');
+const momentFileInput = document.getElementById('momentFileInput');
+const momentDropzone = document.getElementById('momentDropzone');
+const momentPreview = document.getElementById('momentPreview');
+const momentPreviewContent = document.getElementById('momentPreviewContent');
+const momentFileName = document.getElementById('momentFileName');
+const momentRemoveFile = document.getElementById('momentRemoveFile');
+const momentSubmitBtn = document.getElementById('momentSubmitBtn');
+
+let momentFileBase64 = '';
+let momentFileType = '';
+let momentFileNameValue = '';
+
+momentFileInput.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (file.size > 10 * 1024 * 1024) {
+    alert('Fail terlalu besar. Max 10MB.');
+    momentFileInput.value = '';
+    return;
+  }
+
+  momentFileNameValue = file.name;
+  const isVideo = file.type.startsWith('video/');
+  momentFileType = isVideo ? 'video' : 'image';
+
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const result = ev.target.result;
+
+    if (isVideo) {
+      momentFileBase64 = result;
+      momentPreviewContent.innerHTML = '<video src="' + result + '" controls muted playsinline></video>';
+      momentFileName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
+      momentPreview.classList.add('show');
+    } else {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const MAX = 800;
+        let w = img.width, h = img.height;
+        if (w > h) { if (w > MAX) { h *= MAX/w; w = MAX; } }
+        else { if (h > MAX) { w *= MAX/h; h = MAX; } }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        momentFileBase64 = canvas.toDataURL('image/jpeg', 0.8);
+        momentPreviewContent.innerHTML = '<img src="' + momentFileBase64 + '" alt="Preview">';
+        momentFileName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
+        momentPreview.classList.add('show');
+      };
+      img.src = result;
+    }
+  };
+  reader.readAsDataURL(file);
+});
+
+momentRemoveFile.addEventListener('click', function(e) {
+  e.preventDefault();
+  momentFileInput.value = '';
+  momentFileBase64 = '';
+  momentFileType = '';
+  momentFileNameValue = '';
+  momentPreview.classList.remove('show');
+  momentPreviewContent.innerHTML = '';
+});
+
+momentForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  if (!momentFileBase64) {
+    alert('Sila pilih gambar atau video terlebih dahulu.');
+    return;
+  }
+
+  const nameVal = momentName.value.trim();
+  if (!nameVal) {
+    alert('Sila masukkan nama anda.');
+    return;
+  }
+
+  const originalText = momentSubmitBtn.textContent;
+  momentSubmitBtn.textContent = 'Menghantar...';
+  momentSubmitBtn.disabled = true;
+
+  const formData = {
+    type: 'moment',
+    name: nameVal,
+    fileType: momentFileType,
+    fileName: momentFileNameValue,
+    fileData: momentFileBase64
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  })
+  .then(function() {
+    showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '! Moment anda telah dihantar.', false);
+    momentForm.reset();
+    momentFileBase64 = '';
+    momentFileType = '';
+    momentFileNameValue = '';
+    momentPreview.classList.remove('show');
+    momentPreviewContent.innerHTML = '';
+    setTimeout(loadMoments, 2500);
+  })
+  .catch(function(err) {
+    console.error(err);
+    showPopup('Oops', 'Ada masalah. Sila cuba lagi.', true);
+  })
+  .finally(function() {
+    momentSubmitBtn.textContent = originalText;
+    momentSubmitBtn.disabled = false;
+  });
+});
+
+
+/* ============================================================
+   LOAD MOMENTS (JSONP)
+============================================================ */
+function loadMoments() {
+  const momentsGallery = document.getElementById('momentsGallery');
+  if (!momentsGallery) return;
+  momentsGallery.innerHTML = '<div class="moments-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan moments...</div>';
+
+  const callbackName = 'jsonpMoment_' + Date.now();
+  const script = document.createElement('script');
+  const separator = SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
+  script.src = SCRIPT_URL + separator + 'type=moments&callback=' + callbackName;
+
+  window[callbackName] = function(data) {
+    try {
+      if (data && data.status === 'success' && data.moments && data.moments.length > 0) {
+        const validMoments = data.moments.filter(function(m) { return m.url; });
+
+        if (validMoments.length === 0) {
+          momentsGallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
+        } else {
+          momentsGallery.innerHTML = validMoments.map(function(m, i) {
+            const isVideo = m.type === 'video' || (m.url && m.url.match(/\.(mp4|webm|mov)$/i));
+            const thumbnail = isVideo
+              ? '<video src="' + m.url + '" muted playsinline preload="metadata"></video>'
+              : '<img src="' + m.url + '" alt="' + escHtml(m.name) + '" loading="lazy">';
+
+            return '<div class="moment-card" data-index="' + i + '">' +
+              thumbnail +
+              '<div class="moment-type-badge">' + (isVideo ? '🎥 Video' : '📷 Foto') + '</div>' +
+              '<div class="moment-overlay">' +
+                '<div class="moment-name">' + escHtml(m.name) + '</div>' +
+                '<div class="moment-date">' + fmtDate(m.timestamp) + '</div>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+
+          const cards = momentsGallery.querySelectorAll('.moment-card');
+          const items = validMoments.map(function(m) {
+            const isVideo = m.type === 'video' || (m.url && m.url.match(/\.(mp4|webm|mov)$/i));
+            return {
+              src: m.url,
+              alt: m.name || 'Moment',
+              isVideo: isVideo,
+              type: isVideo ? 'video' : 'image'
+            };
+          });
+
+          cards.forEach(function(card, i) {
+            card.addEventListener('click', function() {
+              openLightbox(i, items, 'moments');
+            });
+          });
+        }
+      } else {
+        momentsGallery.innerHTML = '<div class="moments-empty">Belum ada moment. Jadilah yang pertama! 📸</div>';
+      }
+    } catch (err) {
+      console.error(err);
+      momentsGallery.innerHTML = '<div class="moments-empty">Ralat memuatkan moments.</div>';
+    }
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  };
+
+  script.onerror = function() {
+    momentsGallery.innerHTML = '<div class="moments-empty">Ralat sambungan. Cuba refresh.</div>';
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  };
+
+  document.body.appendChild(script);
+}
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
 function escHtml(text) {
   const div = document.createElement('div');
   div.textContent = text || '';

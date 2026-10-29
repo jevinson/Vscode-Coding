@@ -5,107 +5,111 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Rusty & Anney · Wedding Invitation</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    🎨 1. TETAPAN WARNA TEMA (UBAH WARNA DI SINI)
    ============================================================ */
 :root {
-  /* --- BACKGROUND UTAMA (Gelap + Gambar) --- */
-  --bg-image: url('DSC00531.jpg'); /* Tukar gambar background di sini */
-  --bg-overlay: linear-gradient(rgba(14, 31, 23, 0.85), rgba(14, 31, 23, 0.95)); /* Kaca gelap */
+  /* --- BACKGROUND UTAMA --- */
+  --bg-image: url('DSC00531.jpg'); 
+  
+  /* 
+     UBAH OPACITY DI SINI:
+     Nombor 0.65 bermaksud 65% (Hijau gelap).
+     Kalau nak gambar nampak lebih jelas, turunkan ke 0.50 (50%).
+     Kalau nak lebih gelap, naikkan ke 0.95 (95%).
+  */
+  --bg-overlay: linear-gradient(rgba(14, 31, 23, 0.55) 0%, rgba(14, 31, 23, 0.65) 100%);
 
-  /* --- WARNA KAD & PANEL --- */
-  --warna-kad-hijau: rgba(20, 45, 30, 0.7); /* Hijau gelap lutsinar */
-  --warna-kad-border: #1b3625;              /* Border hijau pekat */
+  /* --- WARNA KAD & PANEL (TRUE GLASS) --- */
+  --warna-kad-kaca: rgba(255, 255, 255, 0.03); 
+  --border-kaca: 1px solid rgba(255, 255, 255, 0.15); 
   
   /* --- WARNA TEKS --- */
-  --teks-utama: #faf9f6;         /* Putih/Cream untuk teks utama */
-  --teks-kelabu: #a3b8aa;        /* Hijau kelabu untuk teks kecil */
-  --teks-emas: #d4af37;          /* Warna Emas untuk nama & aksen */
-  
-  /* --- WARNA GARISAN --- */
-  --warna-garisan: rgba(212, 175, 55, 0.4); /* Garisan emas lutsinar */
+  --teks-utama: #faf9f6;         
+  --teks-kelabu: #c9c2b4;        
+  --teks-emas: #d4af37;          
 }
 
 /* ============================================================
-   📝 2. TETAPAN TEKS (SAIZ, WARNA, FONT)
+   📝 2. TETAPAN TEKS (SAIZ & JENIS FONT)
    ============================================================ */
 /* --- TEKS COVER PAGE --- */
-.cover-small            { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; letter-spacing: 4px; }
+.cover-small            { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; letter-spacing: 5px; font-weight: 600; }
 .cover-frame h1         { font-size: 4.2rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .cover-frame h1 span    { font-size: 3rem; color: var(--teks-emas); }
-.cover-names-sub        { font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
-.cover-hint             { font-size: 0.75rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
-.enter-btn              { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.cover-names-sub        { font-size: 1rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 500; }
+.cover-hint             { font-size: 0.75rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.enter-btn              { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
 
 /* --- TEKS NAMA UTAMA (BAHAGIAN DALAM) --- */
 .names h1               { font-size: 5rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .names h1 span          { font-size: 3.4rem; color: var(--teks-emas); }
-.names .tagline         { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.names .wedding-date-line { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.names .tagline         { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
+.names .wedding-date-line { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
 /* --- TEKS COUNTDOWN --- */
-.countdown-section h2   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Cormorant Garamond', serif; }
-.timer-number           { font-size: 1.5rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; }
-.timer-label            { font-size: 0.55rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
+.countdown-section h2   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
+.timer-number           { font-size: 1.5rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; font-weight: 600; }
+.timer-label            { font-size: 0.55rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 
 /* --- TEKS LOKASI --- */
-.location-card .loc-tag { font-size: 0.7rem; color: var(--teks-emas); font-family: 'Cormorant Garamond', serif; }
-.location-card h3       { font-size: 1.7rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; }
-.location-card .loc-address { font-size: 1.05rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.loc-btn                { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; background: transparent; border: 1px solid var(--teks-utama); }
+.location-card .loc-tag { font-size: 0.7rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
+.location-card h3       { font-size: 1.7rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 500; }
+.location-card .loc-address { font-size: 1.05rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.loc-btn                { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; background: transparent; border: var(--border-kaca); }
 .loc-btn:hover          { background: var(--teks-utama); color: #142d1e; }
 
 /* --- TEKS RSVP FORM --- */
-.rsvp-section h2        { font-size: 2rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.rsvp-subtitle          { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.form-label             { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.rsvp-section h2        { font-size: 2.2rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 5px; }
+.rsvp-subtitle          { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.form-label             { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
 .rsvp-form input, 
-.rsvp-form textarea     { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; background: rgba(0,0,0,0.2); border: 1px solid var(--warna-garisan); }
+.rsvp-form textarea     { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; background: rgba(0,0,0,0.2); border: var(--border-kaca); }
 .rsvp-form input::placeholder, .rsvp-form textarea::placeholder { color: rgba(255,255,255,0.3); }
-.rsvp-form button       { font-size: 0.95rem; color: var(--teks-utama); background: transparent; border: 1px solid var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.rsvp-form button       { font-size: 0.95rem; color: var(--teks-utama); background: transparent; border: var(--border-kaca); font-family: 'Cinzel', serif; font-weight: 600; }
 .rsvp-form button:hover { background: var(--teks-utama); color: #142d1e; }
-.rsvp-note              { font-size: 0.8rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
+.rsvp-note              { font-size: 0.8rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
 /* --- TEKS UCAPAN & DOA --- */
-.wishes-section h2      { font-size: 1.9rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.wishes-sub             { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.wish-item .wish-name   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.wish-item .wish-date   { font-size: 0.65rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.wish-item .wish-message{ font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.wishes-section h2      { font-size: 1.8rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 3px; }
+.wishes-sub             { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.wish-item .wish-name   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
+.wish-item .wish-date   { font-size: 0.65rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.wish-item .wish-message{ font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
 /* --- TEKS ATURCARA (TIMELINE) --- */
-.schedule-section h2    { font-size: 1.9rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.schedule-sub           { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.timeline-time          { font-size: 0.75rem; color: var(--teks-emas); font-family: 'Cormorant Garamond', serif; }
-.timeline-content h4    { font-size: 1.2rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; }
-.timeline-content p     { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
+.schedule-section h2    { font-size: 1.5rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; line-height: 1.2; }
+.schedule-sub           { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.timeline-time          { font-size: 0.75rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
+.timeline-content h4    { font-size: 1.2rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
+.timeline-content p     { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
 /* --- TEKS MOMENTS TAB --- */
-.moments-hero h1        { font-size: 2.4rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; }
-.moments-hero p         { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
-.moment-upload-section h2 { font-size: 1.2rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.moment-upload-section .sub { font-size: 0.8rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.moment-form input[type="text"] { font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; background: rgba(0,0,0,0.2); border: 1px solid var(--warna-garisan); }
-.moment-dropzone .dz-text { font-size: 0.8rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
-.moment-dropzone .dz-hint { font-size: 0.7rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.moment-form button[type="submit"] { font-size: 0.8rem; color: var(--teks-utama); background: transparent; border: 1px solid var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.moments-hero h1        { font-size: 2.6rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; }
+.moments-hero p         { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.moment-upload-section h2 { font-size: 1.2rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; }
+.moment-upload-section .sub { font-size: 0.8rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.moment-form input[type="text"] { font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; background: rgba(0,0,0,0.2); border: var(--border-kaca); }
+.moment-dropzone .dz-text { font-size: 0.8rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
+.moment-dropzone .dz-hint { font-size: 0.7rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.moment-form button[type="submit"] { font-size: 0.8rem; color: var(--teks-utama); background: transparent; border: var(--border-kaca); font-family: 'Cinzel', serif; font-weight: 600; }
 .moment-form button[type="submit"]:hover { background: var(--teks-utama); color: #142d1e; }
-.moments-gallery-section h2 { font-size: 1.9rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.moments-gallery-section .sub { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.moment-card .moment-name { font-size: 0.8rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; }
-.moment-card .moment-date { font-size: 0.6rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
+.moments-gallery-section h2 { font-size: 1.8rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 3px; }
+.moments-gallery-section .sub { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.moment-card .moment-name { font-size: 0.8rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
+.moment-card .moment-date { font-size: 0.6rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
 /* --- TEKS POPUP --- */
-.rsvp-popup-box h3      { font-size: 1.5rem; color: var(--teks-emas); font-family: 'Playfair Display', serif; }
-.rsvp-popup-box p       { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
-.rsvp-popup-close       { font-size: 0.85rem; color: var(--teks-utama); background: transparent; border: 1px solid var(--teks-utama); font-family: 'Cormorant Garamond', serif; }
+.rsvp-popup-box h3      { font-size: 1.5rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
+.rsvp-popup-box p       { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.rsvp-popup-close       { font-size: 0.85rem; color: var(--teks-utama); background: transparent; border: var(--border-kaca); font-family: 'Cinzel', serif; font-weight: 600; }
 .rsvp-popup-close:hover { background: var(--teks-utama); color: #142d1e; }
 
 /* --- TEKS TABS & BUTANG MUZIK --- */
-.tab-btn                { font-size: 0.78rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; }
-.tab-btn.active         { color: #142d1e; background: var(--teks-emas); }
+.tab-btn                { font-size: 0.78rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
+.tab-btn.active         { color: #142d1e; background: var(--teks-emas); font-weight: 700; }
 
 
 /* ============================================================
@@ -119,7 +123,6 @@
 }
 
 html, body {
-  /* Gunakan gambar + gradient gelap untuk seluruh badan */
   background: var(--bg-overlay), var(--bg-image) center/cover fixed;
   font-family: 'Cormorant Garamond', serif;
   line-height: 1.6;
@@ -127,32 +130,31 @@ html, body {
   min-height: 100vh;
 }
 
-/* --- TABS BAWAH --- */
-.top-tabs { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(120%); z-index: 9997; background: rgba(20, 45, 30, 0.85); backdrop-filter: blur(10px); border-radius: 28px; border: 1px solid var(--warna-garisan); display: flex; justify-content: center; padding: 6px; gap: 4px; box-shadow: 0 4px 20px rgba(0, 0, 0, .3); opacity: 0; transition: transform .6s cubic-bezier(.34, 1.56, .64, 1), opacity .4s ease; max-width: calc(100% - 24px); }
+/* --- TABS BAWAH (Glass) --- */
+.top-tabs { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(120%); z-index: 9997; background: rgba(20, 45, 30, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 28px; border: var(--border-kaca); display: flex; justify-content: center; padding: 6px; gap: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, .4); opacity: 0; transition: transform .6s cubic-bezier(.34, 1.56, .64, 1), opacity .4s ease; max-width: calc(100% - 24px); }
 .top-tabs.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
-.tab-btn { padding: .7rem 1.4rem; background: transparent; border: none; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: all .35s cubic-bezier(.34, 1.56, .64, 1); display: flex; align-items: center; gap: 7px; border-radius: 22px; white-space: nowrap; }
+.tab-btn { padding: .7rem 1.4rem; background: transparent; border: none; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all .35s cubic-bezier(.34, 1.56, .64, 1); display: flex; align-items: center; gap: 7px; border-radius: 22px; white-space: nowrap; }
 .tab-btn.active { box-shadow: 0 4px 14px rgba(0, 0, 0, .2); letter-spacing: 3px; }
 .main-page.tabs-visible .page { padding-bottom: 7rem; }
 
-/* --- BUTANG MUZIK --- */
-.music-btn { position: fixed; top: 22px; right: 22px; width: 52px; height: 52px; border-radius: 50%; background: rgba(20, 45, 30, 0.7); backdrop-filter: blur(5px); border: 1px solid var(--teks-emas); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 20px rgba(0, 0, 0, .3); z-index: 9998; color: var(--teks-emas); animation: musicPulse 2.5s infinite; }
-.music-btn.muted { background: rgba(0,0,0,0.5); color: #888; border-color: #888; animation: none; }
-@keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 20px rgba(0, 0, 0, .3), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 20px rgba(0, 0, 0, .3), 0 0 0 14px rgba(212, 175, 55, 0); } }
+/* --- BUTANG MUZIK (Glass) --- */
+.music-btn { position: fixed; top: 22px; right: 22px; width: 52px; height: 52px; border-radius: 50%; background: rgba(20, 45, 30, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: var(--border-kaca); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, .4); z-index: 9998; color: var(--teks-emas); animation: musicPulse 2.5s infinite; }
+.music-btn.muted { background: rgba(0,0,0,0.5); color: #888; animation: none; }
+@keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 14px rgba(212, 175, 55, 0); } }
 
-/* --- COVER PAGE --- */
+/* --- COVER PAGE (Glass) --- */
 .cover-page { position: fixed; inset: 0; height: 100dvh; background: var(--bg-overlay), var(--bg-image) center/cover; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; cursor: pointer; }
 .cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.cover-frame { position: relative; border: 2px solid var(--warna-kad-border); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(4px); box-shadow: 0 30px 60px rgba(0, 0, 0, .3); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; }
-.cover-frame::before { content: ""; position: absolute; inset: 12px; border: 1px solid var(--warna-kad-border); pointer-events: none; }
+.cover-frame { position: relative; border: var(--border-kaca); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px rgba(0, 0, 0, .5); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; border-radius: 8px; }
 .cover-frame h1 { line-height: 1.1; margin-bottom: .5rem; }
 .cover-frame h1 span { vertical-align: middle; margin: 0 .3rem; }
 .cover-small { letter-spacing: 8px; text-transform: uppercase; margin-bottom: 1.8rem; }
 .cover-names-sub { letter-spacing: 6px; text-transform: uppercase; margin-bottom: 2rem; }
 .cover-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 1.5rem 0 2rem; color: var(--teks-utama); }
-.cover-divider::before, .cover-divider::after { content: ""; flex: 1; max-width: 60px; height: 1px; background: rgba(250, 249, 246, .5); }
-.enter-btn { background: transparent; border: 1px solid var(--teks-utama); text-transform: uppercase; letter-spacing: 5px; padding: 1.1rem 2.5rem; cursor: pointer; font-weight: 500; transition: all .4s; }
+.cover-divider::before, .cover-divider::after { content: ""; flex: 1; max-width: 60px; height: 1px; background: rgba(250, 249, 246, .3); }
+.enter-btn { background: transparent; text-transform: uppercase; letter-spacing: 5px; padding: 1.1rem 2.5rem; cursor: pointer; transition: all .4s; border: var(--border-kaca); border-radius: 4px; }
 .enter-btn:hover { background: var(--teks-utama); color: #142d1e; }
-.cover-hint { margin-top: 1.8rem; letter-spacing: 4px; font-style: italic; text-transform: uppercase; opacity: 0.8; }
+.cover-hint { margin-top: 1.8rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.8; }
 
 /* --- MAIN PAGE --- */
 .main-page { opacity: 0; visibility: hidden; transition: opacity 1.2s ease .4s, visibility 1.2s ease .4s; }
@@ -162,8 +164,7 @@ html, body {
 .tab-content.active { display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 /* --- HERO IMAGE --- */
-.hero { width: 100%; margin-bottom: 3rem; overflow: hidden; position: relative; box-shadow: 0 15px 30px -10px rgba(0, 0, 0, .3); }
-.hero::after { content: ""; position: absolute; inset: 12px; border: 1px solid var(--warna-garisan); pointer-events: none; }
+.hero { width: 100%; margin-bottom: 3rem; overflow: hidden; position: relative; box-shadow: 0 15px 30px -10px rgba(0, 0, 0, .5); border-radius: 8px; }
 .hero img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 16/9; }
 
 /* --- NAMES --- */
@@ -171,42 +172,48 @@ html, body {
 .names h1 { line-height: 1; margin-bottom: .8rem; }
 .names h1 span { vertical-align: middle; margin: 0 .4rem; }
 .names .tagline { display: flex; align-items: center; justify-content: center; gap: 14px; font-style: italic; letter-spacing: 5px; text-transform: uppercase; }
-.names .tagline::before, .names .tagline::after { content: ""; width: 40px; height: 1px; background: var(--warna-garisan); }
+.names .tagline::before, .names .tagline::after { content: ""; width: 40px; height: 1px; background: rgba(212, 175, 55, .4); }
 .names .wedding-date-line { margin-top: 1.2rem; font-style: italic; letter-spacing: 4px; text-transform: uppercase; position: relative; padding-top: 1rem; }
 .names .wedding-date-line::before { content: "◆"; position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: var(--teks-emas); font-size: .55rem; padding: 0 .6rem; }
 
-/* --- KAD-KAD (COUNTDOWN, LOCATION, RSVP, DLL) --- */
-/* Konsep: Hijau gelap lutsinar, border emas/putih, teks cerah */
+/* ============================================================
+   🌟 TRUE GLASSMORPHISM EFFECT (KOTAK-KOTAK) 🌟
+   ============================================================ */
 .countdown-section, .location-card, .rsvp-section, .wishes-section, .schedule-section, .moments-hero, .moment-upload-section, .rsvp-popup-box {
-  background: var(--warna-kad-hijau);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--warna-garisan);
-  border-radius: 4px;
-  box-shadow: 0 15px 30px -15px rgba(0, 0, 0, .3);
+  background: var(--warna-kad-kaca); 
+  backdrop-filter: blur(3px); /* Blur seragam */
+  -webkit-backdrop-filter: blur(3px);
+  border: var(--border-kaca); 
+  border-radius: 12px; 
+  
+  /* Kesan shadow lembut + highlight putih di bahagian atas (macam pantulan kaca) */
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2), 
+    inset 0 0 20px rgba(255, 255, 255, 0.05); 
 }
 
 /* --- COUNTDOWN --- */
 .countdown-section { width: 100%; padding: 1.8rem .8rem 1.5rem; margin: 1.8rem 0 2rem; }
-.countdown-section h2 { text-align: center; font-weight: 500; letter-spacing: 6px; margin-bottom: 1.2rem; text-transform: uppercase; }
+.countdown-section h2 { text-align: center; letter-spacing: 6px; margin-bottom: 1.2rem; text-transform: uppercase; }
 .countdown-section h2 i { margin: 0 6px; color: var(--teks-emas); }
 .timer { display: flex; justify-content: center; gap: .5rem; }
-.timer-block { flex: 1 1 0; max-width: 82px; display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, .3); padding: .7rem .3rem .55rem; border: 1px solid var(--warna-garisan); border-radius: 4px; }
-.timer-number { font-weight: 500; }
+.timer-block { flex: 1 1 0; max-width: 82px; display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, .15); padding: .7rem .3rem .55rem; border: var(--border-kaca); border-radius: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); }
 .timer-label { text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
 
 /* --- GALLERY & LIGHTBOX --- */
 .gallery-section { width: 100%; margin: 0 0 3rem; padding: 0 1rem; }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 180px 180px; grid-template-areas: "a b b c" "d d e f"; gap: 8px; max-width: 900px; margin: 0 auto; }
-.gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; cursor: pointer; }
+.gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; cursor: pointer; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 .gallery-grid img:hover { transform: scale(1.03); }
 .gallery-grid img:nth-child(1) { grid-area: a; } .gallery-grid img:nth-child(2) { grid-area: b; } .gallery-grid img:nth-child(3) { grid-area: c; } .gallery-grid img:nth-child(4) { grid-area: d; } .gallery-grid img:nth-child(5) { grid-area: e; } .gallery-grid img:nth-child(6) { grid-area: f; }
 
-.lightbox { position: fixed; inset: 0; background: rgba(14, 31, 23, .95); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; padding: 1rem; }
+.lightbox { position: fixed; inset: 0; background: rgba(14, 31, 23, .95); backdrop-filter: blur(10px); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; padding: 1rem; }
 .lightbox.show { opacity: 1; visibility: visible; }
 .lightbox-img-wrap { position: relative; max-width: 95vw; max-height: 85vh; display: flex; align-items: center; justify-content: center; }
-.lightbox img { max-width: 95vw; max-height: 85vh; object-fit: contain; display: block; border: 1px solid var(--warna-garisan); }
-.lightbox-close { position: absolute; top: -50px; right: 0; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .3); color: var(--teks-utama); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .3); color: var(--teks-utama); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; }
+.lightbox img { max-width: 95vw; max-height: 85vh; object-fit: contain; display: block; border: var(--border-kaca); border-radius: 8px; }
+.lightbox-close { position: absolute; top: -50px; right: 0; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, .1); border: var(--border-kaca); color: var(--teks-utama); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 255, 255, .1); border: var(--border-kaca); color: var(--teks-utama); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; }
 .lightbox-nav.prev { left: -70px; } .lightbox-nav.next { right: -70px; }
 .lightbox-counter { position: absolute; bottom: -44px; left: 50%; transform: translateX(-50%); color: var(--teks-utama); font-size: .85rem; letter-spacing: 4px; }
 @media(max-width:768px) { .lightbox-nav.prev { left: 6px; } .lightbox-nav.next { right: 6px; } .lightbox-close { top: 6px; right: 6px; } }
@@ -214,111 +221,108 @@ html, body {
 /* --- LOCATIONS --- */
 .locations-section { width: 100%; margin: 0 0 3rem; display: flex; flex-direction: column; gap: 2rem; }
 .location-card { padding: 2rem 1.5rem 1.5rem; position: relative; }
-.location-card::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255, 255, 255, .1); pointer-events: none; border-radius: 2px; }
-.location-card .loc-icon-circle { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--teks-emas); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--teks-emas); font-size: 1.3rem; background: rgba(0,0,0,.3); position: relative; z-index: 1; }
-.location-card .loc-tag { text-align: center; letter-spacing: 5px; text-transform: uppercase; margin-bottom: .5rem; font-weight: 600; }
-.location-card h3 { text-align: center; font-weight: 500; letter-spacing: 4px; margin-bottom: .6rem; text-transform: uppercase; }
-.location-card .loc-address { text-align: center; font-style: italic; margin-bottom: 1.3rem; }
-.location-card .loc-map-embed { width: 100%; margin-bottom: 1.2rem; border: 1px solid var(--warna-garisan); padding: 4px; background: #ffffff; position: relative; z-index: 1; border-radius: 2px; }
-.location-card .loc-map-embed iframe { width: 100%; height: 220px; border: 0; display: block; }
+.location-card .loc-icon-circle { width: 56px; height: 56px; border-radius: 50%; border: var(--border-kaca); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--teks-emas); font-size: 1.3rem; background: rgba(0,0,0,.2); position: relative; z-index: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.location-card .loc-tag { text-align: center; letter-spacing: 5px; text-transform: uppercase; margin-bottom: .5rem; }
+.location-card h3 { text-align: center; letter-spacing: 4px; margin-bottom: .6rem; text-transform: uppercase; }
+.location-card .loc-address { text-align: center; margin-bottom: 1.3rem; }
+.location-card .loc-map-embed { width: 100%; margin-bottom: 1.2rem; border: var(--border-kaca); padding: 4px; background: #ffffff; position: relative; z-index: 1; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.location-card .loc-map-embed iframe { width: 100%; height: 220px; border: 0; display: block; border-radius: 4px; }
 .location-card .loc-buttons { display: flex; gap: .7rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
-.loc-btn { display: inline-flex; align-items: center; gap: 8px; padding: .85rem 1.4rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; font-weight: 600; transition: all .3s; min-width: 140px; justify-content: center; border-radius: 4px; }
+.loc-btn { display: inline-flex; align-items: center; gap: 8px; padding: .85rem 1.4rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all .3s; min-width: 140px; justify-content: center; border-radius: 6px; backdrop-filter: blur(5px); }
 
 /* --- RSVP --- */
 .rsvp-section { width: 100%; padding: 3rem 1.8rem; margin-top: 1rem; text-align: center; }
-.rsvp-section h2 { font-weight: 500; letter-spacing: 10px; margin-bottom: .4rem; text-transform: uppercase; }
-.rsvp-subtitle { font-style: italic; letter-spacing: 3px; margin-bottom: 2rem; }
+.rsvp-section h2 { margin-bottom: .4rem; text-transform: uppercase; }
+.rsvp-subtitle { letter-spacing: 3px; margin-bottom: 2rem; }
 .rsvp-form { display: flex; flex-direction: column; gap: 1.3rem; max-width: 480px; margin: 0 auto; text-align: left; }
 .form-group { display: flex; flex-direction: column; gap: .5rem; }
-.form-label { letter-spacing: 3px; text-transform: uppercase; font-weight: 600; padding-left: .2rem; }
-.rsvp-form input, .rsvp-form textarea { width: 100%; padding: 1rem 1.2rem; outline: none; transition: .3s; border-radius: 4px; }
-.rsvp-form input:focus, .rsvp-form textarea:focus { border-color: var(--teks-emas); box-shadow: 0 0 0 2px rgba(212, 175, 55, .2); }
+.form-label { letter-spacing: 3px; text-transform: uppercase; padding-left: .2rem; }
+.rsvp-form input, .rsvp-form textarea { width: 100%; padding: 1rem 1.2rem; outline: none; transition: .3s; border-radius: 6px; }
+.rsvp-form input:focus, .rsvp-form textarea:focus { box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3); }
 .rsvp-form textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
-.rsvp-form button { padding: 1rem 2.8rem; letter-spacing: 6px; cursor: pointer; text-transform: uppercase; align-self: center; min-width: 220px; font-weight: 600; transition: all .3s; border-radius: 4px; }
+.rsvp-form button { padding: 1rem 2.8rem; letter-spacing: 6px; cursor: pointer; text-transform: uppercase; align-self: center; min-width: 220px; transition: all .3s; border-radius: 6px; }
 .rsvp-form button:disabled { opacity: .7; cursor: not-allowed; }
-.rsvp-note { margin-top: 1.8rem; font-style: italic; letter-spacing: 3px; text-transform: uppercase; }
+.rsvp-note { margin-top: 1.8rem; letter-spacing: 3px; text-transform: uppercase; }
 
 /* --- WISHES --- */
 .wishes-section { width: 100%; margin-top: 3.5rem; padding: 3rem 1.5rem 2.8rem; }
-.wishes-section h2 { text-align: center; font-weight: 500; letter-spacing: 8px; text-transform: uppercase; margin-bottom: .4rem; }
+.wishes-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .4rem; }
 .wishes-section h2 i { margin: 0 10px; color: var(--teks-emas); }
-.wishes-sub { text-align: center; font-style: italic; letter-spacing: 3px; margin-bottom: 1.5rem; }
+.wishes-sub { text-align: center; letter-spacing: 3px; margin-bottom: 1.5rem; }
 .wishes-scroll-wrap { max-width: 700px; margin: 0 auto; height: 420px; overflow: hidden; position: relative; padding: 0 1rem; }
 .wishes-track { display: flex; flex-direction: column; gap: 0.8rem; animation: wishesAutoScroll 60s linear infinite; padding: 20px 0; }
 .wishes-track:hover { animation-play-state: paused; }
 .wishes-track.no-scroll { animation: none; height: auto; }
 @keyframes wishesAutoScroll { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
-.wish-item { text-align: center; padding: .8rem 1rem; background: rgba(0,0,0,.2); border-bottom: 1px solid var(--warna-garisan); border-radius: 4px; }
-.wish-item .wish-name { font-weight: 500; letter-spacing: 3px; text-transform: uppercase; margin-bottom: .2rem; }
-.wish-item .wish-date { font-style: italic; letter-spacing: 2px; margin-bottom: .3rem; }
-.wish-item .wish-message { line-height: 1.45; font-style: italic; }
+.wish-item { text-align: center; padding: .8rem 1rem; background: rgba(255,255,255,0.05); border: var(--border-kaca); border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; }
+.wish-item .wish-name { letter-spacing: 3px; text-transform: uppercase; margin-bottom: .2rem; }
+.wish-item .wish-date { letter-spacing: 2px; margin-bottom: .3rem; }
+.wish-item .wish-message { line-height: 1.45; }
 .wishes-loading, .wishes-empty { text-align: center; padding: 2rem 1rem; font-style: italic; color: var(--teks-kelabu); letter-spacing: 2px; }
 .wishes-loading i { color: var(--teks-emas); margin-right: 8px; }
 
 /* --- SCHEDULE --- */
 .schedule-section { width: 100%; margin-top: 3.5rem; padding: 3rem 1.8rem 2.8rem; }
-.schedule-section h2 { text-align: center; font-weight: 500; letter-spacing: 8px; text-transform: uppercase; margin-bottom: .4rem; }
+.schedule-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .4rem; }
 .schedule-section h2 i { margin: 0 10px; color: var(--teks-emas); }
-.schedule-sub { text-align: center; font-style: italic; letter-spacing: 3px; margin-bottom: 2.5rem; }
+.schedule-sub { text-align: center; letter-spacing: 3px; margin-bottom: 2.5rem; }
 .timeline { position: relative; max-width: 720px; margin: 0 auto; padding-left: 1.8rem; }
-.timeline::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, transparent, var(--teks-emas) 8%, var(--teks-emas) 92%, transparent); opacity: .5; }
 .timeline-item { position: relative; padding: 0 0 2.2rem 2.5rem; }
 .timeline-item:last-child { padding-bottom: 0; }
-.timeline-icon { position: absolute; left: -1.05rem; top: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--warna-kad-hijau); border: 1px solid var(--teks-emas); display: flex; align-items: center; justify-content: center; color: var(--teks-emas); font-size: .9rem; z-index: 2; box-shadow: 0 0 0 4px var(--warna-kad-hijau); }
-.timeline-content { border-left: 1px solid var(--warna-garisan); padding: .2rem 0 .4rem 1.4rem; }
-.timeline-time { display: inline-block; letter-spacing: 4px; text-transform: uppercase; margin-bottom: .4rem; font-weight: 600; }
-.timeline-content h4 { font-weight: 500; letter-spacing: 3px; text-transform: uppercase; margin-bottom: .4rem; }
-.timeline-content p { font-style: italic; }
+.timeline-icon { position: absolute; left: -1.05rem; top: 0; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.4); border: var(--border-kaca); display: flex; align-items: center; justify-content: center; color: var(--teks-emas); font-size: .9rem; z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.timeline-content { padding: .2rem 0 .4rem 1.4rem; }
+.timeline-time { display: inline-block; letter-spacing: 4px; text-transform: uppercase; margin-bottom: .4rem; }
+.timeline-content h4 { letter-spacing: 3px; text-transform: uppercase; margin-bottom: .4rem; }
 
 /* --- MOMENTS TAB --- */
 .moments-hero { width: 100%; text-align: center; padding: 1.5rem 1rem 1.8rem; margin-bottom: 1.5rem; }
 .moments-hero h1 { margin-bottom: .4rem; line-height: 1.1; }
-.moments-hero p { font-style: italic; letter-spacing: 2px; }
+.moments-hero p { letter-spacing: 2px; }
 .moment-upload-section { width: 100%; max-width: 420px; margin: 0 auto 2rem; padding: 1.5rem 1.2rem; position: relative; }
-.moment-upload-section::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(255, 255, 255, .1); pointer-events: none; border-radius: 2px; }
-.moment-upload-section h2 { text-align: center; letter-spacing: 4px; text-transform: uppercase; margin-bottom: .3rem; position: relative; z-index: 1; }
-.moment-upload-section .sub { text-align: center; font-style: italic; letter-spacing: 2px; margin-bottom: 1rem; position: relative; z-index: 1; }
+.moment-upload-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .3rem; position: relative; z-index: 1; }
+.moment-upload-section .sub { text-align: center; letter-spacing: 2px; margin-bottom: 1rem; position: relative; z-index: 1; }
 .moment-form { display: flex; flex-direction: column; gap: .9rem; position: relative; z-index: 1; }
-.moment-form input[type="text"] { width: 100%; padding: .8rem 1rem; outline: none; border-radius: 4px; }
-.moment-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.2rem 1rem; border: 2px dashed var(--warna-garisan); background: rgba(0,0,0,.2); cursor: pointer; text-align: center; border-radius: 4px; }
+.moment-form input[type="text"] { width: 100%; padding: .8rem 1rem; outline: none; border-radius: 6px; }
+.moment-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.2rem 1rem; border: 2px dashed rgba(255,255,255,0.2); background: rgba(0,0,0,.2); cursor: pointer; text-align: center; border-radius: 6px; }
 .moment-dropzone i { font-size: 1.4rem; color: var(--teks-emas); margin-bottom: .4rem; }
-.moment-dropzone .dz-text { letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
-.moment-dropzone .dz-hint { font-style: italic; margin-top: .3rem; }
+.moment-dropzone .dz-text { text-transform: uppercase; }
+.moment-dropzone .dz-hint { margin-top: .3rem; }
 #momentFileInput { display: none; }
 .moment-preview { display: none; position: relative; width: 100%; max-width: 280px; margin: 0 auto; }
 .moment-preview.show { display: block; }
-.moment-preview img, .moment-preview video { width: 100%; max-height: 280px; object-fit: cover; display: block; border: 1px solid var(--teks-emas); padding: 4px; background: transparent; border-radius: 4px; }
-.moment-preview .file-name { text-align: center; font-style: italic; color: var(--teks-kelabu); margin-top: .4rem; word-break: break-all; }
-.moment-preview .remove-file { position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; border-radius: 50%; background: var(--teks-emas); color: #142d1e; border: 2px solid var(--warna-kad-border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: .75rem; }
-.moment-form button[type="submit"] { padding: .75rem 1.8rem; letter-spacing: 4px; cursor: pointer; text-transform: uppercase; align-self: center; min-width: 180px; font-weight: 600; transition: all .3s; border-radius: 4px; }
+.moment-preview img, .moment-preview video { width: 100%; max-height: 280px; object-fit: cover; display: block; border: var(--border-kaca); padding: 4px; background: transparent; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.moment-preview .file-name { text-align: center; color: var(--teks-kelabu); margin-top: .4rem; word-break: break-all; }
+.moment-preview .remove-file { position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; border-radius: 50%; background: var(--teks-emas); color: #142d1e; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: .75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.moment-form button[type="submit"] { padding: .75rem 1.8rem; letter-spacing: 4px; cursor: pointer; text-transform: uppercase; align-self: center; min-width: 180px; transition: all .3s; border-radius: 6px; }
 .moment-form button[type="submit"]:disabled { opacity: .7; cursor: not-allowed; }
 .moments-gallery-section { width: 100%; padding: 0; }
-.moments-gallery-section h2 { text-align: center; letter-spacing: 8px; text-transform: uppercase; margin-bottom: .4rem; }
+.moments-gallery-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .4rem; }
 .moments-gallery-section h2 i { margin: 0 10px; color: var(--teks-emas); }
-.moments-gallery-section .sub { text-align: center; font-style: italic; letter-spacing: 3px; margin-bottom: 2rem; }
+.moments-gallery-section .sub { text-align: center; letter-spacing: 3px; margin-bottom: 2rem; }
 .moments-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; max-width: 900px; margin: 0 auto; }
-.moment-card { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--warna-kad-hijau); border: 1px solid var(--warna-garisan); cursor: pointer; transition: .3s; border-radius: 4px; }
-.moment-card:hover { transform: scale(1.02); border-color: var(--teks-emas); }
+.moment-card { position: relative; aspect-ratio: 1/1; overflow: hidden; background: rgba(255,255,255,0.05); border: var(--border-kaca); cursor: pointer; transition: .3s; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.moment-card:hover { transform: scale(1.02); }
 .moment-card img, .moment-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.moment-card .moment-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(14, 31, 23, .9), transparent); padding: 1.5rem .7rem .6rem; text-align: left; }
-.moment-card .moment-name { letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
-.moment-card .moment-date { font-style: italic; opacity: .8; }
-.moment-card .moment-type-badge { position: absolute; top: 8px; right: 8px; background: var(--teks-emas); color: #142d1e; padding: 3px 8px; font-size: .55rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 3px; font-weight: 600; }
+.moment-card .moment-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(14, 31, 23, .95), transparent); padding: 1.5rem .7rem .6rem; text-align: left; }
+.moment-card .moment-name { text-transform: uppercase; }
+.moment-card .moment-date { opacity: .8; }
+.moment-card .moment-type-badge { position: absolute; top: 8px; right: 8px; background: var(--teks-emas); color: #142d1e; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 .moments-loading, .moments-empty { grid-column: 1/-1; text-align: center; padding: 3rem 1rem; font-style: italic; color: var(--teks-kelabu); letter-spacing: 2px; }
 .moments-loading i { color: var(--teks-emas); margin-right: 8px; }
 
 /* --- WATERMARK & POPUP --- */
-.watermark { width: 100%; display: flex; justify-content: center; align-items: center; padding: 1.5rem 1rem 2rem; margin-top: 0.1rem; }
-.watermark img { width: 210px; height: auto; opacity: .8; filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg); }
-.rsvp-popup { position: fixed; inset: 0; background: rgba(14, 31, 23, .85); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; visibility: hidden; transition: opacity .4s; padding: 1.5rem; }
+.watermark { width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem 1rem 2rem; margin-top: 0.1rem; gap: 8px; }
+.watermark .contact-text { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--teks-utama); letter-spacing: 2px; text-align: center; }
+.watermark .created-text { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; color: var(--teks-kelabu); font-style: italic; text-transform: none; letter-spacing: 1px; }
+.watermark img { width: 210px; height: auto; opacity: .8; filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg); margin-top: 5px; }
+.rsvp-popup { position: fixed; inset: 0; background: rgba(14, 31, 23, .85); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; visibility: hidden; transition: opacity .4s; padding: 1.5rem; }
 .rsvp-popup.show { opacity: 1; visibility: visible; }
 .rsvp-popup-box { max-width: 420px; width: 100%; padding: 2.8rem 2rem; text-align: center; position: relative; transform: translateY(20px); transition: transform .4s; }
 .rsvp-popup.show .rsvp-popup-box { transform: translateY(0); }
-.rsvp-popup-box::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--warna-garisan); pointer-events: none; border-radius: 2px; }
 .rsvp-popup-box i { font-size: 2.5rem; color: var(--teks-emas); margin-bottom: 1rem; display: block; }
-.rsvp-popup-box h3 { letter-spacing: 6px; text-transform: uppercase; margin-bottom: .9rem; }
-.rsvp-popup-box p { font-style: italic; margin-bottom: 1.8rem; }
-.rsvp-popup-close { padding: .85rem 2.2rem; letter-spacing: 5px; text-transform: uppercase; cursor: pointer; font-weight: 600; border-radius: 4px; }
+.rsvp-popup-box h3 { text-transform: uppercase; margin-bottom: .9rem; }
+.rsvp-popup-box p { margin-bottom: 1.8rem; }
+.rsvp-popup-close { padding: .85rem 2.2rem; letter-spacing: 5px; text-transform: uppercase; cursor: pointer; border-radius: 6px; }
 
 /* --- RESPONSIVE MOBILE --- */
 @media(max-width:640px) {
@@ -343,13 +347,13 @@ html, body {
   .location-card h3 { font-size: 1.35rem; }
   .loc-btn { font-size: .75rem; padding: .75rem 1.1rem; min-width: auto; flex: 1; }
   .rsvp-section { padding: 2.2rem 1.2rem; }
-  .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 6px; }
+  .rsvp-section h2 { font-size: 1.5rem; letter-spacing: 2px; }
   .rsvp-form button { font-size: .85rem; width: 100%; min-width: auto; }
   .wishes-section { padding: 2.2rem 1rem 2rem; margin-top: 2.5rem; }
-  .wishes-section h2 { font-size: 1.35rem; letter-spacing: 4px; }
+  .wishes-section h2 { font-size: 1.35rem; letter-spacing: 1px; }
   .wishes-scroll-wrap { height: 360px; }
   .schedule-section { padding: 2.2rem 1.1rem 2rem; margin-top: 2.5rem; }
-  .schedule-section h2 { font-size: 1.35rem; letter-spacing: 4px; }
+  .schedule-section h2 { font-size: 1.15rem; letter-spacing: 1px; }
   .timeline { padding-left: 1.3rem; }
   .timeline-item { padding-left: 2.2rem; padding-bottom: 1.7rem; }
   .timeline-icon { width: 34px; height: 34px; font-size: .75rem; left: -.9rem; }
@@ -360,6 +364,7 @@ html, body {
   .moments-gallery-section h2 { font-size: 1.35rem; }
   .moments-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .watermark img { width: 150px; }
+  .watermark .contact-text { font-size: 0.8rem; }
 }
 @media(max-width:380px) {
   .top-tabs { bottom: 10px; padding: 4px; }
@@ -490,32 +495,35 @@ html, body {
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-chair"></i></div>
-            <div class="timeline-content"><span class="timeline-time">12:00 PM</span><p>Ketibaan dari Gereja di rumah majlis</p><p>Perarakan Masuk</p></div>
+            <div class="timeline-content"><span class="timeline-time">12:00 PM</span><h4>Ketibaan</h4><p>Ketibaan dari Gereja di rumah majlis & Perarakan Masuk</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-ring"></i></div>
-            <div class="timeline-content"><span class="timeline-time">12:35 PM</span><p>Doa makan</p><p>Makan tengahhari</p></div>
+            <div class="timeline-content"><span class="timeline-time">12:35 PM</span><h4>Makan Tengahari</h4><p>Doa makan & Makan tengahhari</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-camera"></i></div>
-            <div class="timeline-content"><span class="timeline-time">5:00 PM</span><p>Capturing memories with the newlyweds and loved ones.</p></div>
+            <div class="timeline-content"><span class="timeline-time">5:00 PM</span><h4>Sesi Bergambar</h4><p>Capturing memories with the newlyweds and loved ones.</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
-            <div class="timeline-content"><span class="timeline-time">6:00 PM</span><p>An evening of fine dining and joyful celebration.</p></div>
+            <div class="timeline-content"><span class="timeline-time">6:00 PM</span><h4>Makan Malam</h4><p>An evening of fine dining and joyful celebration.</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
-            <div class="timeline-content"><span class="timeline-time">7:30 PM</span><p>Cutting of the cake and heartfelt speeches.</p></div>
+            <div class="timeline-content"><span class="timeline-time">7:30 PM</span><h4>Potong Kek</h4><p>Cutting of the cake and heartfelt speeches.</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-music"></i></div>
-            <div class="timeline-content"><span class="timeline-time">8:30 PM</span><p>An evening of music, dancing and warm farewells.</p></div>
+            <div class="timeline-content"><span class="timeline-time">8:30 PM</span><h4>Bersurai</h4><p>An evening of music, dancing and warm farewells.</p></div>
           </div>
         </div>
       </div>
 
+      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
+        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
     </div>
@@ -560,7 +568,10 @@ html, body {
         </div>
       </div>
 
+      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
+        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
     </div>

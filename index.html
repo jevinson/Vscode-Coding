@@ -23,6 +23,10 @@
   --teks-utama: #faf9f6;         
   --teks-kelabu: #c9c2b4;        
   --teks-emas: #d4af37;          
+  
+  /* --- WARNA DRESS CODE (DIKEMBALIKAN) --- */
+  --light-sage-green: #9CAF88; 
+  --emerald-green: #046307;    
 }
 
 /* ============================================================
@@ -94,9 +98,14 @@
 .tab-btn                { font-size: 0.78rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 .tab-btn.active         { color: #142d1e; background: var(--teks-emas); font-weight: 700; }
 
+/* --- TEKS DRESS CODE --- */
+.dress-code-title       { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--teks-emas); letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
+.dress-code-label       { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--teks-kelabu); font-style: italic; margin-top: 5px; display: block; }
+.dress-code-color-name  { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; color: #a0a0a0; font-style: italic; margin-top: 2px; display: block; }
+
 
 /* ============================================================
-   ⚙️ 3. ASAS & STRUKTUR (FIX BACKGROUND)
+   ⚙️ 3. ASAS & STRUKTUR
    ============================================================ */
 * {
   margin: 0;
@@ -110,27 +119,65 @@ html, body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  background: transparent; /* Body kena transparent supaya nampak div kat belakang */
+  background: transparent; 
 }
 
-/* 🌟 ELEMEN BACKGROUND YANG DIKUNCI (FIXED) 🌟 */
+/* 🌟 BACKGROUND KUNCI */
 .bg-fixed {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* Letak di belakang sekali */
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
   background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat;
-  pointer-events: none; /* Supaya tak menghalang klik */
+  pointer-events: none;
 }
 
-/* --- TABS BAWAH (Glass) --- */
-.top-tabs { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(120%); z-index: 9997; background: rgba(20, 45, 30, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 28px; border: var(--border-kaca); display: flex; justify-content: center; padding: 6px; gap: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, .4); opacity: 0; transition: transform .6s cubic-bezier(.34, 1.56, .64, 1), opacity .4s ease; max-width: calc(100% - 24px); }
-.top-tabs.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
-.tab-btn { padding: .7rem 1.4rem; background: transparent; border: none; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all .35s cubic-bezier(.34, 1.56, .64, 1); display: flex; align-items: center; gap: 7px; border-radius: 22px; white-space: nowrap; }
-.tab-btn.active { box-shadow: 0 4px 14px rgba(0, 0, 0, .2); letter-spacing: 3px; }
-.main-page.tabs-visible .page { padding-bottom: 7rem; }
+/* --- TABS BAWAH (Fixed) --- */
+.top-tabs { 
+  position: fixed; 
+  bottom: 20px; 
+  left: 50%; 
+  transform: translateX(-50%) translateY(120%); 
+  z-index: 9997; 
+  background: rgba(20, 45, 30, 0.6); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border-radius: 28px; 
+  border: var(--border-kaca); 
+  display: flex; 
+  justify-content: center; 
+  padding: 6px; 
+  gap: 4px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .4); 
+  opacity: 0; 
+  transition: transform .6s cubic-bezier(.34, 1.56, .64, 1), opacity .4s ease; 
+  max-width: calc(100% - 24px); 
+}
+.top-tabs.visible { 
+  transform: translateX(-50%) translateY(0); 
+  opacity: 1; 
+}
+.tab-btn { 
+  padding: .7rem 1.4rem; 
+  background: transparent; 
+  border: none; 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
+  cursor: pointer; 
+  transition: all .35s cubic-bezier(.34, 1.56, .64, 1); 
+  display: flex; 
+  align-items: center; 
+  gap: 7px; 
+  border-radius: 22px; 
+  white-space: nowrap; 
+}
+.tab-btn.active { 
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .2); 
+  letter-spacing: 3px; 
+}
+.main-page.tabs-visible .page { 
+  padding-bottom: 7rem; 
+}
 
 /* --- BUTANG MUZIK (Glass) --- */
 .music-btn { position: fixed; top: 22px; right: 22px; width: 52px; height: 52px; border-radius: 50%; background: rgba(20, 45, 30, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: var(--border-kaca); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 25px rgba(0, 0, 0, .4); z-index: 9998; color: var(--teks-emas); animation: musicPulse 2.5s infinite; }
@@ -156,7 +203,13 @@ html, body {
 .main-page.visible { opacity: 1; visibility: visible; }
 .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; display: flex; flex-direction: column; align-items: center; }
 .tab-content { display: none; }
-.tab-content.active { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.tab-content.active { display: flex; flex-direction: column; align-items: center; width: 100%; animation: slideUpFade 0.6s ease-out; }
+
+/* ANIMASI SETIAP KALI TUKAR TAB */
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
 /* --- HERO IMAGE --- */
 .hero { width: 100%; margin-bottom: 3rem; overflow: hidden; position: relative; box-shadow: 0 15px 30px -10px rgba(0, 0, 0, .5); border-radius: 8px; }
@@ -174,7 +227,7 @@ html, body {
 /* ============================================================
    🌟 TRUE GLASSMORPHISM EFFECT (KOTAK-KOTAK) 🌟
    ============================================================ */
-.countdown-section, .location-card, .rsvp-section, .wishes-section, .schedule-section, .moments-hero, .moment-upload-section, .rsvp-popup-box {
+.countdown-section, .location-card, .rsvp-section, .wishes-section, .schedule-section, .moments-hero, .moment-upload-section, .rsvp-popup-box, .dress-code-card {
   background: var(--warna-kad-kaca); 
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -185,6 +238,14 @@ html, body {
     inset 0 1px 0 rgba(255, 255, 255, 0.2), 
     inset 0 0 20px rgba(255, 255, 255, 0.05); 
 }
+
+/* --- KAD DRESS CODE (DALAM) --- */
+.dress-code-card { width: 100%; padding: 2rem 1.5rem; margin: 1.8rem 0 2rem; text-align: center; }
+.dress-code-row { display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; }
+.dress-code-item { display: flex; flex-direction: column; align-items: center; }
+.color-circle { width: 40px; height: 40px; border-radius: 50%; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2); }
+.bg-light-sage { background-color: var(--light-sage-green); }
+.bg-emerald { background-color: var(--emerald-green); }
 
 /* --- COUNTDOWN --- */
 .countdown-section { width: 100%; padding: 1.8rem .8rem 1.5rem; margin: 1.8rem 0 2rem; }
@@ -319,7 +380,7 @@ html, body {
 
 /* --- RESPONSIVE MOBILE --- */
 @media(max-width:640px) {
-  .top-tabs { bottom: 30px; padding: 5px; border-radius: 24px; }
+  .top-tabs { bottom: 20px; padding: 5px; border-radius: 24px; }
   .tab-btn { padding: .65rem 1rem; font-size: .7rem; letter-spacing: 1.5px; border-radius: 20px; gap: 5px; }
   .tab-btn i { font-size: .8rem; }
   .main-page.tabs-visible .page { padding-bottom: 6rem; }
@@ -358,6 +419,7 @@ html, body {
   .moments-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .watermark img { width: 150px; }
   .watermark .contact-text { font-size: 0.8rem; }
+  .dress-code-row { gap: 1.5rem; }
 }
 @media(max-width:380px) {
   .top-tabs { bottom: 10px; padding: 4px; }
@@ -377,7 +439,6 @@ html, body {
 </head>
 <body>
 
-<!-- 🌟 BACKGROUND KUNCI (FIXED) UNTUK SEMUA SKRIN 🌟 -->
 <div class="bg-fixed"></div>
 
 <audio id="bgMusic" loop preload="auto">
@@ -393,7 +454,26 @@ html, body {
     <div class="cover-small">The Wedding Of</div>
     <h1>Rusty <span>&</span> Anney</h1>
     <div class="cover-names-sub">Together Forever</div>
+    
     <div class="cover-divider"><i class="fas fa-circle"></i></div>
+    
+    <!-- DRESS CODE DI DEPAN (KOTAK KACA) -->
+    <div class="dress-code-card" style="margin-top: 0; margin-bottom: 2rem;">
+      <div class="dress-code-title">Dress Code</div>
+      <div class="dress-code-row">
+        <div class="dress-code-item">
+          <div class="color-circle bg-light-sage"></div>
+          <span class="dress-code-label">Light Sage</span> <!-- NAMA WARNA -->
+          <span class="dress-code-color-name">Family Groom</span> <!-- SIAPA -->
+        </div>
+        <div class="dress-code-item">
+          <div class="color-circle bg-emerald"></div>
+          <span class="dress-code-label">Emerald</span> <!-- NAMA WARNA -->
+          <span class="dress-code-color-name">Family Bride</span> <!-- SIAPA -->
+        </div>
+      </div>
+    </div>
+
     <button class="enter-btn" id="enterBtn">Open Invitation</button>
     <div class="cover-hint">— klik untuk membuka jemputan —</div>
   </div>
@@ -429,6 +509,23 @@ html, body {
           <div class="timer-block"><span class="timer-number" id="hours">00</span><span class="timer-label">Hours</span></div>
           <div class="timer-block"><span class="timer-number" id="minutes">00</span><span class="timer-label">Minutes</span></div>
           <div class="timer-block"><span class="timer-number" id="seconds">00</span><span class="timer-label">Seconds</span></div>
+        </div>
+      </div>
+
+      <!-- DRESS CODE DALAM -->
+      <div class="dress-code-card">
+        <div class="dress-code-title">Dress Code</div>
+        <div class="dress-code-row">
+          <div class="dress-code-item">
+            <div class="color-circle bg-light-sage"></div>
+            <span class="dress-code-label">Light Sage</span> <!-- NAMA WARNA -->
+            <span class="dress-code-color-name">Family Groom</span> <!-- SIAPA -->
+          </div>
+          <div class="dress-code-item">
+            <div class="color-circle bg-emerald"></div>
+            <span class="dress-code-label">Emerald</span> <!-- NAMA WARNA -->
+            <span class="dress-code-color-name">Family Bride</span> <!-- SIAPA -->
+          </div>
         </div>
       </div>
 
@@ -495,30 +592,37 @@ html, body {
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-ring"></i></div>
-            <div class="timeline-content"><span class="timeline-time">12:35 PM</span><h4>Makan Tengahari</h4><p>Doa makan & Makan tengahhari</p></div>
+            <div class="timeline-content"><span class="timeline-time">12:35 PM</span><h4>Doa & Makan Tengahari</h4><p>Doa makan & Makan tengahhari</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-camera"></i></div>
-            <div class="timeline-content"><span class="timeline-time">5:00 PM</span><h4>Sesi Bergambar</h4><p>Capturing memories with the newlyweds and loved ones.</p></div>
+            <div class="timeline-content"><span class="timeline-time">1:00 PM</span><h4>Persiapan Mogongoi</h4><p>Persiapan pengantin untuk acara Mogongoi</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
-            <div class="timeline-content"><span class="timeline-time">6:00 PM</span><h4>Makan Malam</h4><p>An evening of fine dining and joyful celebration.</p></div>
+            <div class="timeline-content"><span class="timeline-time">4:30 PM</span><h4>PERARAKAN MASUK</h4>
+              <p>Perarakan masuk - Mengikut tema hijau</p>
+              <p>Doa makan & Jamuan makan</p>
+              <p>Sesi Potong kek & Toasting</p>
+              <p>Suapan suami isteri</p>
+              <p>Suapan kepada 'Parents in law'</p>
+              <p>ucapan keluarga wakil perempuan dan lelaki</p>
+              <p>Sesi bergambar</p>
+            </div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-cake-candles"></i></div>
-            <div class="timeline-content"><span class="timeline-time">7:30 PM</span><h4>Potong Kek</h4><p>Cutting of the cake and heartfelt speeches.</p></div>
+            <div class="timeline-content"><span class="timeline-time">7:00 PM</span><h4>Rumamai</h4><p>pengisian nyanyian dan menikmati majlis</p></div>
           </div>
           <div class="timeline-item">
             <div class="timeline-icon"><i class="fas fa-music"></i></div>
-            <div class="timeline-content"><span class="timeline-time">8:30 PM</span><h4>Bersurai</h4><p>An evening of music, dancing and warm farewells.</p></div>
+            <div class="timeline-content"><span class="timeline-time">10:00 PM</span><h4>Majlis selesai</h4><p>Majlis dijangka selesai</p></div>
           </div>
         </div>
       </div>
 
-      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
-        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="contact-text">RSVP: 0174903106</div> 
         <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
@@ -564,9 +668,8 @@ html, body {
         </div>
       </div>
 
-      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
-        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="contact-text">RSVP: 012-3456789</div>
         <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
@@ -584,6 +687,17 @@ html, body {
   </div>
 </div>
 
+<!-- 🌟 POPUP PERINGATAN MESRA (BAHARU) 🌟 -->
+<div class="rsvp-popup" id="announcementPopup">
+  <div class="rsvp-popup-box">
+    <i class="fas fa-bullhorn" style="color: var(--teks-emas);"></i>
+    <h3 id="popupTitle">Peringatan Mesra</h3>
+    <p id="rsvpPopupMsg" style="line-height: 1.6;">Dilarang membuat kekacauan dan pergaduhan.<br>Marilah kita sama-sama menjaga adab dan kesopanan sepanjang majlis berlangsung.</p>
+    <button class="rsvp-popup-close" id="announcementCloseBtn">Saya Faham</button>
+  </div>
+</div>
+
+<!-- POPUP RSVP (Sedia ada) -->
 <div class="rsvp-popup" id="rsvpPopup">
   <div class="rsvp-popup-box">
     <i class="fas fa-envelope-open-text" id="popupIcon"></i>
@@ -740,6 +854,7 @@ function toggleMusic() {
 }
 musicBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMusic(); });
 
+// FUNGSI MASUK KE JEMPUTAN
 function enterWedding() {
   coverPage.classList.add('hidden');
   mainPage.classList.add('visible');
@@ -751,8 +866,32 @@ function enterWedding() {
   loadWishes();
 }
 
-enterBtn.addEventListener('click', function(e) { e.stopPropagation(); enterWedding(); });
-coverPage.addEventListener('click', enterWedding);
+// POPUP PERINGATAN MESRA
+const announcementPopup = document.getElementById('announcementPopup');
+const announcementCloseBtn = document.getElementById('announcementCloseBtn');
+
+enterBtn.addEventListener('click', function(e) { 
+  e.stopPropagation(); 
+  coverPage.classList.add('hidden'); // Sembunyi Cover Page
+  announcementPopup.classList.add('show'); // Tunjuk Popup Peringatan
+});
+coverPage.addEventListener('click', function() {
+  coverPage.classList.add('hidden');
+  announcementPopup.classList.add('show');
+});
+
+announcementCloseBtn.addEventListener('click', function() {
+  announcementPopup.classList.remove('show');
+  enterWedding(); // Terus masuk lepas tekan butang faham
+});
+
+announcementPopup.addEventListener('click', function(e) {
+  if (e.target === announcementPopup) { // Klik luar kotak = tutup
+    announcementPopup.classList.remove('show');
+    enterWedding();
+  }
+});
+
 if (isMobile) document.querySelector('.cover-hint').textContent = 'tekan untuk buka jemputan';
 
 (function() {

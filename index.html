@@ -11,15 +11,10 @@
    🎨 1. TETAPAN WARNA TEMA
    ============================================================ */
 :root {
-  /* --- BACKGROUND UTAMA --- */
   --bg-image: url('DSC00531.jpg'); 
   --bg-overlay: linear-gradient(rgba(14, 31, 23, 0.55) 0%, rgba(14, 31, 23, 0.65) 100%);
-
-  /* --- WARNA KAD & PANEL --- */
   --warna-kad-kaca: rgba(255, 255, 255, 0.03); 
   --border-kaca: 1px solid rgba(255, 255, 255, 0.15); 
-  
-  /* --- WARNA TEKS --- */
   --teks-utama: #faf9f6;         
   --teks-kelabu: #c9c2b4;        
   --teks-emas: #d4af37;          
@@ -96,7 +91,7 @@
 
 
 /* ============================================================
-   ⚙️ 3. ASAS & STRUKTUR (FIX BACKGROUND)
+   ⚙️ 3. ASAS & STRUKTUR (ANIMASI DI SINI)
    ============================================================ */
 * {
   margin: 0;
@@ -110,19 +105,17 @@ html, body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  background: transparent; /* Body kena transparent supaya nampak div kat belakang */
+  background: transparent; 
 }
 
-/* 🌟 ELEMEN BACKGROUND YANG DIKUNCI (FIXED) 🌟 */
+/* 🌟 BACKGROUND KUNCI */
 .bg-fixed {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* Letak di belakang sekali */
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
   background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat;
-  pointer-events: none; /* Supaya tak menghalang klik */
+  pointer-events: none;
 }
 
 /* --- TABS BAWAH (Glass) --- */
@@ -137,9 +130,27 @@ html, body {
 .music-btn.muted { background: rgba(0,0,0,0.5); color: #888; animation: none; }
 @keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 14px rgba(212, 175, 55, 0); } }
 
-/* --- COVER PAGE (Glass) --- */
-.cover-page { position: fixed; inset: 0; height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; cursor: pointer; }
-.cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+/* --- 🌟 COVER PAGE (ANIMASI KELUAR) 🌟 --- */
+.cover-page { 
+  position: fixed; 
+  inset: 0; 
+  height: 100dvh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  padding: 1.5rem; 
+  z-index: 9999; 
+  cursor: pointer; 
+  /* Animasi Peralihan */
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s; 
+}
+.cover-page.hidden { 
+  opacity: 0; 
+  visibility: hidden; 
+  pointer-events: none; 
+  transform: scale(1.1); /* Kesan Zoom Out sikit */
+}
 .cover-frame { position: relative; border: var(--border-kaca); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px rgba(0, 0, 0, .5); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; border-radius: 8px; }
 .cover-frame h1 { line-height: 1.1; margin-bottom: .5rem; }
 .cover-frame h1 span { vertical-align: middle; margin: 0 .3rem; }
@@ -151,9 +162,20 @@ html, body {
 .enter-btn:hover { background: var(--teks-utama); color: #142d1e; }
 .cover-hint { margin-top: 1.8rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.8; }
 
-/* --- MAIN PAGE --- */
-.main-page { opacity: 0; visibility: hidden; transition: opacity 1.2s ease .4s, visibility 1.2s ease .4s; }
-.main-page.visible { opacity: 1; visibility: visible; }
+/* --- 🌟 MAIN PAGE (ANIMASI MASUK) 🌟 --- */
+.main-page { 
+  opacity: 0; 
+  visibility: hidden; 
+  transform: translateY(40px); /* Mula dari bawah sikit */
+  /* Animasi Peralihan */
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s; 
+}
+.main-page.visible { 
+  opacity: 1; 
+  visibility: visible; 
+  transform: translateY(0); /* Naik ke posisi asal */
+}
+
 .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; display: flex; flex-direction: column; align-items: center; }
 .tab-content { display: none; }
 .tab-content.active { display: flex; flex-direction: column; align-items: center; width: 100%; }
@@ -377,7 +399,6 @@ html, body {
 </head>
 <body>
 
-<!-- 🌟 BACKGROUND KUNCI (FIXED) UNTUK SEMUA SKRIN 🌟 -->
 <div class="bg-fixed"></div>
 
 <audio id="bgMusic" loop preload="auto">
@@ -516,9 +537,8 @@ html, body {
         </div>
       </div>
 
-      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
-        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="contact-text">RSVP: 012-3456789</div> 
         <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
@@ -564,9 +584,8 @@ html, body {
         </div>
       </div>
 
-      <!-- WATERMARK & CONTACT (DIKEMASKINI) -->
       <div class="watermark">
-        <div class="contact-text">RSVP: 012-3456789</div> <!-- Tukar Nombor Telefon Di Sini -->
+        <div class="contact-text">RSVP: 012-3456789</div>
         <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
@@ -741,8 +760,8 @@ function toggleMusic() {
 musicBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMusic(); });
 
 function enterWedding() {
-  coverPage.classList.add('hidden');
-  mainPage.classList.add('visible');
+  coverPage.classList.add('hidden'); // Animasi Cover Page keluar
+  mainPage.classList.add('visible'); // Animasi Main Page masuk
   mainPage.classList.add('tabs-visible');
   document.body.style.overflow = 'auto';
   window.scrollTo(0, 0);

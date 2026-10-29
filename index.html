@@ -8,19 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   🎨 1. TETAPAN WARNA TEMA (UBAH WARNA DI SINI)
+   🎨 1. TETAPAN WARNA TEMA
    ============================================================ */
 :root {
   /* --- BACKGROUND UTAMA --- */
   --bg-image: url('DSC00531.jpg'); 
-  
-  /* 
-     UBAH OPACITY DI SINI:
-     Nombor 0.55 bermaksud 55% (Hijau gelap).
-  */
   --bg-overlay: linear-gradient(rgba(14, 31, 23, 0.55) 0%, rgba(14, 31, 23, 0.65) 100%);
 
-  /* --- WARNA KAD & PANEL (TRUE GLASS) --- */
+  /* --- WARNA KAD & PANEL --- */
   --warna-kad-kaca: rgba(255, 255, 255, 0.03); 
   --border-kaca: 1px solid rgba(255, 255, 255, 0.15); 
   
@@ -31,9 +26,8 @@
 }
 
 /* ============================================================
-   📝 2. TETAPAN TEKS (SAIZ & JENIS FONT)
+   📝 2. TETAPAN TEKS
    ============================================================ */
-/* --- TEKS COVER PAGE --- */
 .cover-small            { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; letter-spacing: 5px; font-weight: 600; }
 .cover-frame h1         { font-size: 4.2rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .cover-frame h1 span    { font-size: 3rem; color: var(--teks-emas); }
@@ -41,25 +35,21 @@
 .cover-hint             { font-size: 0.75rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .enter-btn              { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
 
-/* --- TEKS NAMA UTAMA (BAHAGIAN DALAM) --- */
 .names h1               { font-size: 5rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .names h1 span          { font-size: 3.4rem; color: var(--teks-emas); }
 .names .tagline         { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 .names .wedding-date-line { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
-/* --- TEKS COUNTDOWN --- */
 .countdown-section h2   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
 .timer-number           { font-size: 1.5rem; color: var(--teks-utama); font-family: 'Playfair Display', serif; font-weight: 600; }
 .timer-label            { font-size: 0.55rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 
-/* --- TEKS LOKASI --- */
 .location-card .loc-tag { font-size: 0.7rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
 .location-card h3       { font-size: 1.7rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 500; }
 .location-card .loc-address { font-size: 1.05rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .loc-btn                { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; background: transparent; border: var(--border-kaca); }
 .loc-btn:hover          { background: var(--teks-utama); color: #142d1e; }
 
-/* --- TEKS RSVP FORM --- */
 .rsvp-section h2        { font-size: 2.2rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 5px; }
 .rsvp-subtitle          { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .form-label             { font-size: 0.85rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
@@ -70,21 +60,18 @@
 .rsvp-form button:hover { background: var(--teks-utama); color: #142d1e; }
 .rsvp-note              { font-size: 0.8rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
-/* --- TEKS UCAPAN & DOA --- */
 .wishes-section h2      { font-size: 1.8rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 3px; }
 .wishes-sub             { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .wish-item .wish-name   { font-size: 0.95rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
 .wish-item .wish-date   { font-size: 0.65rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .wish-item .wish-message{ font-size: 1rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
-/* --- TEKS ATURCARA (TIMELINE) --- */
 .schedule-section h2    { font-size: 1.5rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; line-height: 1.2; }
 .schedule-sub           { font-size: 0.95rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .timeline-time          { font-size: 0.75rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
 .timeline-content h4    { font-size: 1.2rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
 .timeline-content p     { font-size: 1rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
-/* --- TEKS MOMENTS TAB --- */
 .moments-hero h1        { font-size: 2.6rem; color: var(--teks-emas); font-family: 'Great Vibes', cursive; }
 .moments-hero p         { font-size: 0.9rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .moment-upload-section h2 { font-size: 1.2rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; }
@@ -99,19 +86,17 @@
 .moment-card .moment-name { font-size: 0.8rem; color: var(--teks-utama); font-family: 'Cinzel', serif; font-weight: 600; }
 .moment-card .moment-date { font-size: 0.6rem; color: var(--teks-kelabu); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
-/* --- TEKS POPUP --- */
 .rsvp-popup-box h3      { font-size: 1.5rem; color: var(--teks-emas); font-family: 'Cinzel', serif; font-weight: 600; }
 .rsvp-popup-box p       { font-size: 1.05rem; color: var(--teks-utama); font-family: 'Cormorant Garamond', serif; font-style: italic; }
 .rsvp-popup-close       { font-size: 0.85rem; color: var(--teks-utama); background: transparent; border: var(--border-kaca); font-family: 'Cinzel', serif; font-weight: 600; }
 .rsvp-popup-close:hover { background: var(--teks-utama); color: #142d1e; }
 
-/* --- TEKS TABS & BUTANG MUZIK --- */
 .tab-btn                { font-size: 0.78rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 .tab-btn.active         { color: #142d1e; background: var(--teks-emas); font-weight: 700; }
 
 
 /* ============================================================
-   ⚙️ 3. ASAS & STRUKTUR
+   ⚙️ 3. ASAS & STRUKTUR (FIX BACKGROUND)
    ============================================================ */
 * {
   margin: 0;
@@ -121,12 +106,23 @@
 }
 
 html, body {
-  /* Gunakan background-position: center center supaya tak lari */
-  background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat fixed; 
   font-family: 'Cormorant Garamond', serif;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  background: transparent; /* Body kena transparent supaya nampak div kat belakang */
+}
+
+/* 🌟 ELEMEN BACKGROUND YANG DIKUNCI (FIXED) 🌟 */
+.bg-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Letak di belakang sekali */
+  background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat;
+  pointer-events: none; /* Supaya tak menghalang klik */
 }
 
 /* --- TABS BAWAH (Glass) --- */
@@ -142,7 +138,7 @@ html, body {
 @keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 14px rgba(212, 175, 55, 0); } }
 
 /* --- COVER PAGE (Glass) --- */
-.cover-page { position: fixed; inset: 0; height: 100dvh; background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; cursor: pointer; }
+.cover-page { position: fixed; inset: 0; height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; cursor: pointer; }
 .cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .cover-frame { position: relative; border: var(--border-kaca); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px rgba(0, 0, 0, .5); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; border-radius: 8px; }
 .cover-frame h1 { line-height: 1.1; margin-bottom: .5rem; }
@@ -180,12 +176,10 @@ html, body {
    ============================================================ */
 .countdown-section, .location-card, .rsvp-section, .wishes-section, .schedule-section, .moments-hero, .moment-upload-section, .rsvp-popup-box {
   background: var(--warna-kad-kaca); 
-  backdrop-filter: blur(3px); /* Blur seragam */
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border: var(--border-kaca); 
   border-radius: 12px; 
-  
-  /* Kesan shadow lembut + highlight putih di bahagian atas (macam pantulan kaca) */
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.5), 
     inset 0 1px 0 rgba(255, 255, 255, 0.2), 
@@ -323,17 +317,8 @@ html, body {
 .rsvp-popup-box p { margin-bottom: 1.8rem; }
 .rsvp-popup-close { padding: .85rem 2.2rem; letter-spacing: 5px; text-transform: uppercase; cursor: pointer; border-radius: 6px; }
 
-/* --- RESPONSIVE MOBILE (BETULKAN BACKGROUND) --- */
+/* --- RESPONSIVE MOBILE --- */
 @media(max-width:640px) {
-  /* Khas untuk phone: background tak lari & tak bergerak laju */
-  html, body { 
-    background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat scroll !important; 
-    background-attachment: scroll !important;
-  }
-  .cover-page {
-    background: var(--bg-overlay), var(--bg-image) center center / cover no-repeat scroll !important;
-  }
-
   .top-tabs { bottom: 30px; padding: 5px; border-radius: 24px; }
   .tab-btn { padding: .65rem 1rem; font-size: .7rem; letter-spacing: 1.5px; border-radius: 20px; gap: 5px; }
   .tab-btn i { font-size: .8rem; }
@@ -391,6 +376,9 @@ html, body {
 </style>
 </head>
 <body>
+
+<!-- 🌟 BACKGROUND KUNCI (FIXED) UNTUK SEMUA SKRIN 🌟 -->
+<div class="bg-fixed"></div>
 
 <audio id="bgMusic" loop preload="auto">
   <source src="wedding.mp3" type="audio/mpeg">

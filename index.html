@@ -24,7 +24,7 @@
   --teks-kelabu: #c9c2b4;        
   --teks-emas: #d4af37;          
   
-  /* --- WARNA DRESS CODE (DIKEMBALIKAN) --- */
+  /* --- WARNA DRESS CODE --- */
   --light-sage-green: #9CAF88; 
   --emerald-green: #046307;    
 }
@@ -185,7 +185,8 @@ html, body {
 @keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 14px rgba(212, 175, 55, 0); } }
 
 /* --- COVER PAGE (Glass) --- */
-.cover-page { position: fixed; inset: 0; height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; cursor: pointer; }
+/* Di sini saya buang cursor: pointer pada seluruh cover-page supaya tak boleh klik area lain */
+.cover-page { position: fixed; inset: 0; height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; }
 .cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .cover-frame { position: relative; border: var(--border-kaca); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px rgba(0, 0, 0, .5); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; border-radius: 8px; }
 .cover-frame h1 { line-height: 1.1; margin-bottom: .5rem; }
@@ -669,7 +670,7 @@ html, body {
       </div>
 
       <div class="watermark">
-        <div class="contact-text">RSVP: 012-3456789</div>
+        <div class="contact-text">RSVP: 0174903106</div>
         <div class="created-text">Created by:</div>
         <img src="2.png" alt="Logo">
       </div>
@@ -870,15 +871,14 @@ function enterWedding() {
 const announcementPopup = document.getElementById('announcementPopup');
 const announcementCloseBtn = document.getElementById('announcementCloseBtn');
 
+// HANYA BUTANG INI SAHAJA YANG BOLEH KLIK UNTUK MASUK
 enterBtn.addEventListener('click', function(e) { 
   e.stopPropagation(); 
   coverPage.classList.add('hidden'); // Sembunyi Cover Page
   announcementPopup.classList.add('show'); // Tunjuk Popup Peringatan
 });
-coverPage.addEventListener('click', function() {
-  coverPage.classList.add('hidden');
-  announcementPopup.classList.add('show');
-});
+
+// (Saya dah buang fungsi klik pada 'coverPage' supaya area lain tak boleh masuk)
 
 announcementCloseBtn.addEventListener('click', function() {
   announcementPopup.classList.remove('show');
@@ -886,7 +886,7 @@ announcementCloseBtn.addEventListener('click', function() {
 });
 
 announcementPopup.addEventListener('click', function(e) {
-  if (e.target === announcementPopup) { // Klik luar kotak = tutup
+  if (e.target === announcementPopup) { // Klik luar kotak = tutup popup & masuk
     announcementPopup.classList.remove('show');
     enterWedding();
   }

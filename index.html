@@ -987,7 +987,7 @@ function loadWishes() {
         }).join('');
         if (list.length >= 4) {
           wishesGrid.innerHTML = html + html;
-          wishesGrid.style.animationDuration = Math.max(30, list.length * 8) + 's';
+          wishesGrid.style.animationDuration = Math.max(10, list.length * 3) + 's';
         } else {
           wishesGrid.innerHTML = html;
           wishesGrid.classList.add('no-scroll');

@@ -304,9 +304,8 @@ html, body {
 .wishes-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .4rem; }
 .wishes-section h2 i { margin: 0 10px; color: var(--teks-emas); }
 .wishes-sub { text-align: center; letter-spacing: 3px; margin-bottom: 1.5rem; }
-.wishes-scroll-wrap { max-width: 700px; margin: 0 auto; height: 420px; overflow: hidden; position: relative; padding: 0 1rem; }
-.wishes-track { display: flex; flex-direction: column; gap: 0.8rem; animation: wishesAutoScroll 60s linear infinite; padding: 20px 0; }
-.wishes-track:hover { animation-play-state: paused; }
+.wishes-scroll-wrap { max-width: 700px; margin: 0 auto; height: 420px; overflow-y: auto; overflow-x: hidden; position: relative; padding: 0 1rem; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.wishes-track { display: flex; flex-direction: column; gap: 0.8rem; padding: 20px 0; }
 .wishes-track.no-scroll { animation: none; height: auto; }
 @keyframes wishesAutoScroll { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
 .wish-item { text-align: center; padding: .8rem 1rem; background: rgba(255,255,255,0.05); border: var(--border-kaca); border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; }
@@ -715,6 +714,34 @@ html, body {
 </div>
 
 <script>
+  let wishesTimer = null;
+let wishesPaused = false;
+let wishesResume = null;
+
+function startWishesAutoScroll() {
+  const wrap = document.querySelector('.wishes-scroll-wrap');
+  clearInterval(wishesTimer);
+  wrap.scrollTop = 0;
+  wishesTimer = setInterval(function() {
+    if (wishesPaused) return;
+    if (wrap.scrollHeight <= wrap.clientHeight) return;
+    const half = wrap.scrollHeight / 2;
+    wrap.scrollTop += 2;
+    if (wrap.scrollTop >= half) wrap.scrollTop -= half;
+  }, 30);
+}
+
+(function() {
+  const wrap = document.querySelector('.wishes-scroll-wrap');
+  function pause() {
+    wishesPaused = true;
+    clearTimeout(wishesResume);
+    wishesResume = setTimeout(function() { wishesPaused = false; }, 3000);
+  }
+  ['touchstart', 'wheel', 'mouseenter', 'pointerdown'].forEach(function(ev) {
+    wrap.addEventListener(ev, pause, { passive: true });
+  });
+})();
 const WEDDING_DATE_STRING = '2026-11-21T09:00:00';
 const WEDDING_DATE_DISPLAY = '21 November 2026';
 
@@ -987,7 +1014,7 @@ function loadWishes() {
         }).join('');
         if (list.length >= 4) {
           wishesGrid.innerHTML = html + html;
-          wishesGrid.style.animationDuration = Math.max(10, list.length * 3) + 's';
+          startWishesAutoScroll();
         } else {
           wishesGrid.innerHTML = html;
           wishesGrid.classList.add('no-scroll');

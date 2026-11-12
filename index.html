@@ -11,20 +11,16 @@
    🎨 1. TETAPAN WARNA TEMA
    ============================================================ */
 :root {
-  /* --- BACKGROUND UTAMA --- */
   --bg-image: url('DSC00531.jpg'); 
   --bg-overlay: linear-gradient(rgba(14, 31, 23, 0.55) 0%, rgba(14, 31, 23, 0.65) 100%);
 
-  /* --- WARNA KAD & PANEL --- */
   --warna-kad-kaca: rgba(255, 255, 255, 0.03); 
   --border-kaca: 1px solid rgba(255, 255, 255, 0.15); 
   
-  /* --- WARNA TEKS --- */
   --teks-utama: #faf9f6;         
   --teks-kelabu: #c9c2b4;        
   --teks-emas: #d4af37;          
   
-  /* --- WARNA DRESS CODE --- */
   --light-sage-green: #9CAF88; 
   --emerald-green: #046307;    
 }
@@ -98,7 +94,6 @@
 .tab-btn                { font-size: 0.78rem; color: var(--teks-kelabu); font-family: 'Cinzel', serif; font-weight: 600; }
 .tab-btn.active         { color: #142d1e; background: var(--teks-emas); font-weight: 700; }
 
-/* --- TEKS DRESS CODE --- */
 .dress-code-title       { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--teks-emas); letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
 .dress-code-label       { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--teks-kelabu); font-style: italic; margin-top: 5px; display: block; }
 .dress-code-color-name  { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; color: #a0a0a0; font-style: italic; margin-top: 2px; display: block; }
@@ -122,7 +117,6 @@ html, body {
   background: transparent; 
 }
 
-/* 🌟 BACKGROUND KUNCI */
 .bg-fixed {
   position: fixed;
   top: 0; left: 0;
@@ -185,7 +179,6 @@ html, body {
 @keyframes musicPulse { 0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 0 rgba(212, 175, 55, .4); } 50% { box-shadow: 0 8px 25px rgba(0, 0, 0, .4), 0 0 0 14px rgba(212, 175, 55, 0); } }
 
 /* --- COVER PAGE (Glass) --- */
-/* Di sini saya buang cursor: pointer pada seluruh cover-page supaya tak boleh klik area lain */
 .cover-page { position: fixed; inset: 0; height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; z-index: 9999; transition: opacity 1.2s ease, visibility 1.2s ease; }
 .cover-page.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .cover-frame { position: relative; border: var(--border-kaca); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px rgba(0, 0, 0, .5); max-width: 580px; width: 100%; padding: 3.5rem 2.2rem; border-radius: 8px; }
@@ -206,7 +199,6 @@ html, body {
 .tab-content { display: none; }
 .tab-content.active { display: flex; flex-direction: column; align-items: center; width: 100%; animation: slideUpFade 0.6s ease-out; }
 
-/* ANIMASI SETIAP KALI TUKAR TAB */
 @keyframes slideUpFade {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -226,7 +218,7 @@ html, body {
 .names .wedding-date-line::before { content: "◆"; position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: var(--teks-emas); font-size: .55rem; padding: 0 .6rem; }
 
 /* ============================================================
-   🌟 TRUE GLASSMORPHISM EFFECT (KOTAK-KOTAK) 🌟
+   🌟 TRUE GLASSMORPHISM EFFECT
    ============================================================ */
 .countdown-section, .location-card, .rsvp-section, .wishes-section, .schedule-section, .moments-hero, .moment-upload-section, .rsvp-popup-box, .dress-code-card {
   background: var(--warna-kad-kaca); 
@@ -240,7 +232,7 @@ html, body {
     inset 0 0 20px rgba(255, 255, 255, 0.05); 
 }
 
-/* --- KAD DRESS CODE (DALAM) --- */
+/* --- KAD DRESS CODE --- */
 .dress-code-card { width: 100%; padding: 2rem 1.5rem; margin: 1.8rem 0 2rem; text-align: center; }
 .dress-code-row { display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; }
 .dress-code-item { display: flex; flex-direction: column; align-items: center; }
@@ -299,16 +291,15 @@ html, body {
 .rsvp-form button:disabled { opacity: .7; cursor: not-allowed; }
 .rsvp-note { margin-top: 1.8rem; letter-spacing: 3px; text-transform: uppercase; }
 
-/* --- WISHES --- */
+/* --- WISHES (auto-scroll + drag) --- */
 .wishes-section { width: 100%; margin-top: 3.5rem; padding: 3rem 1.5rem 2.8rem; }
 .wishes-section h2 { text-align: center; text-transform: uppercase; margin-bottom: .4rem; }
 .wishes-section h2 i { margin: 0 10px; color: var(--teks-emas); }
 .wishes-sub { text-align: center; letter-spacing: 3px; margin-bottom: 1.5rem; }
-.wishes-scroll-wrap { max-width: 700px; margin: 0 auto; height: 420px; overflow: hidden; position: relative; padding: 0 1rem; }
-.wishes-track { display: flex; flex-direction: column; gap: 0.8rem; animation: wishesAutoScroll 60s linear infinite; padding: 20px 0; }
-.wishes-track:hover { animation-play-state: paused; }
-.wishes-track.no-scroll { animation: none; height: auto; }
-@keyframes wishesAutoScroll { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+.wishes-scroll-wrap { max-width: 700px; margin: 0 auto; height: 420px; overflow-y: auto; overflow-x: hidden; position: relative; padding: 0 1rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.wishes-scroll-wrap::-webkit-scrollbar { display: none; }
+.wishes-track { display: flex; flex-direction: column; gap: 0.8rem; padding: 20px 0; }
+.wishes-track.no-scroll { height: auto; }
 .wish-item { text-align: center; padding: .8rem 1rem; background: rgba(255,255,255,0.05); border: var(--border-kaca); border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; }
 .wish-item .wish-name { letter-spacing: 3px; text-transform: uppercase; margin-bottom: .2rem; }
 .wish-item .wish-date { letter-spacing: 2px; margin-bottom: .3rem; }
@@ -464,13 +455,13 @@ html, body {
       <div class="dress-code-row">
         <div class="dress-code-item">
           <div class="color-circle bg-light-sage"></div>
-          <span class="dress-code-label">Light Sage</span> <!-- NAMA WARNA -->
-          <span class="dress-code-color-name">Family Groom</span> <!-- SIAPA -->
+          <span class="dress-code-label">Light Sage</span>
+          <span class="dress-code-color-name">Family Groom</span>
         </div>
         <div class="dress-code-item">
           <div class="color-circle bg-emerald"></div>
-          <span class="dress-code-label">Emerald</span> <!-- NAMA WARNA -->
-          <span class="dress-code-color-name">Family Bride</span> <!-- SIAPA -->
+          <span class="dress-code-label">Emerald</span>
+          <span class="dress-code-color-name">Family Bride</span>
         </div>
       </div>
     </div>
@@ -519,13 +510,13 @@ html, body {
         <div class="dress-code-row">
           <div class="dress-code-item">
             <div class="color-circle bg-light-sage"></div>
-            <span class="dress-code-label">Light Sage</span> <!-- NAMA WARNA -->
-            <span class="dress-code-color-name">Family Groom</span> <!-- SIAPA -->
+            <span class="dress-code-label">Light Sage</span>
+            <span class="dress-code-color-name">Family Groom</span>
           </div>
           <div class="dress-code-item">
             <div class="color-circle bg-emerald"></div>
-            <span class="dress-code-label">Emerald</span> <!-- NAMA WARNA -->
-            <span class="dress-code-color-name">Family Bride</span> <!-- SIAPA -->
+            <span class="dress-code-label">Emerald</span>
+            <span class="dress-code-color-name">Family Bride</span>
           </div>
         </div>
       </div>
@@ -629,7 +620,6 @@ html, body {
       <div class="watermark">
         <div class="contact-text">RSVP: 0174903106</div> 
         <div class="created-text">Created by:</div>
-        <!-- TUKAR KE TAG <a> UNTUK LINK -->
         <a href="https://designer-folder.vercel.app/" target="_blank" rel="noopener">
           <img src="2.png" alt="Logo">
         </a>
@@ -679,7 +669,6 @@ html, body {
       <div class="watermark">
         <div class="contact-text">RSVP: 0174903106</div>
         <div class="created-text">Created by:</div>
-        <!-- TUKAR KE TAG <a> UNTUK LINK -->
         <a href="https://designer-folder.vercel.app/" target="_blank" rel="noopener">
           <img src="2.png" alt="Logo">
         </a>
@@ -698,17 +687,17 @@ html, body {
   </div>
 </div>
 
-<!-- 🌟 POPUP PERINGATAN MESRA (BAHARU) 🌟 -->
+<!-- POPUP PERINGATAN MESRA (ID sudah dibezakan) -->
 <div class="rsvp-popup" id="announcementPopup">
   <div class="rsvp-popup-box">
     <i class="fas fa-bullhorn" style="color: var(--teks-emas);"></i>
-    <h3 id="popupTitle">Peringatan Mesra</h3>
-    <p id="rsvpPopupMsg" style="line-height: 1.6;">Dilarang membuat kekacauan dan pergaduhan.<br>Marilah kita sama-sama menjaga adab dan kesopanan sepanjang majlis berlangsung.</p>
+    <h3 id="announcementTitle">Peringatan Mesra</h3>
+    <p id="announcementMsg" style="line-height: 1.6;">Dilarang membuat kekacauan dan pergaduhan.<br>Marilah kita sama-sama menjaga adab dan kesopanan sepanjang majlis berlangsung.</p>
     <button class="rsvp-popup-close" id="announcementCloseBtn">Saya Faham</button>
   </div>
 </div>
 
-<!-- POPUP RSVP (Sedia ada) -->
+<!-- POPUP TERIMA KASIH (teks diset oleh JavaScript) -->
 <div class="rsvp-popup" id="rsvpPopup">
   <div class="rsvp-popup-box">
     <i class="fas fa-envelope-open-text" id="popupIcon"></i>
@@ -729,6 +718,86 @@ const LOCATIONS = {
   church: { name: 'Gereja Kristus Nokotungag', address: 'Gereja Kristus Nokotungag Kg.Tomgotuon, 89650 Tambunan, Sabah', lat: 5.722890883950867, lng: 116.40436871690693 },
   reception: { name: 'Council House', address: 'Kg. Tombotuon, Jalan Tambunan - Kota Kinabalu, 89650 Tambunan, Sabah', lat: 5.725610974561565, lng: 116.40277901935414 }
 };
+
+/* ============================================================
+   UCAPAN: BERGERAK SENDIRI + DRAG SCROLL
+   ============================================================ */
+let wishesTimer = null;
+let wishesPaused = false;
+let wishesResume = null;
+let wishesLoop = 0;
+const WISHES_SPEED = 2; // piksel setiap 16ms. Besar = lebih laju
+
+function pauseWishes(ms) {
+  wishesPaused = true;
+  clearTimeout(wishesResume);
+  wishesResume = setTimeout(function() { wishesPaused = false; }, ms || 2000);
+}
+
+function stopWishesScroll() {
+  clearInterval(wishesTimer);
+  wishesLoop = 0;
+}
+
+function setupWishesScroll(html) {
+  const wrap = document.querySelector('.wishes-scroll-wrap');
+  const track = document.getElementById('wishesGrid');
+  stopWishesScroll();
+
+  track.innerHTML = html;
+  let perSet = track.children.length;
+  let set = html;
+  const h = track.scrollHeight;
+  if (h < wrap.clientHeight) {
+    const n = Math.ceil(wrap.clientHeight / h) + 1;
+    set = html.repeat(n);
+    perSet = perSet * n;
+  }
+  track.innerHTML = set + set;
+  wishesLoop = track.children[perSet].offsetTop - track.children[0].offsetTop;
+  wrap.scrollTop = 0;
+
+  wishesTimer = setInterval(function() {
+    if (wishesPaused) return;
+    wrap.scrollTop += WISHES_SPEED;
+  }, 16);
+}
+
+(function() {
+  const wrap = document.querySelector('.wishes-scroll-wrap');
+
+  // sambung tanpa putus
+  wrap.addEventListener('scroll', function() {
+    if (!wishesLoop) return;
+    if (wrap.scrollTop >= wishesLoop) wrap.scrollTop -= wishesLoop;
+    else if (wrap.scrollTop <= 0) wrap.scrollTop += wishesLoop;
+  });
+
+  // drag dengan tetikus
+  let dragging = false, startY = 0, startTop = 0;
+  wrap.addEventListener('mousedown', function(e) {
+    dragging = true;
+    startY = e.clientY;
+    startTop = wrap.scrollTop;
+    wrap.style.cursor = 'grabbing';
+    pauseWishes(999999);
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!dragging) return;
+    wrap.scrollTop = startTop - (e.clientY - startY);
+  });
+  window.addEventListener('mouseup', function() {
+    if (!dragging) return;
+    dragging = false;
+    wrap.style.cursor = 'grab';
+    pauseWishes(2000);
+  });
+
+  // sentuh / roda tetikus
+  ['touchstart', 'touchmove', 'wheel'].forEach(function(ev) {
+    wrap.addEventListener(ev, function() { pauseWishes(2500); }, { passive: true });
+  });
+})();
 
 function fixDriveUrl(url) {
   if (!url) return url;
@@ -881,22 +950,19 @@ function enterWedding() {
 const announcementPopup = document.getElementById('announcementPopup');
 const announcementCloseBtn = document.getElementById('announcementCloseBtn');
 
-// HANYA BUTANG INI SAHAJA YANG BOLEH KLIK UNTUK MASUK
 enterBtn.addEventListener('click', function(e) { 
   e.stopPropagation(); 
-  coverPage.classList.add('hidden'); // Sembunyi Cover Page
-  announcementPopup.classList.add('show'); // Tunjuk Popup Peringatan
+  coverPage.classList.add('hidden');
+  announcementPopup.classList.add('show');
 });
-
-// (Saya dah buang fungsi klik pada 'coverPage' supaya area lain tak boleh masuk)
 
 announcementCloseBtn.addEventListener('click', function() {
   announcementPopup.classList.remove('show');
-  enterWedding(); // Terus masuk lepas tekan butang faham
+  enterWedding();
 });
 
 announcementPopup.addEventListener('click', function(e) {
-  if (e.target === announcementPopup) { // Klik luar kotak = tutup popup & masuk
+  if (e.target === announcementPopup) {
     announcementPopup.classList.remove('show');
     enterWedding();
   }
@@ -964,7 +1030,7 @@ rsvpForm.addEventListener('submit', function(e) {
   submitBtn.disabled = true;
   sendTo(URL_UCAPAN, formData, function(err) {
     if (!err) {
-      showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '!', false);
+      showPopup('Terima Kasih', 'Terima kasih, ' + formData.name + '! Ucapan anda telah diterima.', false);
       rsvpForm.reset();
       setTimeout(loadWishes, 3000);
     } else {
@@ -977,6 +1043,7 @@ rsvpForm.addEventListener('submit', function(e) {
 
 function loadWishes() {
   const wishesGrid = document.getElementById('wishesGrid');
+  stopWishesScroll();
   wishesGrid.innerHTML = '<div class="wishes-loading"><i class="fas fa-spinner fa-spin"></i> Memuatkan...</div>';
   wishesGrid.classList.remove('no-scroll');
   const cbName = 'cbWish_' + Date.now();
@@ -989,9 +1056,8 @@ function loadWishes() {
         const html = list.map(function(w) {
           return '<div class="wish-item">' + '<div class="wish-name">' + escHtml(w.name) + '</div>' + '<div class="wish-date">' + fmtDate(w.timestamp) + '</div>' + '<div class="wish-message">' + escHtml(w.message) + '</div>' + '</div>';
         }).join('');
-        if (list.length >= 4) {
-          wishesGrid.innerHTML = html + html;
-          wishesGrid.style.animationDuration = Math.max(30, list.length * 8) + 's';
+        if (list.length >= 3) {
+          setupWishesScroll(html);
         } else {
           wishesGrid.innerHTML = html;
           wishesGrid.classList.add('no-scroll');
@@ -1080,7 +1146,7 @@ momentForm.addEventListener('submit', function(e) {
   const formData = { type: 'moment', name: nameVal, fileType: momentFileType, fileName: momentFileNameValue, fileData: momentFileBase64 };
   sendTo(URL_MOMENTS, formData, function(err) {
     if (!err) {
-      showPopup('Terima Kasih', 'Terima kasih, ' + nameVal + '!', false);
+      showPopup('Terima Kasih', 'Terima kasih ' + nameVal + ', kerana berkongsi moment bersama kami. Kami sangat menghargai anda.', false);
       momentForm.reset(); momentFileBase64 = ''; momentFileType = ''; momentFileNameValue = '';
       momentPreview.classList.remove('show'); momentPreviewContent.innerHTML = '';
       setTimeout(loadMoments, 5000);
